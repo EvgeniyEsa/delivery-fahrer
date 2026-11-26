@@ -1,4 +1,4 @@
-import { normalizeArticle } from "@/lib/product-article"
+import { describeProduct, normalizeArticle } from "@/lib/product-article"
 import type { CatalogProduct } from "@/lib/product-types"
 
 const VENDOR_RANK: Record<string, number> = {
@@ -16,10 +16,14 @@ const NAME_ALIASES: Record<string, string> = {
   "halbes oberlaender geschnitten": "oberlaender 1000g",
 }
 
+const BAKERIES = ["Heidbüchel", "Moss", "Kockartz"] as const
+
+export type DriverBakery = (typeof BAKERIES)[number]
+
 export function bakeryHint(comment: string) {
-  const heidbuechel = /heidb|хальб/i.test(comment)
+  const heidbuechel = /heidb|хальб|хайб/i.test(comment)
   const moss = /moss|мосс/i.test(comment)
-  const kockartz = /kockartz|копкарц|kopkarz/i.test(comment)
+  const kockartz = /kockartz|копкарц|кокарц|kopkarz/i.test(comment)
   const hits = [
     heidbuechel ? "Heidbüchel" : "",
     moss ? "Moss" : "",
@@ -54,6 +58,41 @@ function choose(products: CatalogProduct[], vendor: string) {
     if (vendorOrder !== 0) return vendorOrder
     return left.sku.localeCompare(right.sku, "de")
   })[0]
+}
+
+export function driverBakeryLookup(catalog: CatalogProduct[]) {
+  const byName = new Map<string, Set<DriverBakery>>()
+  for (const product of catalog) {
+    if (!BAKERIES.includes(product.vendor as DriverBakery)) continue
+    const name = normalizeName(product.name)
+    if (!name) continue
+    const vendors = byName.get(name) ?? new Set()
+    vendors.add(product.vendor as DriverBakery)
+    byName.set(name, vendors)
+  }
+
+  return function lookup(
+    input: { name: string; article?: string },
+    hint: string,
+  ): DriverBakery | "" {
+    const fromArticle = describeProduct({
+      name: input.name,
+      quantity: 1,
+      article: input.article,
+    }).bakery
+    if (isDriverBakery(fromArticle)) return fromArticle
+
+    const normalized = normalizeName(input.name)
+    const key = NAME_ALIASES[normalized] ?? normalized
+    const vendors = [...(byName.get(key) ?? [])]
+    if (vendors.length === 1) return vendors[0]
+    if (isDriverBakery(hint) && (vendors.length === 0 || vendors.includes(hint))) return hint
+    return ""
+  }
+}
+
+function isDriverBakery(value: string): value is DriverBakery {
+  return BAKERIES.includes(value as DriverBakery)
 }
 
 export function productPhotoLookup(catalog: CatalogProduct[]) {

@@ -7,6 +7,7 @@ import type { RouteMapPoint } from "@/components/route-map"
 import { buttonVariants } from "@/components/ui/button"
 import { formatDeliveredAt } from "@/lib/delivery-date"
 import type { DriverItem, DriverStop } from "@/lib/driver-stops"
+import type { DriverBakery } from "@/lib/product-photos"
 import { cn } from "cn"
 
 const BAKERY = "Wolferskaul 4, 52078 Aachen"
@@ -65,6 +66,7 @@ export function DriverList({
           ) : null}
         </div>
       ) : null}
+      <BakeryLegend />
       {error ? (
         <p className="rounded-xl bg-destructive/10 px-4 py-3 text-base text-destructive">{error}</p>
       ) : null}
@@ -76,13 +78,16 @@ export function DriverList({
         <ul className="flex flex-col gap-1">
           {stops.map((stop, index) => {
             const delivered = isDone(stop)
+            const cardBakery = singleBakery(stop.items)
+            const mixed = cardBakery ? [] : bakeriesIn(stop.items)
             return (
               <li key={stop.id}>
                 <details
                   name="stops"
                   open={!delivered && stop.id === firstId}
                   className={cn(
-                    "group rounded-lg bg-card px-3 py-1.5 ring-1 ring-foreground/10",
+                    "group rounded-lg px-3 py-1.5 ring-1 ring-foreground/10",
+                    cardBakery ? cn(BAKERY_COLOR[cardBakery], "text-neutral-950") : "bg-card",
                     delivered && "opacity-60",
                   )}
                 >
@@ -91,6 +96,16 @@ export function DriverList({
                       {index + 1}
                     </span>
                     <span className="min-w-0 flex-1 truncate text-sm">{stop.customer}</span>
+                    {mixed.length > 0 ? (
+                      <span className="flex shrink-0 gap-1" aria-hidden>
+                        {mixed.map((bakery) => (
+                          <span
+                            key={bakery}
+                            className={cn("size-3 rounded-full ring-1 ring-black/10", BAKERY_COLOR[bakery])}
+                          />
+                        ))}
+                      </span>
+                    ) : null}
                     {delivered ? (
                       <span className="max-w-40 shrink-0 text-right text-xs text-muted-foreground">
                         {stop.deliveredAt ? formatDeliveredAt(stop.deliveredAt) : "Доставлено"}
@@ -106,7 +121,7 @@ export function DriverList({
                     {stop.deliveredAt ? (
                       <p className="mt-1 text-sm">Доставлено {formatDeliveredAt(stop.deliveredAt)}</p>
                     ) : null}
-                    <StopItems items={stop.items} />
+                    <StopItems items={stop.items} tintRows={!cardBakery} />
                     {delivered ? null : (
                       <div className="mt-3 flex flex-col gap-2">
                         {mapDestination(stop) ? (
@@ -214,13 +229,54 @@ function isDone(stop: DriverStop) {
   return Boolean(stop.deliveredAt) || (stop.canComplete && stop.status === "delivered")
 }
 
-function StopItems({ items }: { items: DriverItem[] }) {
+const BAKERY_COLOR: Record<DriverBakery, string> = {
+  Heidbüchel: "bg-[#fff3c4]",
+  Moss: "bg-[#dff3d8]",
+  Kockartz: "bg-[#e8c9a4]",
+}
+
+const BAKERY_LABEL: Record<DriverBakery, string> = {
+  Heidbüchel: "Хайбюхель",
+  Moss: "Мосс",
+  Kockartz: "Кокарц",
+}
+
+function BakeryLegend() {
+  return (
+    <div className="flex flex-wrap gap-2 text-xs text-neutral-950">
+      {(Object.keys(BAKERY_LABEL) as DriverBakery[]).map((bakery) => (
+        <span key={bakery} className={cn("rounded-full px-2.5 py-1", BAKERY_COLOR[bakery])}>
+          {BAKERY_LABEL[bakery]}
+        </span>
+      ))}
+    </div>
+  )
+}
+
+function singleBakery(items: DriverItem[]) {
+  const goods = items.filter((item) => item.name !== "Trinkgeld")
+  const first = goods[0]?.bakery
+  if (!first || goods.some((item) => item.bakery !== first)) return ""
+  return first
+}
+
+function bakeriesIn(items: DriverItem[]) {
+  return [...new Set(items.flatMap((item) => (item.bakery ? [item.bakery] : [])))]
+}
+
+function StopItems({ items, tintRows }: { items: DriverItem[]; tintRows: boolean }) {
   if (items.length === 0) return null
 
   return (
     <ul className="mt-2 flex flex-col gap-2">
       {items.map((item, index) => (
-        <li key={`${item.name}-${index}`} className="flex items-center gap-3">
+        <li
+          key={`${item.name}-${index}`}
+          className={cn(
+            "flex items-center gap-3",
+            tintRows && item.bakery && cn("rounded-md px-2 py-1 text-neutral-950", BAKERY_COLOR[item.bakery]),
+          )}
+        >
           {item.name === "Trinkgeld" ? null : <DriverPhoto name={item.name} src={item.image} />}
           <span className="min-w-0 flex-1 text-sm">{item.name}</span>
           <span

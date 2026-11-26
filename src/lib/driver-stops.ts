@@ -2,7 +2,8 @@ import { listDeliveryTimes } from "@/lib/delivery-log"
 import { listStoredOrders } from "@/lib/orders"
 import { listPartners } from "@/lib/partners"
 import { pickupStops } from "@/lib/partner-stops"
-import { bakeryHint, productPhotoLookup } from "@/lib/product-photos"
+import { bakeryHint, driverBakeryLookup, productPhotoLookup } from "@/lib/product-photos"
+import type { DriverBakery } from "@/lib/product-photos"
 import { listProducts } from "@/lib/products"
 import { subscriptionStops } from "@/lib/route-stops"
 import { getShopifyOrderItems } from "@/lib/shopify"
@@ -14,6 +15,7 @@ export type DriverItem = {
   quantity: number
   image: string
   amount?: number | null
+  bakery: DriverBakery | ""
 }
 
 export type DriverStop = {
@@ -44,6 +46,7 @@ export async function listDriverStops(day: string): Promise<DriverStop[]> {
     listDeliveryTimes(),
   ])
   const photo = productPhotoLookup(catalog)
+  const bakeryOf = driverBakeryLookup(catalog)
   const subscriberById = new Map(subscribers.map((subscriber) => [subscriber.id, subscriber]))
   const partnerById = new Map(partners.map((partner) => [partner.id, partner]))
 
@@ -71,6 +74,7 @@ export async function listDriverStops(day: string): Promise<DriverStop[]> {
           quantity: product.quantity,
           image: tip ? "" : photo({ name, article: product.article, vendor }),
           amount: tip ? product.amount ?? null : null,
+          bakery: tip ? "" : bakeryOf(product, vendor),
         },
       ]
     })
@@ -133,7 +137,14 @@ export async function listDriverStops(day: string): Promise<DriverStop[]> {
     status: order.status,
     deliveredAt: deliveredAt.get(order.id) ?? null,
     canComplete: true,
-    items: itemsFor(shopifyItems.get(order.shopifyOrderId) ?? []),
+    items: itemsFor(
+      (shopifyItems.get(order.shopifyOrderId) ?? []).map((line) => ({
+        name: line.name,
+        quantity: line.quantity,
+        article: line.sku,
+        amount: line.amount,
+      })),
+    ),
     deliveryPrice: null,
   }))
 
