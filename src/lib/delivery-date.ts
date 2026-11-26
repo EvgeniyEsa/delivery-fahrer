@@ -147,6 +147,26 @@ export function todayInBerlin() {
   }).format(new Date())
 }
 
+export function addDays(isoDate: string, days: number) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(isoDate)
+  if (!match) return isoDate
+  const date = new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3])))
+  date.setUTCDate(date.getUTCDate() + days)
+  return date.toISOString().slice(0, 10)
+}
+
+export function driverDayBounds(today: string) {
+  return { min: addDays(today, -1), max: addDays(today, 7) }
+}
+
+export function clampDriverDay(requested: string | undefined, today: string) {
+  const { min, max } = driverDayBounds(today)
+  if (!requested || !/^\d{4}-\d{2}-\d{2}$/.test(requested)) return today
+  if (requested < min) return min
+  if (requested > max) return max
+  return requested
+}
+
 function toIsoDate(year: string | undefined, month: string | undefined, day: string | undefined) {
   if (!year || !month || !day) return null
   const fullYear = year.length === 2 ? `20${year}` : year

@@ -5,7 +5,13 @@ import { Suspense } from "react"
 import { logoutDriver } from "@/app/driver/actions"
 import { DriverList } from "@/components/driver-list"
 import { Skeleton } from "@/components/ui/skeleton"
-import { formatDeliveryDay, todayInBerlin } from "@/lib/delivery-date"
+import {
+  addDays,
+  clampDriverDay,
+  driverDayBounds,
+  formatDeliveryDay,
+  todayInBerlin,
+} from "@/lib/delivery-date"
 import { requireDriverSession } from "@/lib/driver-auth"
 import { listDriverStops } from "@/lib/driver-stops"
 
@@ -13,7 +19,11 @@ export const metadata: Metadata = {
   title: "Водитель",
 }
 
-export default function DriverPage() {
+export default function DriverPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ day?: string | string[] }>
+}) {
   return (
     <main className="mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-4 py-5">
       <header className="flex items-start justify-between gap-3">
@@ -28,20 +38,36 @@ export default function DriverPage() {
         </form>
       </header>
       <Suspense fallback={<DriverFallback />}>
-        <DriverToday />
+        <DriverToday searchParams={searchParams} />
       </Suspense>
     </main>
   )
 }
 
-async function DriverToday() {
+async function DriverToday({
+  searchParams,
+}: {
+  searchParams: Promise<{ day?: string | string[] }>
+}) {
   await connection()
   await requireDriverSession()
   const today = todayInBerlin()
+  const params = await searchParams
+  const requested = Array.isArray(params.day) ? params.day[0] : params.day
+  const day = clampDriverDay(requested, today)
+  const { min, max } = driverDayBounds(today)
 
   try {
-    const stops = await listDriverStops(today)
-    return <DriverList dayLabel={formatDeliveryDay(today)} stops={stops} />
+    const stops = await listDriverStops(day)
+    return (
+      <DriverList
+        key={day}
+        dayLabel={formatDeliveryDay(day)}
+        stops={stops}
+        previousHref={day > min ? `/driver?day=${addDays(day, -1)}` : null}
+        nextHref={day < max ? `/driver?day=${addDays(day, 1)}` : null}
+      />
+    )
   } catch (caught) {
     const message =
       caught instanceof Error ? caught.message : "Не удалось загрузить заказы"

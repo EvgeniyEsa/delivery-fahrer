@@ -1,6 +1,7 @@
 "use client"
 
-import { ChevronDown } from "lucide-react"
+import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react"
+import Link from "next/link"
 import { useEffect, useRef, useState, useTransition } from "react"
 import { createPortal } from "react-dom"
 
@@ -13,9 +14,13 @@ import { cn } from "cn"
 export function DriverList({
   dayLabel,
   stops,
+  previousHref,
+  nextHref,
 }: {
   dayLabel: string
   stops: DriverStop[]
+  previousHref: string | null
+  nextHref: string | null
 }) {
   const [error, setError] = useState<string | null>(null)
   const [pendingId, setPendingId] = useState<string | null>(null)
@@ -54,6 +59,14 @@ export function DriverList({
 
   return (
     <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-2 gap-2">
+        <DaySwitch href={previousHref} direction="back">
+          Назад
+        </DaySwitch>
+        <DaySwitch href={nextHref} direction="forward">
+          Дальше
+        </DaySwitch>
+      </div>
       <p className="text-lg text-muted-foreground">
         {dayLabel}.{" "}
         {stops.length === 0
@@ -67,7 +80,7 @@ export function DriverList({
       ) : null}
       {stops.length === 0 ? (
         <p className="rounded-2xl bg-card px-4 py-8 text-center text-lg ring-1 ring-foreground/10">
-          На сегодня остановок нет.
+          На эту дату остановок нет.
         </p>
       ) : (
         <ul className="flex flex-col gap-1">
@@ -306,5 +319,39 @@ function ItemPhoto({ src, name }: { src: string; name: string }) {
           )
         : null}
     </>
+  )
+}
+
+function DaySwitch({
+  href,
+  direction,
+  children,
+}: {
+  href: string | null
+  direction: "back" | "forward"
+  children: string
+}) {
+  const className = cn(buttonVariants({ variant: "outline", size: "lg" }), "h-12 w-full text-base")
+  const icon = direction === "back" ? <ChevronLeft /> : <ChevronRight />
+  const content = (
+    <>
+      {direction === "back" ? icon : null}
+      {children}
+      {direction === "forward" ? icon : null}
+    </>
+  )
+
+  if (!href) {
+    return (
+      <span className={cn(className, "opacity-40")} aria-disabled="true">
+        {content}
+      </span>
+    )
+  }
+
+  return (
+    <Link href={href} className={className}>
+      {content}
+    </Link>
   )
 }

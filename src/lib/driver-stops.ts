@@ -37,7 +37,7 @@ const PICKUP_ID = /^pick:([^:]+):/
 export async function listDriverStops(day: string): Promise<DriverStop[]> {
   const [orders, subscribers, partners, catalog, deliveredAt] = await Promise.all([
     listStoredOrders(),
-    listSubscribers(),
+    listSubscribers({ published: true }),
     listPartners(),
     listProducts(),
     listDeliveryTimes(),

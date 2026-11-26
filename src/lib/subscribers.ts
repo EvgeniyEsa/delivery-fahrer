@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto"
+import { createDecipheriv, createHash, randomUUID } from "node:crypto"
 import { mkdir, readFile, writeFile } from "node:fs/promises"
 import path from "node:path"
 
@@ -23,6 +23,7 @@ export type {
 
 const COLUMNS = "id, name, phone, address, comment, created_at"
 const LOCAL_FILE = path.join(process.cwd(), "data", "subscribers.json")
+const PUBLISHED_FILE = path.join(process.cwd(), "data", "subscribers.enc")
 
 function createSubscribersClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -50,34 +51,57 @@ function readableDatabaseError(message: string, code?: string) {
   return message
 }
 
+function parseSubscribers(parsed: unknown): Subscriber[] {
+  if (!Array.isArray(parsed)) return []
+  return parsed.flatMap((row) => {
+    if (!row || typeof row !== "object") return []
+    const item = row as Partial<Subscriber>
+    if (!item.id || !item.name) return []
+    const record = item as Partial<Subscriber> & { products?: unknown; deliveryDates?: unknown }
+    return [
+      {
+        id: String(item.id),
+        name: String(item.name),
+        phone: item.phone ? String(item.phone) : "",
+        email: item.email ? String(item.email) : "",
+        address: item.address ? String(item.address) : "",
+        segment: item.segment === "b2b" ? "b2b" : "b2c",
+        comment: item.comment ? String(item.comment) : "",
+        products: readProducts(record.products),
+        deliveryDates: readDates(record.deliveryDates),
+        deliveryPrice: readDeliveryPrice(record.deliveryPrice),
+        latitude: typeof record.latitude === "number" ? record.latitude : null,
+        longitude: typeof record.longitude === "number" ? record.longitude : null,
+        createdAt: item.createdAt ? String(item.createdAt) : null,
+      },
+    ]
+  })
+}
+
 async function readLocalSubscribers(): Promise<Subscriber[]> {
   try {
-    const raw = await readFile(LOCAL_FILE, "utf8")
-    const parsed: unknown = JSON.parse(raw)
-    if (!Array.isArray(parsed)) return []
-    return parsed.flatMap((row) => {
-      if (!row || typeof row !== "object") return []
-      const item = row as Partial<Subscriber>
-      if (!item.id || !item.name) return []
-      const record = item as Partial<Subscriber> & { products?: unknown; deliveryDates?: unknown }
-      return [
-        {
-          id: String(item.id),
-          name: String(item.name),
-          phone: item.phone ? String(item.phone) : "",
-          email: item.email ? String(item.email) : "",
-          address: item.address ? String(item.address) : "",
-          segment: item.segment === "b2b" ? "b2b" : "b2c",
-          comment: item.comment ? String(item.comment) : "",
-          products: readProducts(record.products),
-          deliveryDates: readDates(record.deliveryDates),
-          deliveryPrice: readDeliveryPrice(record.deliveryPrice),
-          latitude: typeof record.latitude === "number" ? record.latitude : null,
-          longitude: typeof record.longitude === "number" ? record.longitude : null,
-          createdAt: item.createdAt ? String(item.createdAt) : null,
-        },
-      ]
-    })
+    return parseSubscribers(JSON.parse(await readFile(LOCAL_FILE, "utf8")))
+  } catch {
+    return []
+  }
+}
+
+async function readPublishedSubscribers(): Promise<Subscriber[]> {
+  try {
+    const secret = process.env.SESSION_SECRET
+    if (!secret || secret.length < 32) return []
+    const packed = Buffer.from(await readFile(PUBLISHED_FILE, "utf8"), "base64")
+    const iv = packed.subarray(0, 12)
+    const tag = packed.subarray(12, 28)
+    const body = packed.subarray(28)
+    const decipher = createDecipheriv(
+      "aes-256-gcm",
+      createHash("sha256").update(secret).digest(),
+      iv,
+    )
+    decipher.setAuthTag(tag)
+    const json = Buffer.concat([decipher.update(body), decipher.final()]).toString("utf8")
+    return parseSubscribers(JSON.parse(json))
   } catch {
     return []
   }
@@ -88,7 +112,16 @@ async function writeLocalSubscribers(rows: Subscriber[]) {
   await writeFile(LOCAL_FILE, `${JSON.stringify(rows, null, 2)}\n`)
 }
 
-export async function listSubscribers(): Promise<Subscriber[]> {
+export async function listSubscribers(options?: {
+  published?: boolean
+}): Promise<Subscriber[]> {
+  const local = await readLocalSubscribers()
+  if (local.length > 0) return local
+  if (options?.published) {
+    const published = await readPublishedSubscribers()
+    if (published.length > 0) return published
+  }
+
   const supabase = createSubscribersClient()
   const { data, error } = await supabase
     .from("subscribers")
