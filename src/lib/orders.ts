@@ -21,6 +21,8 @@ type StoredOrderRow = {
   customer_phone: string | null
   address: string | null
   status: string | null
+  lat: number | null
+  lng: number | null
 }
 
 export type ImportOrdersResult =
@@ -34,7 +36,7 @@ export type ImportOrdersResult =
   | { ok: false; error: string }
 
 const ORDER_COLUMNS =
-  "id, shopify_order_id, order_number, customer_name, customer_phone, address, status"
+  "id, shopify_order_id, order_number, customer_name, customer_phone, address, status, lat, lng"
 const PLANNABLE_COLUMNS =
   "id, shopify_order_id, order_number, customer_name, customer_phone, address, status, lat, lng"
 
@@ -63,6 +65,8 @@ function toOrder(
     window: "—",
     deliveryDate: facts?.deliveryDate ?? null,
     deliveredAt: deliveredAt ?? null,
+    latitude: typeof row.lat === "number" ? row.lat : null,
+    longitude: typeof row.lng === "number" ? row.lng : null,
     comment: facts?.comment ?? "",
   }
 }

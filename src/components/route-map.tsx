@@ -66,9 +66,11 @@ function FitToPoints({ points }: { points: RouteMapPoint[] }) {
 export function RouteMap({
   points,
   path,
+  className,
 }: {
   points: RouteMapPoint[]
   path: Array<[number, number]>
+  className?: string
 }) {
   const center = points[0] ?? {
     latitude: 50.7554848,
@@ -76,7 +78,7 @@ export function RouteMap({
   }
 
   return (
-    <div className="isolate h-[32rem] overflow-hidden rounded-lg border">
+    <div className={`isolate overflow-hidden rounded-lg border ${className ?? "h-[32rem]"}`}>
       <style>{".route-marker{background:transparent;border:none}"}</style>
       <MapContainer
         center={[center.latitude, center.longitude]}

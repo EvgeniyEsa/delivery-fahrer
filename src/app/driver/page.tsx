@@ -14,6 +14,7 @@ import {
 } from "@/lib/delivery-date"
 import { requireDriverSession } from "@/lib/driver-auth"
 import { listDriverStops } from "@/lib/driver-stops"
+import { drivingPath } from "@/lib/routing"
 
 export const metadata: Metadata = {
   title: "Водитель",
@@ -59,11 +60,24 @@ async function DriverToday({
 
   try {
     const stops = await listDriverStops(day)
+    const located = stops.flatMap((stop) => {
+      if (stop.latitude == null || stop.longitude == null) return []
+      return [
+        {
+          id: stop.id,
+          address: stop.address,
+          latitude: stop.latitude,
+          longitude: stop.longitude,
+        },
+      ]
+    })
+    const path = await drivingPath(located)
     return (
       <DriverList
         key={day}
         dayLabel={formatDeliveryDay(day)}
         stops={stops}
+        path={path}
         previousHref={day > min ? `/driver?day=${addDays(day, -1)}` : null}
         nextHref={day < max ? `/driver?day=${addDays(day, 1)}` : null}
       />

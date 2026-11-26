@@ -1,9 +1,22 @@
 "use client"
 
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react"
+import dynamic from "next/dynamic"
 import Link from "next/link"
 import { useEffect, useRef, useState, useTransition } from "react"
 import { createPortal } from "react-dom"
+
+import type { RouteMapPoint } from "@/components/route-map"
+
+const OverviewMap = dynamic(
+  () => import("@/components/route-map").then((mod) => mod.RouteMap),
+  {
+    ssr: false,
+    loading: () => <div className="h-72 animate-pulse rounded-lg bg-muted" />,
+  },
+)
+
+const BAKERY = "Wolferskaul 4, 52078 Aachen"
 
 import { confirmStopDelivered } from "@/app/driver/actions"
 import { buttonVariants } from "@/components/ui/button"
@@ -14,11 +27,13 @@ import { cn } from "cn"
 export function DriverList({
   dayLabel,
   stops,
+  path,
   previousHref,
   nextHref,
 }: {
   dayLabel: string
   stops: DriverStop[]
+  path: Array<[number, number]>
   previousHref: string | null
   nextHref: string | null
 }) {
@@ -31,6 +46,9 @@ export function DriverList({
   const cards = useRef(new Map<string, HTMLLIElement>())
 
   const remaining = stops.filter((stop) => !isDone(stop, confirmed, times)).length
+  const points = routePoints(stops)
+  const driveStops = stops.filter((stop) => !isDone(stop, confirmed, times))
+  const driveHref = mapsRouteUrl(driveStops.length > 0 ? driveStops : stops)
 
   useEffect(() => {
     if (!openId) return
@@ -73,6 +91,22 @@ export function DriverList({
           ? "Остановок нет."
           : `Осталось ${remaining} из ${stops.length}.`}
       </p>
+      {points.length > 1 ? (
+        <div className="flex flex-col gap-2">
+          <OverviewMap points={points} path={path} className="h-72" />
+          {driveHref ? (
+            <a
+              className={cn(buttonVariants({ size: "lg" }), "h-12 w-full text-base")}
+              href={driveHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(event) => openRouteInAppleMaps(event, driveStops.length > 0 ? driveStops : stops)}
+            >
+              Как ехать
+            </a>
+          ) : null}
+        </div>
+      ) : null}
       {error ? (
         <p className="rounded-xl bg-destructive/10 px-4 py-3 text-base text-destructive">
           {error}
@@ -182,6 +216,60 @@ export function DriverList({
         </ul>
       )}
     </div>
+  )
+}
+
+function routePoints(stops: DriverStop[]): RouteMapPoint[] {
+  const places = stops.flatMap((stop, index) => {
+    if (stop.latitude == null || stop.longitude == null) return []
+    return [
+      {
+        id: stop.id,
+        latitude: stop.latitude,
+        longitude: stop.longitude,
+        kind: "stop" as const,
+        label: String(index + 1),
+        title: stop.customer,
+        detail: stop.address,
+      },
+    ]
+  })
+  if (places.length === 0) return []
+  return [
+    {
+      id: "depot",
+      latitude: 50.7554848,
+      longitude: 6.1676347,
+      kind: "depot",
+      label: "П",
+      title: "Brötli",
+      detail: BAKERY,
+    },
+    ...places,
+  ]
+}
+
+function mapsRouteUrl(stops: DriverStop[]) {
+  const points = [BAKERY, ...stops.map(mapDestination).filter(Boolean)]
+  if (points.length < 2) return ""
+  return `https://www.google.com/maps/dir/${points.map((point) => encodeURIComponent(point)).join("/")}`
+}
+
+function openRouteInAppleMaps(
+  event: { preventDefault(): void },
+  stops: DriverStop[],
+) {
+  if (!/iPhone|iPad|iPod/.test(navigator.userAgent)) return
+  const destinations = stops.map(mapDestination).filter(Boolean)
+  if (destinations.length === 0) return
+  event.preventDefault()
+  const stopsQuery = destinations
+    .map((destination) => `&daddr=${encodeURIComponent(destination)}`)
+    .join("")
+  window.open(
+    `https://maps.apple.com/?dirflg=d&saddr=${encodeURIComponent(BAKERY)}${stopsQuery}`,
+    "_blank",
+    "noopener,noreferrer",
   )
 }
 

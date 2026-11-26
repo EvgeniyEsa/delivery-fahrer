@@ -11,6 +11,8 @@ export type Order = {
   window: string
   deliveryDate: string | null
   deliveredAt?: string | null
+  latitude?: number | null
+  longitude?: number | null
   comment: string
 }
 

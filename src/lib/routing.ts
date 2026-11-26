@@ -220,6 +220,28 @@ export async function buildDeliveryPlan(
   )
 }
 
+export async function drivingPath(
+  stops: RouteStop[],
+): Promise<Array<[latitude: number, longitude: number]>> {
+  const sequence = [depotStop(), ...stops]
+  const straight = sequence.map(
+    (stop) => [stop.latitude, stop.longitude] as [number, number],
+  )
+  if (sequence.length < 2 || !process.env.MAPBOX_ACCESS_TOKEN) return straight
+
+  try {
+    const planned = await planRoute(sequence)
+    const line = planned.geometry?.coordinates ?? []
+    if (line.length > 1) {
+      return line.map(([longitude, latitude]) => [latitude, longitude])
+    }
+  } catch {
+    return straight
+  }
+
+  return straight
+}
+
 export async function planRoute(stops: RouteStop[]): Promise<PlannedRoute> {
   const token = process.env.MAPBOX_ACCESS_TOKEN
 
