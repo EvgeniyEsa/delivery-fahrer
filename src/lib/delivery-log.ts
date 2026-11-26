@@ -25,10 +25,13 @@ export async function recordDeliveryTime(id: string) {
 
   const deliveredAt = new Date().toISOString()
   records[stopId] = deliveredAt
-  const remoteOk = await writeRemote(records)
+  const remote = await writeRemote(records)
   const localOk = await writeLocal(records)
-  if (!remoteOk && !localOk) {
-    return { ok: false as const, error: "Не удалось сохранить время доставки" }
+  if (remote !== true && !localOk) {
+    return {
+      ok: false as const,
+      error: `Не удалось сохранить время доставки${remote ? ` (${remote})` : ""}`,
+    }
   }
   return { ok: true as const, deliveredAt }
 }
@@ -89,7 +92,14 @@ function ensureBucket(url: string, key: string) {
       body: JSON.stringify({ id: BUCKET, name: BUCKET, public: false }),
       cache: "no-store",
     })
-      .then((response) => response.ok || response.status === 409)
+      .then(async (response) => {
+        if (response.ok || response.status === 409) return true
+        const text = await response.text().catch(() => "")
+        // Supabase answers "already exists" with HTTP 400, not 409.
+        if (/already exists|duplicate/i.test(text)) return true
+        console.error("[delivery-log] bucket", response.status)
+        return false
+      })
       .catch(() => false)
       .then((ok) => {
         if (!ok) bucketReady = null
@@ -116,7 +126,8 @@ async function readRemote(): Promise<Log> {
 
 async function writeRemote(records: Log) {
   const cfg = storage()
-  if (!cfg || !(await ensureBucket(cfg.url, cfg.key))) return false
+  if (!cfg) return "нет ключа"
+  if (!(await ensureBucket(cfg.url, cfg.key))) return "хранилище недоступно"
   try {
     const response = await fetch(`${cfg.url}/storage/v1/object/${BUCKET}/${OBJECT}`, {
       method: "POST",
@@ -129,11 +140,11 @@ async function writeRemote(records: Log) {
     })
     if (!response.ok) {
       console.error("[delivery-log] save", response.status)
-      return false
+      return String(response.status)
     }
     return true
   } catch {
-    return false
+    return "сеть"
   }
 }
 
@@ -142,7 +153,9 @@ function parseLog(parsed: unknown): Log {
   return Object.fromEntries(
     Object.entries(parsed).filter(
       (entry): entry is [string, string] =>
-        typeof entry[0] === "string" && typeof entry[1] === "string",
+        typeof entry[0] === "string" &&
+        !entry[0].startsWith("__") &&
+        typeof entry[1] === "string",
     ),
   )
 }

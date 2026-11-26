@@ -38,6 +38,7 @@ export function DriverList({
   nextHref: string | null
 }) {
   const [error, setError] = useState<string | null>(null)
+  const [failedId, setFailedId] = useState<string | null>(null)
   const [pendingId, setPendingId] = useState<string | null>(null)
   const [confirmed, setConfirmed] = useState<Set<string>>(() => new Set())
   const [times, setTimes] = useState<Record<string, string>>({})
@@ -59,11 +60,13 @@ export function DriverList({
     const stop = stops.find((item) => item.id === id)
     if (!stop || isDone(stop, confirmed, times)) return
     setError(null)
+    setFailedId(null)
     setPendingId(id)
     startTransition(async () => {
       try {
         const result = await confirmStopDelivered(stop.id, stop.canComplete)
         if (!result.ok) {
+          setFailedId(id)
           setError(result.error)
           return
         }
@@ -73,6 +76,7 @@ export function DriverList({
         setConfirmed(done)
         setOpenId(nextStop(stops, id, done, nextTimes))
       } catch {
+        setFailedId(id)
         setError("Не удалось сохранить время доставки")
       } finally {
         setPendingId(null)
@@ -111,11 +115,6 @@ export function DriverList({
             </a>
           ) : null}
         </div>
-      ) : null}
-      {error ? (
-        <p className="rounded-xl bg-destructive/10 px-4 py-3 text-base text-destructive">
-          {error}
-        </p>
       ) : null}
       {stops.length === 0 ? (
         <p className="rounded-2xl bg-card px-4 py-8 text-center text-lg ring-1 ring-foreground/10">
@@ -203,9 +202,17 @@ export function DriverList({
                         {mapDestination(stop) ? null : (
                           <p className="text-xs text-muted-foreground">Нет адреса, карта не откроется.</p>
                         )}
+                        {failedId === stop.id && error ? (
+                          <p className="rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive">
+                            {error}
+                          </p>
+                        ) : null}
                         <button
                           type="button"
-                          className={cn(buttonVariants({ size: "lg" }), "h-12 w-full text-base")}
+                          className={cn(
+                            buttonVariants({ size: "lg" }),
+                            "h-12 w-full touch-manipulation text-base",
+                          )}
                           disabled={saving}
                           onClick={() => confirm(stop.id)}
                         >
