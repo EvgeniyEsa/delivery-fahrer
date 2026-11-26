@@ -85,6 +85,7 @@ export function RouteMap({
         zoom={12}
         className="h-full w-full"
         scrollWheelZoom
+        tapHold={false}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'

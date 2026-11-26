@@ -3,7 +3,7 @@ import { connection } from "next/server"
 import { Suspense } from "react"
 
 import { logoutDriver } from "@/app/driver/actions"
-import { DriverList } from "@/components/driver-list"
+import { DriverList, formatEuro, tipTotal } from "@/components/driver-list"
 import { Skeleton } from "@/components/ui/skeleton"
 import {
   addDays,
@@ -23,21 +23,10 @@ export const metadata: Metadata = {
 export default function DriverPage({
   searchParams,
 }: {
-  searchParams: Promise<{ day?: string | string[] }>
+  searchParams: Promise<{ day?: string | string[]; error?: string | string[] }>
 }) {
   return (
     <main className="mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-4 py-5">
-      <header className="flex items-start justify-between gap-3">
-        <div className="flex flex-col gap-1">
-          <p className="text-sm font-medium text-muted-foreground">Delivery Manager</p>
-          <h1 className="text-3xl font-semibold tracking-tight">Водитель</h1>
-        </div>
-        <form action={logoutDriver}>
-          <button type="submit" className="text-sm text-muted-foreground">
-            Выйти
-          </button>
-        </form>
-      </header>
       <Suspense fallback={<DriverFallback />}>
         <DriverToday searchParams={searchParams} />
       </Suspense>
@@ -48,13 +37,14 @@ export default function DriverPage({
 async function DriverToday({
   searchParams,
 }: {
-  searchParams: Promise<{ day?: string | string[] }>
+  searchParams: Promise<{ day?: string | string[]; error?: string | string[] }>
 }) {
   await connection()
   await requireDriverSession()
   const today = todayInBerlin()
   const params = await searchParams
   const requested = Array.isArray(params.day) ? params.day[0] : params.day
+  const reportedError = Array.isArray(params.error) ? params.error[0] : params.error
   const day = clampDriverDay(requested, today)
   const { min, max } = driverDayBounds(today)
 
@@ -73,14 +63,35 @@ async function DriverToday({
     })
     const path = await drivingPath(located)
     return (
-      <DriverList
-        key={day}
-        dayLabel={formatDeliveryDay(day)}
-        stops={stops}
-        path={path}
-        previousHref={day > min ? `/driver?day=${addDays(day, -1)}` : null}
-        nextHref={day < max ? `/driver?day=${addDays(day, 1)}` : null}
-      />
+      <>
+        <header className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1">
+          <p className="text-sm font-medium text-muted-foreground">Delivery Manager</p>
+          <form action={logoutDriver} className="justify-self-end">
+            <button type="submit" className="text-sm text-muted-foreground">
+              Выйти
+            </button>
+          </form>
+          <h1 className="text-3xl font-semibold tracking-tight">Водитель</h1>
+          <div className="justify-self-end text-right">
+            <p className="text-sm font-medium leading-tight">
+              {day === today ? "Trinkgeld heute" : "Trinkgeld"}
+            </p>
+            <p className="text-base font-semibold tabular-nums leading-tight">
+              {formatEuro(tipTotal(stops))}
+            </p>
+          </div>
+        </header>
+        <DriverList
+          key={day}
+          day={day}
+          dayLabel={formatDeliveryDay(day)}
+          stops={stops}
+          path={path}
+          previousHref={day > min ? `/driver?day=${addDays(day, -1)}` : null}
+          nextHref={day < max ? `/driver?day=${addDays(day, 1)}` : null}
+          error={reportedError ? "Не удалось сохранить время доставки" : null}
+        />
+      </>
     )
   } catch (caught) {
     const message =
