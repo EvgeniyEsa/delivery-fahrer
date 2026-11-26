@@ -13,6 +13,7 @@ export type DriverItem = {
   name: string
   quantity: number
   image: string
+  amount?: number | null
 }
 
 export type DriverStop = {
@@ -57,7 +58,7 @@ export async function listDriverStops(day: string): Promise<DriverStop[]> {
   }
 
   function itemsFor(
-    products: Array<{ name: string; quantity: number; article?: string }>,
+    products: Array<{ name: string; quantity: number; article?: string; amount?: number | null }>,
     vendor = "",
   ): DriverItem[] {
     return products.flatMap((product) => {
@@ -69,6 +70,7 @@ export async function listDriverStops(day: string): Promise<DriverStop[]> {
           name: tip ? "Trinkgeld" : name,
           quantity: product.quantity,
           image: tip ? "" : photo({ name, article: product.article, vendor }),
+          amount: tip ? product.amount ?? null : null,
         },
       ]
     })

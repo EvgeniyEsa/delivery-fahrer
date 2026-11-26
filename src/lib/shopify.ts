@@ -250,6 +250,7 @@ export type ShopifyOrderItem = {
   name: string
   quantity: number
   sku: string
+  amount: number | null
 }
 
 export async function getShopifyOrderItems(shopifyOrderIds: string[]) {
@@ -268,6 +269,8 @@ export async function getShopifyOrderItems(shopifyOrderIds: string[]) {
               name?: string | null
               quantity?: number | null
               sku?: string | null
+              discountedTotalSet?: { shopMoney?: { amount?: string | null } | null } | null
+              originalTotalSet?: { shopMoney?: { amount?: string | null } | null } | null
             }>
           } | null
         }>
@@ -284,6 +287,16 @@ export async function getShopifyOrderItems(shopifyOrderIds: string[]) {
                   name
                   quantity
                   sku
+                  discountedTotalSet {
+                    shopMoney {
+                      amount
+                    }
+                  }
+                  originalTotalSet {
+                    shopMoney {
+                      amount
+                    }
+                  }
                 }
               }
             }
@@ -310,13 +323,23 @@ export async function getShopifyOrderItems(shopifyOrderIds: string[]) {
           const name = line.name?.replace(/\s+-\s+Default Title$/i, "").trim() ?? ""
           const quantity = Number(line.quantity)
           if (!name || !Number.isFinite(quantity) || quantity <= 0) return []
-          return [{ name, quantity, sku: line.sku?.trim() ?? "" }]
+          return [{ name, quantity, sku: line.sku?.trim() ?? "", amount: lineAmount(line) }]
         }),
       )
     }
   }
 
   return items
+}
+
+function lineAmount(line: {
+  discountedTotalSet?: { shopMoney?: { amount?: string | null } | null } | null
+  originalTotalSet?: { shopMoney?: { amount?: string | null } | null } | null
+}) {
+  const raw =
+    line.discountedTotalSet?.shopMoney?.amount ?? line.originalTotalSet?.shopMoney?.amount
+  const amount = Number(raw)
+  return Number.isFinite(amount) ? amount : null
 }
 
 export async function updateShopifyDeliveryDate(

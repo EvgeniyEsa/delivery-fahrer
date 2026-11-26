@@ -333,6 +333,10 @@ function nextStop(
   return stops.slice(index + 1).find((stop) => !isDone(stop, confirmed, times))?.id ?? null
 }
 
+function formatEuro(amount: number) {
+  return new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(amount)
+}
+
 function StopItems({
   items,
   quietEmpty = false,
@@ -353,8 +357,13 @@ function StopItems({
             <ItemPhoto name={item.name} src={item.image} />
           )}
           <span className="min-w-0 flex-1 text-sm">{item.name}</span>
-          <span className="shrink-0 text-sm tabular-nums text-muted-foreground">
-            × {item.quantity}
+          <span
+            className={cn(
+              "shrink-0 text-sm tabular-nums",
+              item.amount == null ? "text-muted-foreground" : "font-semibold",
+            )}
+          >
+            {item.amount == null ? `× ${item.quantity}` : formatEuro(item.amount)}
           </span>
         </li>
       ))}
