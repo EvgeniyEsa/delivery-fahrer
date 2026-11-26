@@ -1,0 +1,3042 @@
+[
+  {
+    "id": "amarena-printen:Default Title",
+    "name": "Amarena Printen",
+    "sku": "",
+    "price": 6.95,
+    "vendor": "Heidbüchel",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/b67d5921-2fe9-47e5-b306-7c02cb645ee2.jpg?v=1706373304"
+  },
+  {
+    "id": "amaretto-printen:Default Title",
+    "name": "Amaretto Printen",
+    "sku": "",
+    "price": 6.95,
+    "vendor": "Heidbüchel",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/48c6d8d7-706e-4f43-a641-3af193575185.jpg?v=1706374868"
+  },
+  {
+    "id": "bergsteiger-brotchen:H5",
+    "name": "Bergsteiger-Brötchen",
+    "sku": "H5",
+    "price": 0.9,
+    "vendor": "Heidbüchel",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/3d558e8e-98f0-43b4-9295-fb3e35502fe6.jpg?v=1706064604"
+  },
+  {
+    "id": "bio-bagels:Default Title",
+    "name": "Bio Bagels",
+    "sku": "",
+    "price": 1.3,
+    "vendor": "Heidbüchel",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/363b90b2-7472-4041-a40d-c081a9def3be.png?v=1706064780"
+  },
+  {
+    "id": "bio-brotchen:H4",
+    "name": "Biobrötchen",
+    "sku": "H4",
+    "price": 0.9,
+    "vendor": "Heidbüchel",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/5d6991cf-d22e-4d43-8515-1ab827e0d338.png?v=1706064688"
+  },
+  {
+    "id": "biostange:Default Title",
+    "name": "Biostange",
+    "sku": "",
+    "price": 3.3,
+    "vendor": "Heidbüchel",
+    "type": "Baguette",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/946be8b7-c36c-4062-a70e-db94ce06efd0.png?v=1706063631"
+  },
+  {
+    "id": "brotchen:H1",
+    "name": "Brötchen",
+    "sku": "H1",
+    "price": 0.5,
+    "vendor": "Heidbüchel",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/eba29e8b-eafd-4186-8655-fa02eac06e1a.png?v=1706063585"
+  },
+  {
+    "id": "brotchen-set-10er:Default Title",
+    "name": "Brötchen Set 10er",
+    "sku": "",
+    "price": 4.9,
+    "vendor": "Heidbüchel",
+    "type": "Sets",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/06639cac-b0ee-4190-aaba-80e558a372b9.jpg?v=1706066124"
+  },
+  {
+    "id": "brotchen-set-6er:Default Title",
+    "name": "Brötchen Set 6er",
+    "sku": "",
+    "price": 2.85,
+    "vendor": "Heidbüchel",
+    "type": "Sets",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/1b252f77-1c1e-43e0-977d-a5079ae11008.jpg?v=1706066035"
+  },
+  {
+    "id": "bunt-set:Default Title",
+    "name": "Bunt Set",
+    "sku": "",
+    "price": 5.98,
+    "vendor": "Heidbüchel",
+    "type": "Sets",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/products/nWSTmHs8LV.jpg?v=1709994098"
+  },
+  {
+    "id": "buttermilchbrot-750g:Default Title",
+    "name": "Buttermilchbrot 750g",
+    "sku": "",
+    "price": 3.85,
+    "vendor": "Heidbüchel",
+    "type": "Brot",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/9872be52-cf79-453f-bf64-80688ed411ca.jpg?v=1706371948"
+  },
+  {
+    "id": "cappuccino:Default Title",
+    "name": "Cappuccino",
+    "sku": "",
+    "price": 6.95,
+    "vendor": "Heidbüchel",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/d2342a4c-89be-4bbe-bd5a-053f502754e9.jpg?v=1706375048"
+  },
+  {
+    "id": "croissant:H17",
+    "name": "Croissant",
+    "sku": "H17",
+    "price": 1.4,
+    "vendor": "Heidbüchel",
+    "type": "Croissant",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/17ef5405-ff9e-4839-82b2-697e5c25c8fa.png?v=1706365104"
+  },
+  {
+    "id": "der-echte-750g:H158",
+    "name": "Der Echte",
+    "sku": "H158",
+    "price": 3.85,
+    "vendor": "Heidbüchel",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/a6e203c0-8c48-4821-855e-0e2a1df71e84.png?v=1706067713"
+  },
+  {
+    "id": "dinkel-ur-kruste-750g:Default Title",
+    "name": "Dinkel Ur-Kruste 750g",
+    "sku": "",
+    "price": 4.3,
+    "vendor": "Heidbüchel",
+    "type": "Brot",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/a1cf4c39-e2b0-4244-a5b2-e4b8be9c8052.png?v=1706367457"
+  },
+  {
+    "id": "dinkel-brotchen:H13",
+    "name": "Dinkelbrötchen",
+    "sku": "H13",
+    "price": 0.9,
+    "vendor": "Heidbüchel",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/6badcc69-c753-40b5-beda-c82c7731c4cf.jpg?v=1706063736"
+  },
+  {
+    "id": "dinkelprinte-mit-cranberries:Default Title",
+    "name": "Dinkelprinte mit Cranberries",
+    "sku": "",
+    "price": 4,
+    "vendor": "Heidbüchel",
+    "type": "Printen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/db337c6c-9195-44ee-9d52-b1e4e08e5cbc.jpg?v=1706375134"
+  },
+  {
+    "id": "doppellaugen-set:Default Title",
+    "name": "Doppellaugen Set",
+    "sku": "",
+    "price": 10.1,
+    "vendor": "Heidbüchel",
+    "type": "Sets",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/3361822f-5884-43a4-8d2e-52cfd2c9ff0a.jpg?v=1706066446"
+  },
+  {
+    "id": "ecke-set:Default Title",
+    "name": "Ecke Set",
+    "sku": "",
+    "price": 6.3,
+    "vendor": "Heidbüchel",
+    "type": "Sets",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/9d087fd8-cfd9-4558-a610-3c96dd8ff5e6.jpg?v=1706067296"
+  },
+  {
+    "id": "eifler-500g:H103",
+    "name": "Eifeler 500g",
+    "sku": "H103",
+    "price": 3,
+    "vendor": "Heidbüchel",
+    "type": "Brot",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/76846acf-3d01-499a-82a1-9f7998cd57d5.jpg?v=1706371428"
+  },
+  {
+    "id": "eifeler-ur-brot-2250g:Default Title",
+    "name": "Eifeler Ur - Brot 2250g",
+    "sku": "",
+    "price": 7.4,
+    "vendor": "Heidbüchel",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/7f02d6df-fd2d-4be8-aefe-a75e1364fc54.png?v=1706367218"
+  },
+  {
+    "id": "eifler-1000g:Default Title",
+    "name": "Eifler 1000g",
+    "sku": "",
+    "price": 4.3,
+    "vendor": "Heidbüchel",
+    "type": "Brot",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/0c01a3cd-fccc-49d2-a502-437b84109211.jpg?v=1706371606"
+  },
+  {
+    "id": "baguette:H601",
+    "name": "Franzose",
+    "sku": "H601",
+    "price": 2.7,
+    "vendor": "Heidbüchel",
+    "type": "Baguette",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/1c24e20e-0e24-46f8-9da5-d43e0a981182.png?v=1706063651"
+  },
+  {
+    "id": "honigprinten-milchschoko:Default Title",
+    "name": "Honigprinten Milchschoko",
+    "sku": "",
+    "price": 5.8,
+    "vendor": "Heidbüchel",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/e1d1e920-0ec9-4ddb-99b9-01ac39004799.jpg?v=1706375210"
+  },
+  {
+    "id": "honigprinten-schoko:Default Title",
+    "name": "Honigprinten Mischung",
+    "sku": "",
+    "price": 5.8,
+    "vendor": "Heidbüchel",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/Honigprinten_Schoko_600.jpg?v=1706375503"
+  },
+  {
+    "id": "honigprinten-mischung:Default Title",
+    "name": "Honigprinten Mischung",
+    "sku": "",
+    "price": 5.8,
+    "vendor": "Heidbüchel",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/0b9e2c7c-f0c9-4424-991b-f80a186b419b.jpg?v=1706375383"
+  },
+  {
+    "id": "honigprinten-weissesschoko:Default Title",
+    "name": "Honigprinten Weisse Schokolade",
+    "sku": "",
+    "price": 5.8,
+    "vendor": "Heidbüchel",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/Honigprinten_weissesschoko_600.jpg?v=1706375593"
+  },
+  {
+    "id": "hornchen:H18",
+    "name": "Hörnchen",
+    "sku": "H18",
+    "price": 0.95,
+    "vendor": "Heidbüchel",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/acf6c6f6-7608-4014-bc39-68ace9061ba3.png?v=1706366354"
+  },
+  {
+    "id": "knoten:H19",
+    "name": "Knoten",
+    "sku": "H19",
+    "price": 0.95,
+    "vendor": "Heidbüchel",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/bc128c9b-cc00-4ca8-8e40-b70d65e255d1.png?v=1706365981"
+  },
+  {
+    "id": "korn-set:Default Title",
+    "name": "Korn Set",
+    "sku": "",
+    "price": 5,
+    "vendor": "Heidbüchel",
+    "type": "Sets",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/320c524f-354d-4ede-86a3-cb77b26d97cf.jpg?v=1706066640"
+  },
+  {
+    "id": "krusti:H10",
+    "name": "Krusti",
+    "sku": "H10",
+    "price": 1,
+    "vendor": "Heidbüchel",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/6afc835d-4be6-403c-bd82-131374ee4f82.png?v=1706063917"
+  },
+  {
+    "id": "krauterprinten-200g-1:Default Title",
+    "name": "Kräuterprinten 200g",
+    "sku": "",
+    "price": 3.6,
+    "vendor": "Heidbüchel",
+    "type": "Printen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/72a2224a-d455-493d-b6b5-c588e46774e6.jpg?v=1706373162"
+  },
+  {
+    "id": "kase-schinkencroissant-1:H15",
+    "name": "Käse-Schinken Croissant",
+    "sku": "H15",
+    "price": 2.2,
+    "vendor": "Heidbüchel",
+    "type": "Croissant",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/28a97a4a-9cde-44d7-9e43-2bf1a1915396.png?v=1706365186"
+  },
+  {
+    "id": "kasebrotchen-gebacken:H11",
+    "name": "Käsebrötchen gebacken",
+    "sku": "H11",
+    "price": 1.1,
+    "vendor": "Heidbüchel",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/a569b96b-fb16-4ebf-85e9-6978dcb690c4.png?v=1706065391"
+  },
+  {
+    "id": "laugen-baggel-mit-sesam:Default Title",
+    "name": "Laugen Bagel mit Sesam",
+    "sku": "",
+    "price": 1.2,
+    "vendor": "Heidbüchel",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/c6064741-7b42-4f11-a439-9325e74d96a4.png?v=1706065020"
+  },
+  {
+    "id": "laugen-set:Default Title",
+    "name": "Laugen Set",
+    "sku": "",
+    "price": 5.05,
+    "vendor": "Heidbüchel",
+    "type": "Sets",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/9ed07ab0-5db2-4f70-9888-78ee74b57fb3.jpg?v=1706066267"
+  },
+  {
+    "id": "laugenbrotchen:H9",
+    "name": "Laugenbrötchen",
+    "sku": "H9",
+    "price": 0.95,
+    "vendor": "Heidbüchel",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/6565bfbc-fa2c-48f4-9599-b34696006c09.png?v=1706065109"
+  },
+  {
+    "id": "laugenecke:H34",
+    "name": "Laugenecke",
+    "sku": "H34",
+    "price": 1.5,
+    "vendor": "Heidbüchel",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/dde9b60c-a4b9-407c-863d-8659013344c9.png?v=1706064906"
+  },
+  {
+    "id": "laugenstanchen:H32",
+    "name": "Laugenstängchen",
+    "sku": "H32",
+    "price": 1.1,
+    "vendor": "Heidbüchel",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/9c80d674-3d78-4ab2-bb5f-95d03d2eb5b5.png?v=1706065197"
+  },
+  {
+    "id": "blumen-lilien:Default Title",
+    "name": "Lilie",
+    "sku": "",
+    "price": 19.5,
+    "vendor": "Heidbüchel",
+    "type": "Blumen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/lilia_deb7544d-a90c-4737-b7fd-2044dcdb2732.jpg?v=1731652438"
+  },
+  {
+    "id": "mandel-nougat:Default Title",
+    "name": "Mandel Nougat",
+    "sku": "",
+    "price": 6.95,
+    "vendor": "Heidbüchel",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/Mandel_Nougat_600.jpg?v=1706375665"
+  },
+  {
+    "id": "mandelprinten:Default Title",
+    "name": "Mandelprinten",
+    "sku": "",
+    "price": 5.8,
+    "vendor": "Heidbüchel",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/Mandelprinten_600.jpg?v=1706375730"
+  },
+  {
+    "id": "bunte-strauss:Default Title",
+    "name": "Mix Strauß",
+    "sku": "",
+    "price": 32.5,
+    "vendor": "Heidbüchel",
+    "type": "Blumen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/bunte_strauss_b6dfb750-7e80-4bb1-b9ab-2e812346660b.jpg?v=1731652511"
+  },
+  {
+    "id": "mohnbrotchen:H8",
+    "name": "Mohnbrötchen",
+    "sku": "H8",
+    "price": 0.65,
+    "vendor": "Heidbüchel",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/808d92ef-e579-4e43-8f5a-f87ceeff1de3.png?v=1706063444"
+  },
+  {
+    "id": "nussbrotchen-suss:H16",
+    "name": "Nussbrötchen",
+    "sku": "H16",
+    "price": 1,
+    "vendor": "Heidbüchel",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/11ab49ff-95c8-425d-a8ca-b89d25b7d7e6.jpg?v=1706366061"
+  },
+  {
+    "id": "oberlander-1000g:H101",
+    "name": "Oberländer 1000g",
+    "sku": "H101",
+    "price": 4.3,
+    "vendor": "Heidbüchel",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/8c24d789-4f07-43f6-b17d-d985e464679f.jpg?v=1706373028"
+  },
+  {
+    "id": "original-nussecken-2-stk:Default Title",
+    "name": "Original Nussecken 2 Stk",
+    "sku": "",
+    "price": 5.2,
+    "vendor": "Heidbüchel",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/de2b535f-29ef-4ef5-970b-0221b29a87dd.jpg?v=1706366624"
+  },
+  {
+    "id": "pistaxien-printen:Default Title",
+    "name": "Pistazien Printen",
+    "sku": "",
+    "price": 6.95,
+    "vendor": "Heidbüchel",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/Pistaxien_Printen_600.jpg?v=1706375805"
+  },
+  {
+    "id": "printen-raffaello-art:Default Title",
+    "name": "Printen Raffaello Art",
+    "sku": "",
+    "price": 6.95,
+    "vendor": "Heidbüchel",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/Printen_Raffaello_Art_600.jpg?v=1706375866"
+  },
+  {
+    "id": "printenmischung:Default Title",
+    "name": "Printenmischung",
+    "sku": "",
+    "price": 5.9,
+    "vendor": "Heidbüchel",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/Printenmischung_600.jpg?v=1706375929"
+  },
+  {
+    "id": "roggenbrotchen:H7",
+    "name": "Roggenbrötchen",
+    "sku": "H7",
+    "price": 0.65,
+    "vendor": "Heidbüchel",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/75997b11-88ff-4ff1-9a02-dbd906a61277.png?v=1706064398"
+  },
+  {
+    "id": "rosinenbrotchen-1:H22",
+    "name": "Rosinenbrötchen",
+    "sku": "H22",
+    "price": 1,
+    "vendor": "Heidbüchel",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/d723c1e1-68bb-4d49-a683-406391465be9.png?v=1706365853"
+  },
+  {
+    "id": "rose-1:Default Title",
+    "name": "Rote Rose",
+    "sku": "",
+    "price": 8.45,
+    "vendor": "Heidbüchel",
+    "type": "Blumen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/1rosa_2.jpg?v=1731652537"
+  },
+  {
+    "id": "rote-rose:Default Title",
+    "name": "Rote Rosen",
+    "sku": "",
+    "price": 37.05,
+    "vendor": "Heidbüchel",
+    "type": "Blumen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/11_rote_rosa_2.jpg?v=1731652697"
+  },
+  {
+    "id": "rosa-11:Default Title",
+    "name": "Rote Rosen",
+    "sku": "",
+    "price": 35,
+    "vendor": "Heidbüchel",
+    "type": "Blumen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/9_rosa.jpg?v=1731652582"
+  },
+  {
+    "id": "rum-truffel:Default Title",
+    "name": "Rum Trüffel",
+    "sku": "",
+    "price": 6.95,
+    "vendor": "Heidbüchel",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/Rum_Trueffel_600.jpg?v=1706375987"
+  },
+  {
+    "id": "schokobrotchen:H23",
+    "name": "Schokobrötchen",
+    "sku": "H23",
+    "price": 1,
+    "vendor": "Heidbüchel",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/1f6bab06-0ba8-4452-a01f-4f3413de73db.png?v=1706366435"
+  },
+  {
+    "id": "schockocroissant:H14",
+    "name": "Schokocroissant",
+    "sku": "H14",
+    "price": 1.95,
+    "vendor": "Heidbüchel",
+    "type": "Croissant",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/ec473430-8ab0-4068-bb5b-206f1e66457a.png?v=1706365280"
+  },
+  {
+    "id": "schokonussprinten:Default Title",
+    "name": "Schokonuss Printen",
+    "sku": "",
+    "price": 5.8,
+    "vendor": "Heidbüchel",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/Schokonussprinten_600.jpg?v=1706376046"
+  },
+  {
+    "id": "schockostreusel:H24",
+    "name": "Schokostreusel",
+    "sku": "H24",
+    "price": 1.6,
+    "vendor": "Heidbüchel",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/17147e47-5d9f-46e0-beb4-2416a23b5722.png?v=1706366518"
+  },
+  {
+    "id": "schwarzwalder-brot-1000g:Default Title",
+    "name": "Schwarzwälder Brot 1000g",
+    "sku": "",
+    "price": 4.3,
+    "vendor": "Heidbüchel",
+    "type": "Brot",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/e2bd00cc-82e7-4067-9939-00512c6b281d.jpg?v=1706372858"
+  },
+  {
+    "id": "schweizer-brot-500g:Default Title",
+    "name": "Schweizer Brot 500g",
+    "sku": "",
+    "price": 3,
+    "vendor": "Heidbüchel",
+    "type": "Brot",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/54f1e015-d62b-4518-a661-ce52606e5f4a.png?v=1706067793"
+  },
+  {
+    "id": "sesambrotchen:H36",
+    "name": "Sesambrötchen",
+    "sku": "H36",
+    "price": 0.65,
+    "vendor": "Heidbüchel",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/5c939ddd-1511-465e-9610-7a40cd3caa63.png?v=1706065289"
+  },
+  {
+    "id": "sonnenblumenbrot-500g:H121",
+    "name": "Sonnenblumenbrot 500g",
+    "sku": "H121",
+    "price": 3.5,
+    "vendor": "Heidbüchel",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/19e92f7a-c641-4666-950d-3af2d4344772.png?v=1706368173"
+  },
+  {
+    "id": "sonnenvollkornbrot-500g:Default Title",
+    "name": "Sonnenvollkornbrot 500g",
+    "sku": "",
+    "price": 3.7,
+    "vendor": "Heidbüchel",
+    "type": "Brot",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/2256b3f7-6efa-43c3-9dbb-871b6b23a9fd.png?v=1706368099"
+  },
+  {
+    "id": "sonnenvollkornbrot-geschnitten:H145",
+    "name": "SPK 500g",
+    "sku": "H145",
+    "price": 2.95,
+    "vendor": "Heidbüchel",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/fd26ce9d-f70c-424e-980b-1ef1072c29aa.jpg?v=1706368269"
+  },
+  {
+    "id": "streuselbrotchen-1:H25",
+    "name": "Streuselbrötchen",
+    "sku": "H25",
+    "price": 1.3,
+    "vendor": "Heidbüchel",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/4f474fc0-4c6d-443e-afa2-882533e481df.png?v=1706366259"
+  },
+  {
+    "id": "susses-brotchen:H26",
+    "name": "Süßes Brötchen",
+    "sku": "H26",
+    "price": 0.95,
+    "vendor": "Heidbüchel",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/7c706d54-92f5-490c-8257-1355e77bc3b4.jpg?v=1706366165"
+  },
+  {
+    "id": "vital-kruste-750g:Default Title",
+    "name": "Vital - Kruste 750g",
+    "sku": "",
+    "price": 4.15,
+    "vendor": "Heidbüchel",
+    "type": "Brot",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/02b3bc6c-c9fb-42f4-87f6-5eb4a9dfde8d.jpg?v=1706368524"
+  },
+  {
+    "id": "vitalstangchen:H6",
+    "name": "Vitalstängchen",
+    "sku": "H6",
+    "price": 1,
+    "vendor": "Heidbüchel",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/2de11ff3-4069-46c3-bde9-59287ee7f12a.png?v=1706064518"
+  },
+  {
+    "id": "vollkornbrot-geschnitten:Default Title",
+    "name": "Vollkornbrot geschnitten",
+    "sku": "",
+    "price": 2.95,
+    "vendor": "Heidbüchel",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/309c5386-8b67-4c40-89e8-39ce447198a5.jpg?v=1706371801"
+  },
+  {
+    "id": "walnuss-marxipan:Default Title",
+    "name": "Walnuss Marzipan",
+    "sku": "",
+    "price": 6.95,
+    "vendor": "Heidbüchel",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/Walnuss_Marxipan_600.jpg?v=1706376105"
+  },
+  {
+    "id": "weck-ohne-rosinen-500g:H132",
+    "name": "Weck ohne Rosinen 500g",
+    "sku": "H132",
+    "price": 3.9,
+    "vendor": "Heidbüchel",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/Favicon_32x32_3f80d44d-3e97-4e94-abc1-f4baaf1d790b.png?v=1708719272"
+  },
+  {
+    "id": "weisse-rose:Default Title",
+    "name": "Weiße Rosen",
+    "sku": "",
+    "price": 32.5,
+    "vendor": "Heidbüchel",
+    "type": "Blumen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/10_weise_rosa.jpg?v=1731652726"
+  },
+  {
+    "id": "weltmeisterbrotchen:H35",
+    "name": "Weltmeisterbrötchen",
+    "sku": "H35",
+    "price": 0.9,
+    "vendor": "Heidbüchel",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/8a91c17e-08f4-480f-ae2f-0bb0aa0ce0db.png?v=1706064011"
+  },
+  {
+    "id": "zwiebelbaguette:Default Title",
+    "name": "Zwiebelbaguette",
+    "sku": "",
+    "price": 2.7,
+    "vendor": "Heidbüchel",
+    "type": "Baguette",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/6449166e-e4ca-4772-8a2d-bfe026ac95dc.png?v=1706063543"
+  },
+  {
+    "id": "zwiebelbrotchen:H12",
+    "name": "Zwiebelbrötchen",
+    "sku": "H12",
+    "price": 0.8,
+    "vendor": "Heidbüchel",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/cbc07e1a-c8fc-4c2c-8030-89bf1f8f346f.png?v=1706065471"
+  },
+  {
+    "id": "apfelfladen:M1548",
+    "name": "Apfelfladen",
+    "sku": "M1548",
+    "price": 7.8,
+    "vendor": "Moss",
+    "type": "Fladen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/1548_2-1024x768_1.jpg?v=1726086666"
+  },
+  {
+    "id": "aprikosenfladen-1:M1392",
+    "name": "Aprikosenfladen",
+    "sku": "M1392",
+    "price": 8,
+    "vendor": "Moss",
+    "type": "Fladen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/1392-1024x1024.jpg?v=1723457431"
+  },
+  {
+    "id": "ardennerbrot-500g:M165",
+    "name": "Ardennerbrot 500g",
+    "sku": "M165",
+    "price": 3.8,
+    "vendor": "Moss",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/165-1024x1024.jpg?v=1723440718"
+  },
+  {
+    "id": "backeibrotchen-mit-bacon:M5044",
+    "name": "Backeibrötchen mit Bacon",
+    "sku": "M5044",
+    "price": 3.7,
+    "vendor": "Moss",
+    "type": "Snack",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/5044-1024x1024.jpg?v=1727256452"
+  },
+  {
+    "id": "backeibrotchen-mit-bacon-sets-10er:M5044_10",
+    "name": "Backeibrötchen mit Bacon Sets 10er",
+    "sku": "M5044_10",
+    "price": 35,
+    "vendor": "Moss",
+    "type": "Sets",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/OPTIMIZE_BACKUP_PRODUCT_5044-1024x1024.jpg?v=1738411873"
+  },
+  {
+    "id": "bauernschwarzbrot-750g:M239",
+    "name": "Bauernschwarzbrot 750g",
+    "sku": "M239",
+    "price": 4.4,
+    "vendor": "Moss",
+    "type": "Brot",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/bauernschwarzbrot-1-1024x768.jpg?v=1723440823"
+  },
+  {
+    "id": "baumkuchenspitzen:M380",
+    "name": "Baumkuchenspitzen",
+    "sku": "M380",
+    "price": 7.5,
+    "vendor": "Moss",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/OPTIMIZE_BACKUP_PRODUCT_OPTIMIZE_BACKUP_PRODUCT_platzhalter-produkte_1_819df86f-0b62-45c5-b0c7-68e0ae5a93a9.jpg?v=1729624569"
+  },
+  {
+    "id": "beerentaler:Default Title",
+    "name": "Beerentaler",
+    "sku": "",
+    "price": 2.8,
+    "vendor": "Moss",
+    "type": "Süß",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/1297-1024x1024.jpg?v=1723456229"
+  },
+  {
+    "id": "belgischer-reisfladen:M395",
+    "name": "Belgischer Reisfladen",
+    "sku": "M395",
+    "price": 8.56,
+    "vendor": "Moss",
+    "type": "Fladen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/1395-1024x1024.jpg?v=1723457523"
+  },
+  {
+    "id": "brotchen-2:M1",
+    "name": "Brötchen",
+    "sku": "M1",
+    "price": 0.52,
+    "vendor": "Moss",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/1-1024x1024.jpg?v=1723304397"
+  },
+  {
+    "id": "buttermilch-zitronen-muffin:M",
+    "name": "Buttermilch-Zitronen Muffin",
+    "sku": "M",
+    "price": 2.9,
+    "vendor": "Moss",
+    "type": "Süß",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/buttermilch-zitronen-muffin-1024x768.jpg?v=1723456318"
+  },
+  {
+    "id": "croissant-1:M29",
+    "name": "Croissant",
+    "sku": "M29",
+    "price": 1.56,
+    "vendor": "Moss",
+    "type": "Croissant",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/29-1024x1024.jpg?v=1723457087"
+  },
+  {
+    "id": "crunchy-chicken:M4808",
+    "name": "Crunchy Chicken",
+    "sku": "M4808",
+    "price": 5.12,
+    "vendor": "Moss",
+    "type": "Snack",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/4808_1-scaled-1-1-1024x768.jpg?v=1727255977"
+  },
+  {
+    "id": "dicke-scheibe-mit-brotchen:M4870",
+    "name": "Dicke Scheibe mit Brötchen",
+    "sku": "M4870",
+    "price": 3.1,
+    "vendor": "Moss",
+    "type": "Snack",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/4870_8-scaled-e1719386768580-1024x1001.jpg?v=1727256311"
+  },
+  {
+    "id": "dicke-scheibe-mit-brotchen-set-10er:M4870_10",
+    "name": "Dicke Scheibe mit Brötchen Set 10er",
+    "sku": "M4870_10",
+    "price": 29,
+    "vendor": "Moss",
+    "type": "Sets",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/OPTIMIZE_BACKUP_PRODUCT_4870_8-scaled-e1719386768580-1024x1001.jpg?v=1738413152"
+  },
+  {
+    "id": "dinkel-kaiser:M39",
+    "name": "Dinkel Kaiser",
+    "sku": "M39",
+    "price": 1.1,
+    "vendor": "Moss",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/39-1024x1024.jpg?v=1723306945"
+  },
+  {
+    "id": "dinkel-chia-brotchen:M20",
+    "name": "Dinkel-Chia-Brötchen",
+    "sku": "M20",
+    "price": 1.1,
+    "vendor": "Moss",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/20-1024x1024.jpg?v=1723308054"
+  },
+  {
+    "id": "dinkel-hafer-porridge-750g:M135",
+    "name": "Dinkel-Hafer-Porridge 750g",
+    "sku": "M135",
+    "price": 5.2,
+    "vendor": "Moss",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/135-1024x1024.jpg?v=1723440942"
+  },
+  {
+    "id": "dinkel-korn-stange:M121",
+    "name": "Dinkel-Korn-Stange",
+    "sku": "M121",
+    "price": 4,
+    "vendor": "Moss",
+    "type": "Baguette",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/121-1024x1024.jpg?v=1723455185"
+  },
+  {
+    "id": "dinkel-kruste-500g:M155",
+    "name": "Dinkel-Kruste 500g",
+    "sku": "M155",
+    "price": 4.4,
+    "vendor": "Moss",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/155-1024x1024.jpg?v=1723453203"
+  },
+  {
+    "id": "dizi-dinkel-zimt-schnecke:M1351",
+    "name": "DiZi – Dinkel Zimt Schnecke",
+    "sku": "M1351",
+    "price": 3.56,
+    "vendor": "Moss",
+    "type": "Süß",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/1351-1024x1024.jpg?v=1723456416"
+  },
+  {
+    "id": "doppel-oben:M80",
+    "name": "Doppel Oben",
+    "sku": "M80",
+    "price": 1.1,
+    "vendor": "Moss",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/80-1024x1024.jpg?v=1723308217"
+  },
+  {
+    "id": "erdbeer-rhabarber-sahne-baiser-schnitte:Default Title",
+    "name": "Erdbeer-Rhabarber Sahne Baiser-Schnitte",
+    "sku": "",
+    "price": 3.3,
+    "vendor": "Moss",
+    "type": "Fladen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/platzhalter-produkte.jpg?v=1723457617"
+  },
+  {
+    "id": "familienbrot-1kg:M250",
+    "name": "Familienbrot 1Kg",
+    "sku": "M250",
+    "price": 4,
+    "vendor": "Moss",
+    "type": "Brot",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/familienbrot-1-1024x768.jpg?v=1723453317"
+  },
+  {
+    "id": "flute-tomate-mozzarella:M4820",
+    "name": "Flüte Tomate Mozzarella",
+    "sku": "M4820",
+    "price": 4.6,
+    "vendor": "Moss",
+    "type": "Snack",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/fluete-tomate-mozarella-1-1024x768.jpg?v=1727256170"
+  },
+  {
+    "id": "flute-tomate-mozzarella-set-10er:M4820_10",
+    "name": "Flüte Tomate Mozzarella Set 10er",
+    "sku": "M4820_10",
+    "price": 43.7,
+    "vendor": "Moss",
+    "type": "Sets",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/mozarella.png?v=1738414045"
+  },
+  {
+    "id": "flute-baguette:Default Title",
+    "name": "Flüte-Baguette",
+    "sku": "",
+    "price": 2.2,
+    "vendor": "Moss",
+    "type": "Baguette",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/fluete-baguette-1-1024x768.jpg?v=1723455391"
+  },
+  {
+    "id": "ganz-pur-500g:M192",
+    "name": "Ganz.Pur. 500g",
+    "sku": "M192",
+    "price": 5.4,
+    "vendor": "Moss",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/192_1-1-1024x1024.jpg?v=1723453415"
+  },
+  {
+    "id": "goldkornchen:M74",
+    "name": "Goldkörnchen",
+    "sku": "M74",
+    "price": 0.95,
+    "vendor": "Moss",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/74-1024x1024.jpg?v=1723308344"
+  },
+  {
+    "id": "goldkornchen-mit-kase:M4737",
+    "name": "Goldkörnchen mit Käse",
+    "sku": "M4737",
+    "price": 4,
+    "vendor": "Moss",
+    "type": "Snack",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/4737-1024x1024.jpg?v=1727255768"
+  },
+  {
+    "id": "hunsrucker-1kg:M204",
+    "name": "Hunsrücker 1Kg",
+    "sku": "M204",
+    "price": 4.75,
+    "vendor": "Moss",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/204-1024x1024.jpg?v=1723453516"
+  },
+  {
+    "id": "kirsch-auf-reisfladen:M1391",
+    "name": "Kirsch auf Reisfladen",
+    "sku": "M1391",
+    "price": 12.51,
+    "vendor": "Moss",
+    "type": "Fladen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/kirsch-auf-reisfladen-1-1024x768.jpg?v=1723457722"
+  },
+  {
+    "id": "kirsch-tarte:M1416",
+    "name": "Kirsch-Tarte",
+    "sku": "M1416",
+    "price": 8.25,
+    "vendor": "Moss",
+    "type": "Fladen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/kirsch-tarte-1024x768.jpg?v=1723457811"
+  },
+  {
+    "id": "kraut-chi:M4761",
+    "name": "Kraut-Chi",
+    "sku": "M4761",
+    "price": 5.12,
+    "vendor": "Moss",
+    "type": "Snack",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/4761_1-1024x768.jpg?v=1727261196"
+  },
+  {
+    "id": "kraut-chi-set-10er:M4761_10",
+    "name": "Kraut-Chi Set 10er",
+    "sku": "M4761_10",
+    "price": 51.2,
+    "vendor": "Moss",
+    "type": "Sets",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/chi.png?v=1738413284"
+  },
+  {
+    "id": "kase-konig:M4735",
+    "name": "Käse König",
+    "sku": "M4735",
+    "price": 5.12,
+    "vendor": "Moss",
+    "type": "Snack",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/4735-1024x1024.jpg?v=1727256689"
+  },
+  {
+    "id": "kasebrotchen-2:M37",
+    "name": "Käsebrötchen",
+    "sku": "M37",
+    "price": 1.67,
+    "vendor": "Moss",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/37-1024x1024.jpg?v=1723314104"
+  },
+  {
+    "id": "kasebrotchen-mit-ei:M4723",
+    "name": "Käsebrötchen mit Ei",
+    "sku": "M4723",
+    "price": 4.34,
+    "vendor": "Moss",
+    "type": "Snack",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/4723-1024x1024.jpg?v=1727255364"
+  },
+  {
+    "id": "kasekuchen:M1400",
+    "name": "Käsekuchen",
+    "sku": "M1400",
+    "price": 8.84,
+    "vendor": "Moss",
+    "type": "Kuchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/kaesekuchen-1-1024x768.jpg?v=1723458580"
+  },
+  {
+    "id": "kasekuchen-mit-kirschen:M1398",
+    "name": "Käsekuchen mit Kirschen",
+    "sku": "M1398",
+    "price": 9.45,
+    "vendor": "Moss",
+    "type": "Kuchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/kaesekuchen-mit-kirschen-1024x768.jpg?v=1723458899"
+  },
+  {
+    "id": "kummelbrot-1kg:M110",
+    "name": "Kümmelbrot 1Kg",
+    "sku": "M110",
+    "price": 6,
+    "vendor": "Moss",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/kuemmelbrot.png?v=1738413634"
+  },
+  {
+    "id": "laugenbrotchen-1:M31",
+    "name": "Laugenbrötchen",
+    "sku": "M31",
+    "price": 1.1,
+    "vendor": "Moss",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/laugenbroetchen-1024x768.jpg?v=1723314383"
+  },
+  {
+    "id": "laugenbrotchen-mit-paprika-frischkase:M4887",
+    "name": "Laugenbrötchen mit Paprika-Frischkäse",
+    "sku": "M4887",
+    "price": 3.2,
+    "vendor": "Moss",
+    "type": "Snack",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/platzhalter-produkte_1.jpg?v=1727261585"
+  },
+  {
+    "id": "laugenbrotchen-mit-schnittlauch-frischkase:M4888",
+    "name": "Laugenbrötchen mit Schnittlauch-Frischkäse",
+    "sku": "M4888",
+    "price": 3.2,
+    "vendor": "Moss",
+    "type": "Snack",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/platzhalter-produkte_1_819df86f-0b62-45c5-b0c7-68e0ae5a93a9.jpg?v=1727262572"
+  },
+  {
+    "id": "laugeneck:M40",
+    "name": "Laugeneck",
+    "sku": "M40",
+    "price": 2.06,
+    "vendor": "Moss",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/laugeneck-1-1024x768.jpg?v=1723314499"
+  },
+  {
+    "id": "mandelhappen:M1518",
+    "name": "Mandelhappen",
+    "sku": "M1518",
+    "price": 3.4,
+    "vendor": "Moss",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/mandelhappen-1-1024x768.jpg?v=1723456543"
+  },
+  {
+    "id": "mohn-streuselschnitte:M1374",
+    "name": "Mohn-Streuselschnitte",
+    "sku": "M1374",
+    "price": 3.1,
+    "vendor": "Moss",
+    "type": "Kuchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/1374-1024x730.jpg?v=1723459007"
+  },
+  {
+    "id": "mohnbrotchen-3:M7",
+    "name": "Mohnbrötchen",
+    "sku": "M7",
+    "price": 0.9,
+    "vendor": "Moss",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/unser-bestes-mohnbroetchen-1-1024x768.jpg?v=1723305833"
+  },
+  {
+    "id": "moss-baguette:M115",
+    "name": "Moss Baguette",
+    "sku": "M115",
+    "price": 3,
+    "vendor": "Moss",
+    "type": "Baguette",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/115-1024x1024.jpg?v=1723455480"
+  },
+  {
+    "id": "moss-korn-750g:M189",
+    "name": "Moss-Korn 750g",
+    "sku": "M189",
+    "price": 4.5,
+    "vendor": "Moss",
+    "type": "Brot",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/189-1024x1024.jpg?v=1723454413"
+  },
+  {
+    "id": "murbchen:M53",
+    "name": "Mürbchen",
+    "sku": "M53",
+    "price": 1.1,
+    "vendor": "Moss",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/53-1024x1024.jpg?v=1723314772"
+  },
+  {
+    "id": "nuss-kranz:M1472",
+    "name": "Nuss-Kranz",
+    "sku": "M1472",
+    "price": 8.5,
+    "vendor": "Moss",
+    "type": "Kuchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/1472_2-scaled-1-1024x683.jpg?v=1723458698"
+  },
+  {
+    "id": "nussecke:M1512",
+    "name": "Nussecke",
+    "sku": "M1512",
+    "price": 3.5,
+    "vendor": "Moss",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/1512-1024x1024.jpg?v=1723456623"
+  },
+  {
+    "id": "plundertatze-mit-mandeln:M1205",
+    "name": "Plundertatze mit Mandeln",
+    "sku": "M1205",
+    "price": 3,
+    "vendor": "Moss",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/1205-1024x1024.jpg?v=1723456715"
+  },
+  {
+    "id": "printenbrot-in-der-backform-600g:M253",
+    "name": "Printenbrot in der Backform 600g",
+    "sku": "M253",
+    "price": 7.5,
+    "vendor": "Moss",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/OPTIMIZE_BACKUP_PRODUCT_platzhalter-produkte_1_819df86f-0b62-45c5-b0c7-68e0ae5a93a9.jpg?v=1729623167"
+  },
+  {
+    "id": "rollkuchen:M1301",
+    "name": "Rollkuchen",
+    "sku": "M1301",
+    "price": 2.8,
+    "vendor": "Moss",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/1301-1024x1024.jpg?v=1723456833"
+  },
+  {
+    "id": "rosinen-kastenweck-500g:M128",
+    "name": "Rosinen-Kastenweck 500g",
+    "sku": "M128",
+    "price": 5.2,
+    "vendor": "Moss",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/rosinen-kastenweck-1-1024x768.jpg?v=1730136293"
+  },
+  {
+    "id": "rosinen-nuss-schwarzbrot-750g:M227",
+    "name": "Rosinen-Nuss-Schwarzbrot 750g",
+    "sku": "M227",
+    "price": 6,
+    "vendor": "Moss",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/rosinnennussschwarzbrot.png?v=1738413571"
+  },
+  {
+    "id": "rosinenbrotchen-2:M16",
+    "name": "Rosinenbrötchen",
+    "sku": "M16",
+    "price": 1.45,
+    "vendor": "Moss",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/16-1024x1024.jpg?v=1723360856"
+  },
+  {
+    "id": "roggelchen-1:M72",
+    "name": "Röggelchen",
+    "sku": "M72",
+    "price": 1.1,
+    "vendor": "Moss",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/72-1024x1024.jpg?v=1723314981"
+  },
+  {
+    "id": "schlemmer-aprikosenfladen:M1384",
+    "name": "Schlemmer-Aprikosenfladen",
+    "sku": "M1384",
+    "price": 12.23,
+    "vendor": "Moss",
+    "type": "Kuchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/schlemmer-pfirsich-aprikose-1-1024x768.jpg?v=1723458791"
+  },
+  {
+    "id": "schoko-streuselbrotchen-1:M26",
+    "name": "Schoko-Streuselbrötchen",
+    "sku": "M26",
+    "price": 1.89,
+    "vendor": "Moss",
+    "type": "Süß Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/26-1024x1024.jpg?v=1723360982"
+  },
+  {
+    "id": "schokobrotchen-1:M82",
+    "name": "Schokobrötchen",
+    "sku": "M82",
+    "price": 1.67,
+    "vendor": "Moss",
+    "type": "Süß Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/82-1024x1024.jpg?v=1723361189"
+  },
+  {
+    "id": "schokocreme-croissant:M30",
+    "name": "Schokocreme-Croissant",
+    "sku": "M30",
+    "price": 2.56,
+    "vendor": "Moss",
+    "type": "Croissant",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/30-1024x1024.jpg?v=1723457183"
+  },
+  {
+    "id": "streuselbrotchen-2:M15",
+    "name": "Streuselbrötchen",
+    "sku": "M15",
+    "price": 1.5,
+    "vendor": "Moss",
+    "type": "Süß Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/15-1024x1024.jpg?v=1723440005"
+  },
+  {
+    "id": "streuselcremeplatte:M1310",
+    "name": "Streuselcremeplatte",
+    "sku": "M1310",
+    "price": 5.6,
+    "vendor": "Moss",
+    "type": "Kuchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/1310.jpg?v=1723459104"
+  },
+  {
+    "id": "traditionsbrot-750g-750g:M217",
+    "name": "Traditionsbrot 750g",
+    "sku": "M217",
+    "price": 4.2,
+    "vendor": "Moss",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/traditionsbrot.png?v=1738413721"
+  },
+  {
+    "id": "unser-bestes:M5",
+    "name": "Unser Bestes",
+    "sku": "M5",
+    "price": 0.69,
+    "vendor": "Moss",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/5-1024x1024.jpg?v=1723440000"
+  },
+  {
+    "id": "ur-eifeler-750g:M174",
+    "name": "Ur-Eifeler 750g",
+    "sku": "M174",
+    "price": 5.2,
+    "vendor": "Moss",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/ur_eifler.png?v=1738413423"
+  },
+  {
+    "id": "vollkornbrotchen:M51",
+    "name": "Vollkornbrötchen",
+    "sku": "M51",
+    "price": 1.2,
+    "vendor": "Moss",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/51-1024x1024.jpg?v=1723440111"
+  },
+  {
+    "id": "walnussbrot-750g:M172",
+    "name": "Walnussbrot 750g",
+    "sku": "M172",
+    "price": 5.5,
+    "vendor": "Moss",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/walnussbrot.png?v=1738413497"
+  },
+  {
+    "id": "winzerbrot:M220",
+    "name": "Winzerbrot 3Kg",
+    "sku": "M220",
+    "price": 25,
+    "vendor": "Moss",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/winzerbrot-1-1024x768.jpg?v=1723455061"
+  },
+  {
+    "id": "wurzelbrot-oliven:M105",
+    "name": "Wurzelbrot Oliven",
+    "sku": "M105",
+    "price": 3.8,
+    "vendor": "Moss",
+    "type": "Baguette",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/105-1024x1024.jpg?v=1723455652"
+  },
+  {
+    "id": "zitronen-facher:Default Title",
+    "name": "Zitronen-Fächer",
+    "sku": "",
+    "price": 2.8,
+    "vendor": "Moss",
+    "type": "Süß",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/zitronen-faecher-1024x768.jpg?v=1723456930"
+  },
+  {
+    "id": "zwiebelstange:M208",
+    "name": "Zwiebelstange",
+    "sku": "M208",
+    "price": 3.8,
+    "vendor": "Moss",
+    "type": "Baguette",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/208-1024x1024.jpg?v=1723455741"
+  },
+  {
+    "id": "apfel-blatterteigtasche:K284",
+    "name": "Apfeltaschen Blätterteig",
+    "sku": "K284",
+    "price": 2.78,
+    "vendor": "Kockartz",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/d4bf24a5-e027-4727-8514-20ddfd32d76e.jpg?v=1715319533"
+  },
+  {
+    "id": "aprikosenfladen:K156",
+    "name": "Aprikosenfladen",
+    "sku": "K156",
+    "price": 8.02,
+    "vendor": "Kockartz",
+    "type": "Fladen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/f0cb0894-d75b-494e-8956-e250f62ead56_350x350_e31a4e59-2496-4937-8eba-35ef28fed32b.jpg?v=1715321352"
+  },
+  {
+    "id": "aprikosenmarmelade:K5",
+    "name": "Aprikosenmarmelade",
+    "sku": "K5",
+    "price": 4.05,
+    "vendor": "Kockartz",
+    "type": "Marmelade",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/3fffa7da-ebcf-468d-a143-ad303ca9d7b5_97c415f3-b4d4-4aac-8f7c-22d74d881cca.jpg?v=1706241587"
+  },
+  {
+    "id": "baguette-a-lancienne:K222",
+    "name": "Baguette à L'ancienne",
+    "sku": "K222",
+    "price": 2.95,
+    "vendor": "Kockartz",
+    "type": "Baguette",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/af46174b-3c7f-4193-821b-76566f874d00.jpg?v=1706218045"
+  },
+  {
+    "id": "baguette-a-lancienne-1-2:K8",
+    "name": "Baguette à L'ancienne 1/2",
+    "sku": "K8",
+    "price": 1.95,
+    "vendor": "Kockartz",
+    "type": "Baguette",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/cbf632b3-cd7a-4e20-99f4-8dcc7edce32f.jpg?v=1706217857"
+  },
+  {
+    "id": "baguette-a-lancienne-korner:K9",
+    "name": "Baguette à L'ancienne Körner",
+    "sku": "K9",
+    "price": 3,
+    "vendor": "Kockartz",
+    "type": "Baguette",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/dc76b05c-7b38-4925-a08a-ff030b01254b.jpg?v=1706218138"
+  },
+  {
+    "id": "baguette-a-lancienne-korner-1-2:K10",
+    "name": "Baguette à L'ancienne Körner 1/2",
+    "sku": "K10",
+    "price": 2.2,
+    "vendor": "Kockartz",
+    "type": "Baguette",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/0bd4bf20-14c2-4937-a4f0-aee4dbb126e7.jpg?v=1706217958"
+  },
+  {
+    "id": "bauern-kruste:K24",
+    "name": "Bayern Kruste 600g",
+    "sku": "K24",
+    "price": 4.25,
+    "vendor": "Kockartz",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/2f0db3cd-415e-4c19-87a9-a7abeff61d37.jpg?v=1706212544"
+  },
+  {
+    "id": "brotchen-1:K55",
+    "name": "Brötchen",
+    "sku": "K55",
+    "price": 0.57,
+    "vendor": "Kockartz",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/411ea498-a41e-4690-beb9-63750864411f_805020d3-7c1d-4fbb-a6ce-c00d82f37761.jpg?v=1706215111"
+  },
+  {
+    "id": "brotchen-6er:K21S",
+    "name": "Brötchen 6er",
+    "sku": "K21S",
+    "price": 3.25,
+    "vendor": "Kockartz",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/4f5e1b02-4dab-4a8d-89b1-c5a6c546697d.jpg?v=1706210854"
+  },
+  {
+    "id": "brotchen-set-6er-mit-aprikosenmarmelade:24",
+    "name": "Brötchen Set 6er mit Aprikosenmarmelade",
+    "sku": "24",
+    "price": 6.99,
+    "vendor": "Kockartz",
+    "type": "",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/9386c571-0e45-44c6-b2b3-9df42b9d6076.jpg?v=1706212345"
+  },
+  {
+    "id": "brotchen-set-6er-mit-erdbeermarmelade:25",
+    "name": "Brötchen Set 6er mit Erdbeermarmelade",
+    "sku": "25",
+    "price": 6.99,
+    "vendor": "Kockartz",
+    "type": "",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/4fdcde3e-6093-4156-b809-4970dacd7e94.jpg?v=1706211049"
+  },
+  {
+    "id": "brotchen-set-6er-mit-himeermarmelade:26",
+    "name": "Brötchen Set 6er mit Himeermarmelade",
+    "sku": "26",
+    "price": 6.99,
+    "vendor": "Kockartz",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/4fdcde3e-6093-4156-b809-4970dacd7e94_751ab1bc-e2c4-4557-91ec-9a2ad58ebb81.jpg?v=1706211455"
+  },
+  {
+    "id": "brotchen-set-6er-mit-kirchmarmelade:27",
+    "name": "Brötchen Set 6er mit Kirchmarmelade",
+    "sku": "27",
+    "price": 6.99,
+    "vendor": "Kockartz",
+    "type": "",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/a7c5f0ab-b29b-4dcd-9a8b-5fc123e0bd3b.jpg?v=1706211574"
+  },
+  {
+    "id": "choco-nussbrotchen:K102",
+    "name": "Choco-Nuss Brötchen",
+    "sku": "K102",
+    "price": 1.45,
+    "vendor": "Kockartz",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/81194a64-c587-4261-b437-97c04e556407_136cdc61-c44a-44fd-a4f9-1ce3d2d88643.jpg?v=1706218729"
+  },
+  {
+    "id": "chococroissant:K106",
+    "name": "Chococroissant",
+    "sku": "K106",
+    "price": 1.8,
+    "vendor": "Kockartz",
+    "type": "Croissant",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/6124edad-dae8-4b51-8d33-120c372fa13d_0fb32bad-0294-442a-9a1f-ce9940eb649c.jpg?v=1706217678"
+  },
+  {
+    "id": "chokocremecroissant:K107",
+    "name": "Chococrèmecroissant",
+    "sku": "K107",
+    "price": 2.15,
+    "vendor": "Kockartz",
+    "type": "Croissant",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/b02c1724-d512-4f89-94c4-9e6e57575416.jpg?v=1706217750"
+  },
+  {
+    "id": "cibatta:K112",
+    "name": "Ciabatta",
+    "sku": "K112",
+    "price": 1.7,
+    "vendor": "Kockartz",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/fd861d1b-405a-4835-819a-716166eeec0a_2dcc9110-188a-495a-9ce1-17d39c02b937.jpg?v=1706215289"
+  },
+  {
+    "id": "croissant-3er:K36S",
+    "name": "Croissant 3er",
+    "sku": "K36S",
+    "price": 5.13,
+    "vendor": "Kockartz",
+    "type": "Croissant",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/874a4924-057f-43fd-9b12-0325ad6b2e0a.jpg?v=1706210582"
+  },
+  {
+    "id": "croissant-6er:K37S",
+    "name": "Croissant 6er",
+    "sku": "K37S",
+    "price": 10.25,
+    "vendor": "Kockartz",
+    "type": "Croissant",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/9971b00d-902a-4945-bdac-c0e651ba4633.jpg?v=1706210762"
+  },
+  {
+    "id": "croissant-bretagne:K105",
+    "name": "Croissant Bretagne",
+    "sku": "K105",
+    "price": 1.8,
+    "vendor": "Kockartz",
+    "type": "Croissant",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/600eaa3d-f1b5-4893-866a-f27db50f715e_600bd3af-32d4-40ae-8d30-8fedcacc4cec.jpg?v=1706217407"
+  },
+  {
+    "id": "mischung-set:K39S",
+    "name": "Croissant Set",
+    "sku": "K39S",
+    "price": 7.3,
+    "vendor": "Kockartz",
+    "type": "Sets",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/299b2976-e818-4911-9e4b-6ef53b4668d4.jpg?v=1706210115"
+  },
+  {
+    "id": "dinkel-walnusskracher-500-g:K43",
+    "name": "Dinkel-Walnusskracher 500 g",
+    "sku": "K43",
+    "price": 4.35,
+    "vendor": "Kockartz",
+    "type": "Brot",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/28e143da-3b0a-4057-ac6c-a5fb19ae6c54.jpg?v=1706213853"
+  },
+  {
+    "id": "eclair:K258",
+    "name": "Eclair",
+    "sku": "K258",
+    "price": 2.55,
+    "vendor": "Kockartz",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/2191dbae-b84c-48f4-b006-31501dab1fb4.jpg?v=1706240218"
+  },
+  {
+    "id": "emmelserbrot-600g:K51",
+    "name": "Emmelserbrot 600g",
+    "sku": "K51",
+    "price": 3.8,
+    "vendor": "Kockartz",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/0b9f5654-af0f-46e5-a533-c18279acfcca.jpg?v=1706213972"
+  },
+  {
+    "id": "erdbeermarmelade:52",
+    "name": "Erdbeermarmelade",
+    "sku": "52",
+    "price": 4.05,
+    "vendor": "Kockartz",
+    "type": "Marmelade",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/707efaa0-798e-4f3b-9e00-c9525bf21c54.jpg?v=1706265570"
+  },
+  {
+    "id": "frangipan:K271",
+    "name": "Frangipan",
+    "sku": "K271",
+    "price": 2.9,
+    "vendor": "Kockartz",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/78f6cf3e-04f3-4825-b139-7f8faf5582fa.jpg?v=1706240413"
+  },
+  {
+    "id": "graubrot-kasten-400g:K17",
+    "name": "Graubrot Kasten 400g",
+    "sku": "K17",
+    "price": 2.85,
+    "vendor": "Kockartz",
+    "type": "Brot",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/ac267563-4d31-4567-9313-255829204743.jpg?v=1706214062"
+  },
+  {
+    "id": "graubrot-kasten-800g:K55_",
+    "name": "Graubrot Kasten 800g",
+    "sku": "K55_",
+    "price": 3.75,
+    "vendor": "Kockartz",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/ce2c948d-c398-4857-8884-bd3f608c6004.jpg?v=1706214160"
+  },
+  {
+    "id": "graubrot-lang-800g:K56",
+    "name": "Graubrot Lang 800g",
+    "sku": "K56",
+    "price": 3.95,
+    "vendor": "Kockartz",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/bcc42a1e-0f81-40c3-ad6a-af66ebf5dbcc.jpg?v=1706214271"
+  },
+  {
+    "id": "graubrot-rund-400g:K57",
+    "name": "Graubrot Rund 400g",
+    "sku": "K57",
+    "price": 3.15,
+    "vendor": "Kockartz",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/ea10c799-9bbc-4463-a66b-bb38cf606bb1.jpg?v=1706214373"
+  },
+  {
+    "id": "hefehornchen:K101",
+    "name": "Hefehörnchen",
+    "sku": "K101",
+    "price": 1.4,
+    "vendor": "Kockartz",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/3c049d1f-c19f-440a-a841-4f8fb94e8df2_10f3f0cb-e2cf-4641-9ade-86be42883180.jpg?v=1706218637"
+  },
+  {
+    "id": "himbeer-auf-reis:K144",
+    "name": "Himbeer auf Reis",
+    "sku": "K144",
+    "price": 11.11,
+    "vendor": "Kockartz",
+    "type": "Fladen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/86a2729d-76d6-4619-8732-44f2cff4d4ab.jpg?v=1706241123"
+  },
+  {
+    "id": "himbeerenmarmelade:60",
+    "name": "Himbeeren-marmelade",
+    "sku": "60",
+    "price": 4.05,
+    "vendor": "Kockartz",
+    "type": "Marmelade",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/4360b8fa-8391-4546-95ef-87272f4eaa41_00c01ec9-0100-42e6-967b-2919e4919b57.jpg?v=1706265820"
+  },
+  {
+    "id": "kirchemarmelade:72",
+    "name": "Kirchemarmelade",
+    "sku": "72",
+    "price": 4.05,
+    "vendor": "Kockartz",
+    "type": "Marmelade",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/fb375b29-a66b-49dd-94fc-dc34af07e566_b2792193-978f-4a06-ad73-9b8bc482aa9a.jpg?v=1706265903"
+  },
+  {
+    "id": "kirchfladen:K167",
+    "name": "Kirschfladen",
+    "sku": "K167",
+    "price": 8.3,
+    "vendor": "Kockartz",
+    "type": "Fladen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/69021867-f37c-4211-bf8d-630df71c0c72.jpg?v=1706241003"
+  },
+  {
+    "id": "kirschkrokant-tasche:K289",
+    "name": "Kirschkrokant Tasche",
+    "sku": "K289",
+    "price": 3.1,
+    "vendor": "Kockartz",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/d37b910c-a6b4-46a9-9c39-88a22a250fce.jpg?v=1706240088"
+  },
+  {
+    "id": "kraftkornbrot-600g:K77",
+    "name": "Kraftkornbrot 600g",
+    "sku": "K77",
+    "price": 4.5,
+    "vendor": "Kockartz",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/bdfd0e5a-c0ab-48ec-93c1-052cc6721ce8.jpg?v=1706214457"
+  },
+  {
+    "id": "krustenbrot-vom-steinofen-600g:K27",
+    "name": "Krustenbrot vom Steinofen 600g",
+    "sku": "K27",
+    "price": 4.05,
+    "vendor": "Kockartz",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/cec9150f-7c63-483c-b432-f2c2f6793854.jpg?v=1706214549"
+  },
+  {
+    "id": "krauterprinten-200g:K78",
+    "name": "Kräuterprinten 200g",
+    "sku": "K78",
+    "price": 3.8,
+    "vendor": "Kockartz",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/2f83acf0-c42d-4cc8-91ae-c3c5ca9eb5e7.jpg?v=1706266243"
+  },
+  {
+    "id": "kase-set:K68S",
+    "name": "Käse Set",
+    "sku": "K68S",
+    "price": 6.01,
+    "vendor": "Kockartz",
+    "type": "Sets",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/635a37f4-2ca7-4cc0-9d1d-51e9992a677f.jpg?v=1706210452"
+  },
+  {
+    "id": "kasebrotchen:K108",
+    "name": "Käsebrötchen",
+    "sku": "K108",
+    "price": 1.5,
+    "vendor": "Kockartz",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/c71250b7-0aba-4192-b65b-f833c5493b0a_a4524d03-47cc-4f78-8f52-36213994659d.jpg?v=1706216738"
+  },
+  {
+    "id": "kasebrotchen-mit-speck:K71",
+    "name": "Käsebrötchen mit Speck",
+    "sku": "K71",
+    "price": 1.75,
+    "vendor": "Kockartz",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/4325899b-f1e9-4871-bfd9-73a5ff8dfbad_53ebca14-528b-4961-97f0-973032a79e57.jpg?v=1706216824"
+  },
+  {
+    "id": "kase-schinkencroissant:K111",
+    "name": "Käseschinkencroissant",
+    "sku": "K111",
+    "price": 2.3,
+    "vendor": "Kockartz",
+    "type": "Croissant",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/3c9d5410-4070-40e6-8fcb-0970c07fd5ba_eb85f0a0-00d0-47f5-9782-8e327ceaaec1.jpg?v=1706217480"
+  },
+  {
+    "id": "kurbiskernbrot-600g:K35",
+    "name": "Kürbiskernbrot 600g",
+    "sku": "K35",
+    "price": 4.3,
+    "vendor": "Kockartz",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/b94a83b4-e10e-40d3-b811-5ada029b9a43.jpg?v=1706214632"
+  },
+  {
+    "id": "kurbisknacker:K60",
+    "name": "Kürbisknacker",
+    "sku": "K60",
+    "price": 1.1,
+    "vendor": "Kockartz",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/b36ec5c4-d1ae-4daf-9418-c5310efe2043_d1d4c1b6-8448-4241-87d9-806e1d117aca.jpg?v=1706216915"
+  },
+  {
+    "id": "lambertusbrot:K1234",
+    "name": "Lambertusbrot",
+    "sku": "K1234",
+    "price": 4.45,
+    "vendor": "Kockartz",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/350x350_Logo_Kockartz.png?v=1722002664"
+  },
+  {
+    "id": "laugenecke-1:K1297",
+    "name": "Laugenecke",
+    "sku": "K1297",
+    "price": 1.61,
+    "vendor": "Kockartz",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/laugenecke_kockartz.webp?v=1715319100"
+  },
+  {
+    "id": "lilie:Default Title",
+    "name": "Lilie",
+    "sku": "",
+    "price": 19.5,
+    "vendor": "Kockartz",
+    "type": "Blumen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/lilia_deb7544d-a90c-4737-b7fd-2044dcdb2732.jpg?v=1731652438"
+  },
+  {
+    "id": "mandel-spekulatius-200g:K91",
+    "name": "Mandel Spekulatius 200g",
+    "sku": "K91",
+    "price": 5.5,
+    "vendor": "Kockartz",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/5a329a24-1140-4afa-ac0e-ebe98801b3db.jpg?v=1706266336"
+  },
+  {
+    "id": "mandelsplitter-herb-100g:K93",
+    "name": "Mandelsplitter herb 100g",
+    "sku": "K93",
+    "price": 3.9,
+    "vendor": "Kockartz",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/6a0b57cc-724b-4b85-afa5-47e97c6a3a14.jpg?v=1706266438"
+  },
+  {
+    "id": "merveilleux:K94",
+    "name": "Merveilleux",
+    "sku": "K94",
+    "price": 3.5,
+    "vendor": "Kockartz",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/0e247a78-bddb-406b-969e-7ab9cecf3231.jpg?v=1706240639"
+  },
+  {
+    "id": "mischung-set-1:K95S",
+    "name": "Mischung Set",
+    "sku": "K95S",
+    "price": 7.45,
+    "vendor": "Kockartz",
+    "type": "Sets",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/e15c4100-4eb1-47c1-8855-b369837a2289_ad59d290-63f2-4129-92ea-9f24f971fc5c.jpg?v=1706209548"
+  },
+  {
+    "id": "mix-strauss:Default Title",
+    "name": "Mix Strauß",
+    "sku": "",
+    "price": 32.5,
+    "vendor": "Kockartz",
+    "type": "Blumen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/bunte_strauss_b6dfb750-7e80-4bb1-b9ab-2e812346660b.jpg?v=1731652511"
+  },
+  {
+    "id": "mohnbrotchen-1:K57",
+    "name": "Mohnbrötchen",
+    "sku": "K57",
+    "price": 0.9,
+    "vendor": "Kockartz",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/48a52ce6-abe6-42e0-860f-2542ae97adff_41c0ff49-a189-473f-b1c6-8e22953ef17a.jpg?v=1706215194"
+  },
+  {
+    "id": "mokka-sahne-rolle:K98",
+    "name": "Mokka Sahne Rolle",
+    "sku": "K98",
+    "price": 4.25,
+    "vendor": "Kockartz",
+    "type": "Süß",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/4e31061e-d725-4bc0-acfa-8de0088ac6e3.jpg?v=1706240788"
+  },
+  {
+    "id": "mont-blanc:K99",
+    "name": "Mont blanc",
+    "sku": "K99",
+    "price": 3.5,
+    "vendor": "Kockartz",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/c25cd25b-3993-4092-bb07-85adc9ba13cd.jpg?v=1706240498"
+  },
+  {
+    "id": "muffin:K684",
+    "name": "Muffin",
+    "sku": "K684",
+    "price": 2.35,
+    "vendor": "Kockartz",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/1ed954dc-6e76-43f9-86b1-6f2c01e1ce81.jpg?v=1706240333"
+  },
+  {
+    "id": "nussbretzel:K102",
+    "name": "Nussbretzel",
+    "sku": "K102",
+    "price": 3.2,
+    "vendor": "Kockartz",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/c2ef3590-f724-4c60-a88b-eadb15585cda.jpg?v=1706239882"
+  },
+  {
+    "id": "pain-paillasse-dunkel:K97",
+    "name": "Pain Paillasse dunkel",
+    "sku": "K97",
+    "price": 3,
+    "vendor": "Kockartz",
+    "type": "Baguette",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/5b11bd78-42ec-45fc-b51c-fc8101c658b9.jpg?v=1706218368"
+  },
+  {
+    "id": "pain-paillasse-hell:K106",
+    "name": "Pain Paillasse hell",
+    "sku": "K106",
+    "price": 3,
+    "vendor": "Kockartz",
+    "type": "Baguette",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/0c7d0d3d-798c-4d4a-97db-74e9e0482a9f.jpg?v=1706218268"
+  },
+  {
+    "id": "pistolet:K69",
+    "name": "Pistolet",
+    "sku": "K69",
+    "price": 0.8,
+    "vendor": "Kockartz",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/e3c8e0f1-94db-460f-8883-13c231d04477.jpg?v=1706218525"
+  },
+  {
+    "id": "quark-mit-johannisbeeren:K1062",
+    "name": "Quark mit Johannisbeeren",
+    "sku": "K1062",
+    "price": 9.5,
+    "vendor": "Kockartz",
+    "type": "Fladen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/d46185b0-1407-4c5d-ad0a-73679ef4e84c.jpg?v=1706241369"
+  },
+  {
+    "id": "quarkobst-becher:112",
+    "name": "Quarkobst Becher",
+    "sku": "112",
+    "price": 3.4,
+    "vendor": "Kockartz",
+    "type": "Quarkobst",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/ffc35d8d-f8b7-42ec-b5ec-f048246b8765.jpg?v=1706266019"
+  },
+  {
+    "id": "reisfladen:K149",
+    "name": "Reisfladen",
+    "sku": "K149",
+    "price": 7.83,
+    "vendor": "Kockartz",
+    "type": "Fladen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/5a157a34-10f1-4e5b-acca-8ee1239605b1.jpg?v=1706241287"
+  },
+  {
+    "id": "rosinenbrotchen:K99",
+    "name": "Rosinenbrötchen",
+    "sku": "K99",
+    "price": 1.25,
+    "vendor": "Kockartz",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/5faf3062-80bb-4ff3-a696-5ad1a29d58fc_4e564110-afac-4bd7-b1f2-07ecad1fe4f0.jpg?v=1706218814"
+  },
+  {
+    "id": "rote-rose-1:Default Title",
+    "name": "Rote Rose",
+    "sku": "",
+    "price": 8.45,
+    "vendor": "Kockartz",
+    "type": "Blumen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/1rosa_2.jpg?v=1731652537"
+  },
+  {
+    "id": "rote-rosen:Default Title",
+    "name": "Rote Rosen",
+    "sku": "",
+    "price": 37.05,
+    "vendor": "Kockartz",
+    "type": "Blumen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/11_rote_rosa_2.jpg?v=1731652697"
+  },
+  {
+    "id": "rote-rosen-kopie:Default Title",
+    "name": "Rote Rosen",
+    "sku": "",
+    "price": 35,
+    "vendor": "Kockartz",
+    "type": "Blumen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/9_rosa.jpg?v=1731652582"
+  },
+  {
+    "id": "rogenbrotchen:K59",
+    "name": "Röggelchen",
+    "sku": "K59",
+    "price": 0.9,
+    "vendor": "Kockartz",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/ccadc707-82fd-4ca8-83bd-7d908978bb4a.jpg?v=1706217128"
+  },
+  {
+    "id": "saftprinten-mandel-milch-200g:K119",
+    "name": "Saftprinten Mandel Milch 200g",
+    "sku": "K119",
+    "price": 6.3,
+    "vendor": "Kockartz",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/35a0d818-0f14-44a7-aa13-b2b3bbda4f94.jpg?v=1706266591"
+  },
+  {
+    "id": "saftprinten-milch-200g:K120",
+    "name": "Saftprinten Milch 200g",
+    "sku": "K120",
+    "price": 5.4,
+    "vendor": "Kockartz",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/ab5bd9d0-f13b-4297-891d-57b9d5276381.jpg?v=1706266693"
+  },
+  {
+    "id": "saftprinten-nuss-herb-200g:K121",
+    "name": "Saftprinten Nuss Herb 200g",
+    "sku": "K121",
+    "price": 6.5,
+    "vendor": "Kockartz",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/6942d1d5-dc3d-4e86-8336-0192911a86bf.jpg?v=1706266790"
+  },
+  {
+    "id": "saftprinten-orange-200g:K122",
+    "name": "Saftprinten Orange 200g",
+    "sku": "K122",
+    "price": 6.6,
+    "vendor": "Kockartz",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/fab4da73-6ee4-4a9c-878e-3f3fe71ee1c0.jpg?v=1706379870"
+  },
+  {
+    "id": "saftprinten-weiss-200g:K123",
+    "name": "Saftprinten Weiß 200g",
+    "sku": "K123",
+    "price": 5.9,
+    "vendor": "Kockartz",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/e346b53e-6cb0-44f7-9936-1f1e1a37befc.jpg?v=1706379955"
+  },
+  {
+    "id": "schoko-rodon:K125",
+    "name": "Schoko Rodon",
+    "sku": "K125",
+    "price": 8.65,
+    "vendor": "Kockartz",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/7f96956c-eee2-40b1-8825-90463af369d0.jpg?v=1706240903"
+  },
+  {
+    "id": "schoko-streuselbrotchen:K1066",
+    "name": "Schoko-Streuselbrötchen",
+    "sku": "K1066",
+    "price": 1.5,
+    "vendor": "Kockartz",
+    "type": "Streusel",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/144e222c-d52d-406a-8e0b-2b3d17c647a3_c3065280-9562-4045-a8c2-1a14a0afcc0e.jpg?v=1706239781"
+  },
+  {
+    "id": "schokonussprinten-200g:K130",
+    "name": "Schokonussprinten 200g",
+    "sku": "K130",
+    "price": 5.9,
+    "vendor": "Kockartz",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/628636be-5855-43d0-8431-ad5709dc3471.jpg?v=1706380297"
+  },
+  {
+    "id": "schwarzwalder-600g:K26",
+    "name": "Schwarzwälder 600g",
+    "sku": "K26",
+    "price": 3.75,
+    "vendor": "Kockartz",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/1a0d445a-f676-49ad-b4e0-9822166ce57a.jpg?v=1706214706"
+  },
+  {
+    "id": "schwarzwalder-rolle:K363",
+    "name": "Schwarzwälder Rolle",
+    "sku": "K363",
+    "price": 4.25,
+    "vendor": "Kockartz",
+    "type": "Süß",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/3c3b3190-4d62-46ca-b0d0-95453d3770a2.jpg?v=1706240719"
+  },
+  {
+    "id": "sesambrotchen-1:K56",
+    "name": "Sesambrötchen",
+    "sku": "K56",
+    "price": 0.9,
+    "vendor": "Kockartz",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/110f00a4-c003-428d-80f9-35c0b8db680a_3d5b57a2-d76f-484d-ae0c-4e363f50c11a.jpg?v=1706217221"
+  },
+  {
+    "id": "spekulatius-200g:K140",
+    "name": "Spekulatius 200g",
+    "sku": "K140",
+    "price": 4.9,
+    "vendor": "Kockartz",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/369bcffd-fc0b-4236-87dd-ac9ef8bf96ac.jpg?v=1706380423"
+  },
+  {
+    "id": "spekulatius-schoko-200g:K141",
+    "name": "Spekulatius Schoko 200g",
+    "sku": "K141",
+    "price": 5.6,
+    "vendor": "Kockartz",
+    "type": "Printen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/39f12838-4c04-4060-aef7-28f75ba9d61d.jpg?v=1706380526"
+  },
+  {
+    "id": "streuselbrotchen:K100",
+    "name": "Streuselbrötchen",
+    "sku": "K100",
+    "price": 1.25,
+    "vendor": "Kockartz",
+    "type": "Streusel",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/9bcdc07d-85c1-4ed7-ad63-3c9f28b55232_69731c4d-0733-4ac3-8323-a7d3f380c855.jpg?v=1706239681"
+  },
+  {
+    "id": "suss-set:K144S",
+    "name": "Süß Set",
+    "sku": "K144S",
+    "price": 8.2,
+    "vendor": "Kockartz",
+    "type": "Sets",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/8ef5fb31-30bc-4ef3-9ee7-7abaf961b8b2.jpg?v=1706210009"
+  },
+  {
+    "id": "vollkorncroissant:K149",
+    "name": "Vollkorncroissant",
+    "sku": "K149",
+    "price": 1.75,
+    "vendor": "Kockartz",
+    "type": "Croissant",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/400e5b19-120b-4ab0-8b3b-e2479a0b36dc_3aac9fc4-ad3e-4369-bcf5-72061353eab1.jpg?v=1706217591"
+  },
+  {
+    "id": "weissbrot-kasten-400g:K152",
+    "name": "Weissbrot Kasten 400g",
+    "sku": "K152",
+    "price": 2.95,
+    "vendor": "Kockartz",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/ec2773c8-e74e-418c-976b-cb29a4b0cd3d.jpg?v=1706214837"
+  },
+  {
+    "id": "weissbrot-kasten-800g:K153",
+    "name": "Weissbrot Kasten 800g",
+    "sku": "K153",
+    "price": 3.65,
+    "vendor": "Kockartz",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/1f9d8503-9221-4fd4-ad61-add8b47f87ed.jpg?v=1706294556"
+  },
+  {
+    "id": "weissbrot-lang-800g:K154",
+    "name": "Weissbrot Lang 800g",
+    "sku": "K154",
+    "price": 3.35,
+    "vendor": "Kockartz",
+    "type": "Brot",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/3fba3bec-dfc3-4ed2-95e4-ece3b7a248ce.jpg?v=1706215020"
+  },
+  {
+    "id": "weisse-rosen:Default Title",
+    "name": "Weiße Rosen",
+    "sku": "",
+    "price": 32.5,
+    "vendor": "Kockartz",
+    "type": "Blumen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/10_weise_rosa.jpg?v=1731652726"
+  },
+  {
+    "id": "winzerbrotchen:K64",
+    "name": "Winzerbrötchen",
+    "sku": "K64",
+    "price": 1.1,
+    "vendor": "Kockartz",
+    "type": "Brötchen",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/29040ab7-4104-4f1c-84c8-9355e870a2fd_63441acf-296e-4848-866f-da0b0d655d32.jpg?v=1706217301"
+  },
+  {
+    "id": "berliner-jungs:122011",
+    "name": "BERLINER JUNGS",
+    "sku": "122011",
+    "price": 0.99,
+    "vendor": "Malzers",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/BERLINERJUNGS_2.jpg?v=1713000050"
+  },
+  {
+    "id": "butter-croissant:123001",
+    "name": "BUTTER-CROISSANT",
+    "sku": "123001",
+    "price": 1.53,
+    "vendor": "Malzers",
+    "type": "Croissant",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/BUTTER-CROISSANT_3.jpg?v=1713000680"
+  },
+  {
+    "id": "butter-streuselkuchen-streifen:133006",
+    "name": "BUTTER-STREUSELKUCHEN STREIFEN",
+    "sku": "133006",
+    "price": 3.25,
+    "vendor": "Malzers",
+    "type": "Kuchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/BUTTER-STREUSELKUCHENSTREIFEN_3.jpg?v=1720076880"
+  },
+  {
+    "id": "buttermurbchen:123012",
+    "name": "BUTTERMÜRBCHEN",
+    "sku": "123012",
+    "price": 1.55,
+    "vendor": "Malzers",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/BUTTERMUeRBCHEN_3.jpg?v=1713001331"
+  },
+  {
+    "id": "butterstuten-500g:114006",
+    "name": "BUTTERSTUTEN 500G",
+    "sku": "114006",
+    "price": 3.65,
+    "vendor": "Malzers",
+    "type": "Brot",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/BUTTERSTUTEN500G_3.jpg?v=1713005130"
+  },
+  {
+    "id": "chiabrotchen:122100",
+    "name": "CHIABRÖTCHEN",
+    "sku": "122100",
+    "price": 0.99,
+    "vendor": "Malzers",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/CHIABROeTCHEN_3.jpg?v=1712998496"
+  },
+  {
+    "id": "dinkel-fussball-ami:131230",
+    "name": "DINKEL-FUSSBALL-AMI",
+    "sku": "131230",
+    "price": 1.99,
+    "vendor": "Malzers",
+    "type": "Kuchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/DINKEL-FUSSBALL-AMI.jpg?v=1720077206"
+  },
+  {
+    "id": "dinkel-mohrenbrotchen:122110",
+    "name": "DINKEL-MÖHRENBRÖTCHEN",
+    "sku": "122110",
+    "price": 1.15,
+    "vendor": "Malzers",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/DINKEL-MOeHRENBROeTCHEN_3.jpg?v=1712997792"
+  },
+  {
+    "id": "dinkelbrotchen:122071",
+    "name": "DINKELBRÖTCHEN",
+    "sku": "122071",
+    "price": 1.05,
+    "vendor": "Malzers",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/Dinkelbroetchen_Malzers_2.jpg?v=1715240483"
+  },
+  {
+    "id": "fan-quarkballchen-set-3er:Default Title",
+    "name": "FAN-QUARKBÄLLCHEN SET 3er",
+    "sku": "",
+    "price": 2,
+    "vendor": "Malzers",
+    "type": "quarkbällchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/Fan_Quarkini_gestapelt_CMYK_Rasen_f96fb7a1-2219-4862-bdde-040cc4929320.jpg?v=1718180713"
+  },
+  {
+    "id": "fan-quarkballchen-set-6er:Default Title",
+    "name": "FAN-QUARKBÄLLCHEN SET 6er",
+    "sku": "",
+    "price": 4,
+    "vendor": "Malzers",
+    "type": "quarkbällchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/Fan_Quarkini_gestapelt_CMYK_Rasen_f96fb7a1-2219-4862-bdde-040cc4929320.jpg?v=1718180713"
+  },
+  {
+    "id": "fan-quarkballchen-set-9er:FAN-QUARKBÄLLCHEN SET 9er",
+    "name": "FAN-QUARKBÄLLCHEN SET 9er",
+    "sku": "FAN-QUARKBÄLLCHEN SET 9er",
+    "price": 6,
+    "vendor": "Malzers",
+    "type": "quarkbällchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/Fan_Quarkini_gestapelt_CMYK_Rasen_f96fb7a1-2219-4862-bdde-040cc4929320.jpg?v=1718180713"
+  },
+  {
+    "id": "fan-quarkini-gold:131265",
+    "name": "FAN-QUARKINI Gold",
+    "sku": "131265",
+    "price": 0.7,
+    "vendor": "Malzers",
+    "type": "quarkbällchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/Fan_Quarkini_gestapelt_CMYK_Rasen.jpg?v=1718179713"
+  },
+  {
+    "id": "fan-quarkini-rot:131264",
+    "name": "FAN-QUARKINI Rot",
+    "sku": "131264",
+    "price": 0.7,
+    "vendor": "Malzers",
+    "type": "quarkbällchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/Fan_Quarkini_gestapelt_CMYK_Rasen.jpg?v=1718179713"
+  },
+  {
+    "id": "fan-quarkini:131263",
+    "name": "FAN-QUARKINI Schwarz",
+    "sku": "131263",
+    "price": 0.7,
+    "vendor": "Malzers",
+    "type": "quarkbällchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/Fan_Quarkini_gestapelt_CMYK_Rasen.jpg?v=1718179713"
+  },
+  {
+    "id": "goldbrotchen:121001",
+    "name": "GOLDBRÖTCHEN",
+    "sku": "121001",
+    "price": 0.5,
+    "vendor": "Malzers",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/csm_9FD7949D-971B-44A6-99FF-25FC0C75FA42_WEBSHOP_01_25f354afcd.jpg?v=1713000284"
+  },
+  {
+    "id": "goldbrotchen-10er:121001/10",
+    "name": "Goldbrötchen 10er",
+    "sku": "121001/10",
+    "price": 4.3,
+    "vendor": "Malzers",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/OPTIMIZE_BACKUP_PRODUCT_csm_WEBSHOP_01_25f354afcd_2b58d10a-21c5-4373-8e06-825b144e7a74.jpg?v=1715780142"
+  },
+  {
+    "id": "goldbrotchen-15er:121001/15",
+    "name": "Goldbrötchen 15er",
+    "sku": "121001/15",
+    "price": 6.5,
+    "vendor": "Malzers",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/OPTIMIZE_BACKUP_PRODUCT_csm_WEBSHOP_01_25f354afcd_ce6c1a0b-f4fe-4827-a886-150b1ba1ebe9.jpg?v=1715780235"
+  },
+  {
+    "id": "goldbrotchen-6er:121001/6",
+    "name": "Goldbrötchen 6er",
+    "sku": "121001/6",
+    "price": 2.6,
+    "vendor": "Malzers",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/OPTIMIZE_BACKUP_PRODUCT_csm_WEBSHOP_01_25f354afcd_67a30d07-b280-45b1-b39e-5ca7b012c028.jpg?v=1715780066"
+  },
+  {
+    "id": "kartoffelbrotchen:122001",
+    "name": "KARTOFFELBRÖTCHEN",
+    "sku": "122001",
+    "price": 0.99,
+    "vendor": "Malzers",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/KARTOFFELBROeTCHEN_3.jpg?v=1712998200"
+  },
+  {
+    "id": "kasseler-1000g:112003",
+    "name": "KASSELER 1000G",
+    "sku": "112003",
+    "price": 3.9,
+    "vendor": "Malzers",
+    "type": "Brot",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/KASSELER1000G.jpg?v=1713003686"
+  },
+  {
+    "id": "knusper-baguette-250g-zum-fertigbacken:115059",
+    "name": "KNUSPER-BAGUETTE 250G ZUM FERTIGBACKEN",
+    "sku": "115059",
+    "price": 2.35,
+    "vendor": "Malzers",
+    "type": "Baguette",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/KNUSPER-BAGUETTE250GZUMFERTIGBACKEN.jpg?v=1720097480"
+  },
+  {
+    "id": "kurbiskernbrotchen:122026",
+    "name": "KÜRBISKERNBRÖTCHEN",
+    "sku": "122026",
+    "price": 0.99,
+    "vendor": "Malzers",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/KUeRBISKERNBROeTCHEN_2.jpg?v=1712994948"
+  },
+  {
+    "id": "kasebrotchen-1:122021",
+    "name": "KÄSEBRÖTCHEN",
+    "sku": "122021",
+    "price": 1.35,
+    "vendor": "Malzers",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/KAeSEBROeTCHEN_3.jpg?v=1712999649"
+  },
+  {
+    "id": "kummelbrotchen:122041",
+    "name": "KÜMMELBRÖTCHEN",
+    "sku": "122041",
+    "price": 0.89,
+    "vendor": "Malzers",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/KUeMMELBROeTCHEN_3.jpg?v=1712995274"
+  },
+  {
+    "id": "laugen-croissant:122067",
+    "name": "LAUGEN-CROISSANT",
+    "sku": "122067",
+    "price": 1.69,
+    "vendor": "Malzers",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/LAUGEN-CROISSANT_3.jpg?v=1712996733"
+  },
+  {
+    "id": "laugenstange:122049",
+    "name": "LAUGENSTANGE 6er",
+    "sku": "122049",
+    "price": 6.9,
+    "vendor": "Malzers",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/LAUGENSTANGE_3.jpg?v=1712996344"
+  },
+  {
+    "id": "maisbrotchen:122061",
+    "name": "MAISBRÖTCHEN",
+    "sku": "122061",
+    "price": 0.99,
+    "vendor": "Malzers",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/MAISBROeTCHEN_3.jpg?v=1712995549"
+  },
+  {
+    "id": "malzers-kruste-500g:112008",
+    "name": "MALZERS KRUSTE 500G",
+    "sku": "112008",
+    "price": 3.23,
+    "vendor": "Malzers",
+    "type": "Brot",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/MalzersBrote.jpg?v=1713003934"
+  },
+  {
+    "id": "malzkorn-750g:113008",
+    "name": "MALZKORN 750G",
+    "sku": "113008",
+    "price": 4.15,
+    "vendor": "Malzers",
+    "type": "Brot",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/MALZKORN750G.jpg?v=1713004835"
+  },
+  {
+    "id": "micke:123013",
+    "name": "MICKE",
+    "sku": "123013",
+    "price": 0.99,
+    "vendor": "Malzers",
+    "type": "Süß",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/MICKE_3.jpg?v=1713002004"
+  },
+  {
+    "id": "mohnbrotchen-2:122031",
+    "name": "MOHNBRÖTCHEN",
+    "sku": "122031",
+    "price": 0.8,
+    "vendor": "Malzers",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/MOHNBROeTCHEN_3.jpg?v=1712997434"
+  },
+  {
+    "id": "pain-parisien-500g-zum-fertigbacken:Default Title",
+    "name": "PAIN PARISIEN 500G ZUM FERTIGBACKEN",
+    "sku": "",
+    "price": 3.55,
+    "vendor": "Malzers",
+    "type": "Baguette",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/PainParisien500gzumFertigbackenPainParisien500gzumFertigbackenPainParisien500gzumFertigbacken123VorWeiterPAINPARISIEN500GZUMFERTIGBACKEN.jpg?v=1720098088"
+  },
+  {
+    "id": "pfefferbrotchen:122126",
+    "name": "PFEFFERBRÖTCHEN",
+    "sku": "122126",
+    "price": 1.09,
+    "vendor": "Malzers",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/PFEFFERBROeTCHEN.jpg?v=1720078013"
+  },
+  {
+    "id": "puddingbrezel:131021",
+    "name": "PUDDINGBREZEL",
+    "sku": "131021",
+    "price": 2.2,
+    "vendor": "Malzers",
+    "type": "Fladen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/PUDDINGBREZEL.jpg?v=1720077635"
+  },
+  {
+    "id": "rosinen-micke:123066",
+    "name": "ROSINEN-MICKE",
+    "sku": "123066",
+    "price": 1.13,
+    "vendor": "Malzers",
+    "type": "Süß",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/ROSINEN-MICKE_3.jpg?v=1713001784"
+  },
+  {
+    "id": "roggelchen:122036",
+    "name": "RÖGGELCHEN",
+    "sku": "122036",
+    "price": 0.89,
+    "vendor": "Malzers",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/ROeGGELCHEN_3.jpg?v=1712999381"
+  },
+  {
+    "id": "rostbrot-1000g:111005",
+    "name": "RÖSTBROT 1000G",
+    "sku": "111005",
+    "price": 4.1,
+    "vendor": "Malzers",
+    "type": "Brot",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/csm_60F83AE8-AB31-4292-B29F-F3A15620A12D_WEBSHOP_01_a3cab32166.jpg?v=1713003380"
+  },
+  {
+    "id": "schmand-mandarinen-schnitte:133067",
+    "name": "SCHMAND-MANDARINEN SCHNITTE",
+    "sku": "133067",
+    "price": 2.75,
+    "vendor": "Malzers",
+    "type": "Süß",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/SCHMAND-MANDARINENSCHNITTE.jpg?v=1720075841"
+  },
+  {
+    "id": "schmand-zitronen-schnitte:133176",
+    "name": "SCHMAND-ZITRONEN SCHNITTE",
+    "sku": "133176",
+    "price": 2.75,
+    "vendor": "Malzers",
+    "type": "Süß",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/SCHMAND-ZITRONENSCHNITTE.jpg?v=1720021498"
+  },
+  {
+    "id": "schoko-croissant:123006",
+    "name": "SCHOKO-CROISSANT",
+    "sku": "123006",
+    "price": 1.75,
+    "vendor": "Malzers",
+    "type": "Croissant",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/SCHOKO-CROISSANT_3.jpg?v=1713000941"
+  },
+  {
+    "id": "schoko-micke:123067",
+    "name": "SCHOKO-MICKE",
+    "sku": "123067",
+    "price": 1.29,
+    "vendor": "Malzers",
+    "type": "Süß",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/SCHOKO-MICKE_3.jpg?v=1713001623"
+  },
+  {
+    "id": "sesambrotchen-2:122062",
+    "name": "SESAMBRÖTCHEN",
+    "sku": "122062",
+    "price": 0.8,
+    "vendor": "Malzers",
+    "type": "Brötchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/SESAMBROeTCHEN_3.jpg?v=1712997194"
+  },
+  {
+    "id": "wagenrad-15er-gemischt:111111",
+    "name": "WAGENRAD 15ER GEMISCHT",
+    "sku": "111111",
+    "price": 6.95,
+    "vendor": "Malzers",
+    "type": "Wagenrad",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/WAGENRAD15ERGEMISCHT_3.jpg?v=1713002709"
+  },
+  {
+    "id": "wagenrad-30er-gemischt:1111112",
+    "name": "WAGENRAD 30ER GEMISCHT",
+    "sku": "1111112",
+    "price": 12.95,
+    "vendor": "Malzers",
+    "type": "Wagenrad",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/WAGENRAD30ERGEMISCHT_3.jpg?v=1713003074"
+  },
+  {
+    "id": "zwetschenkuchen:133030",
+    "name": "ZWETSCHENKUCHEN",
+    "sku": "133030",
+    "price": 2.7,
+    "vendor": "Malzers",
+    "type": "Kuchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/ZWETSCHENKUCHEN_2.jpg?v=1720098501"
+  },
+  {
+    "id": "zwetschenkuchen-3er:ZWETSCHENKUCHEN 3er",
+    "name": "ZWETSCHENKUCHEN 3er",
+    "sku": "ZWETSCHENKUCHEN 3er",
+    "price": 8.1,
+    "vendor": "Malzers",
+    "type": "Kuchen",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/ZWETSCHENKUCHEN_2.jpg?v=1720098501"
+  },
+  {
+    "id": "zwiebelstange-250g-zum-fertigbacken:115011",
+    "name": "ZWIEBELSTANGE 250G ZUM FERTIGBACKEN",
+    "sku": "115011",
+    "price": 2.7,
+    "vendor": "Malzers",
+    "type": "Baguette",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/Zwiebelstange250gzumFertigbackenZwiebelstange250gzumFertigbackenZwiebelstange250gzumFertigbacken123VorWeiterZWIEBELSTANGE250GZUMFERTIGBACKEN.jpg?v=1720097781"
+  },
+  {
+    "id": "classy-donut-amy:Default Title",
+    "name": "Classy Donut Amy mit Schokoladenglasur",
+    "sku": "",
+    "price": 2.5,
+    "vendor": "Brötli",
+    "type": "Donut",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/WhatsApp_Image_2026-05-28_at_16.31.54_4a1b061a-0da8-4f99-8d5a-866811e7eee9.jpg?v=1784440590"
+  },
+  {
+    "id": "classy-donut-dave:Default Title",
+    "name": "Classy Donut Dave – Schokoladen Donut für Genießer",
+    "sku": "",
+    "price": 3.3,
+    "vendor": "Brötli",
+    "type": "Donut",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/WhatsApp_Image_2026-05-28_at_16.31.54_1_f4b305fe-993d-46b2-84a8-2bb1f384310c.jpg?v=1784440634"
+  },
+  {
+    "id": "danke:Danke100",
+    "name": "Danke 100",
+    "sku": "",
+    "price": 100,
+    "vendor": "Brötli",
+    "type": "Vify Gift Card",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/18648ef072f190826e714e56683d8c2fb0c13405181a7daee51f79a275b7193e.png?v=1709384667"
+  },
+  {
+    "id": "danke:Danke20",
+    "name": "Danke 20",
+    "sku": "",
+    "price": 20,
+    "vendor": "Brötli",
+    "type": "Vify Gift Card",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/18648ef072f190826e714e56683d8c2fb0c13405181a7daee51f79a275b7193e.png?v=1709384667"
+  },
+  {
+    "id": "danke:Danke30",
+    "name": "Danke 30",
+    "sku": "",
+    "price": 30,
+    "vendor": "Brötli",
+    "type": "Vify Gift Card",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/18648ef072f190826e714e56683d8c2fb0c13405181a7daee51f79a275b7193e.png?v=1709384667"
+  },
+  {
+    "id": "danke:Danke50",
+    "name": "Danke 50",
+    "sku": "",
+    "price": 50,
+    "vendor": "Brötli",
+    "type": "Vify Gift Card",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/18648ef072f190826e714e56683d8c2fb0c13405181a7daee51f79a275b7193e.png?v=1709384667"
+  },
+  {
+    "id": "brasil:Default Title",
+    "name": "Brasil",
+    "sku": "",
+    "price": 12,
+    "vendor": "Maqii",
+    "type": "Kaffee",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/photo_2024-07-2511.50.12.jpg?v=1721985628"
+  },
+  {
+    "id": "halleluja:Default Title",
+    "name": "Halleluja",
+    "sku": "",
+    "price": 11,
+    "vendor": "Maqii",
+    "type": "Kaffee",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/photo_2024-08-0208.39.18.jpg?v=1722580847"
+  },
+  {
+    "id": "brasil-p:Default Title",
+    "name": "Starter Set",
+    "sku": "",
+    "price": 29.9,
+    "vendor": "Maqii",
+    "type": "Kaffee",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/photo_2024-08-02_08.26.42.jpg?v=1722580034"
+  },
+  {
+    "id": "bienenwachstute:Default Title",
+    "name": "Bienenwachstüte",
+    "sku": "",
+    "price": 14.9,
+    "vendor": "BeeBag",
+    "type": "Tütte",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/66967ffe-a242-4585-ad88-7543c279fcfa.png?v=1706373787"
+  },
+  {
+    "id": "bienenwachstute-3-er:Default Title",
+    "name": "Bienenwachstüte 3-er",
+    "sku": "",
+    "price": 41.9,
+    "vendor": "BeeBag",
+    "type": "Tütte",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/70160a18-f2fb-44cd-8dc3-2842be396c46.jpg?v=1706374404"
+  },
+  {
+    "id": "bio-eier-6er:Default Title",
+    "name": "Bio Eier 6er",
+    "sku": "",
+    "price": 3.5,
+    "vendor": "Bioladung Hof Determeyer",
+    "type": "Eier",
+    "status": "draft",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/0dad27e9-3b80-4e10-b970-fda6dde1476a.jpg?v=1706067571"
+  },
+  {
+    "id": "lieferung:Default Title",
+    "name": "Lieferung",
+    "sku": "",
+    "price": 2.5,
+    "vendor": "Lieferung",
+    "type": "",
+    "status": "active",
+    "image": "https://cdn.shopify.com/s/files/1/0717/8456/2955/files/3.jpg?v=1728392986"
+  }
+]

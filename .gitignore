@@ -33,6 +33,13 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# local subscriber cards (customer data; Supabase table is preferred)
+/data/subscribers.json
+/data/partners.json
+/data/invoices.json
+/data/invoices/
+/data/delivery-log.json
+
 # vercel
 .vercel
 
