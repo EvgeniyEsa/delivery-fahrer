@@ -61,17 +61,22 @@ export function DriverList({
     setError(null)
     setPendingId(id)
     startTransition(async () => {
-      const result = await confirmStopDelivered(stop.id, stop.canComplete)
-      setPendingId(null)
-      if (!result.ok) {
-        setError(result.error)
-        return
+      try {
+        const result = await confirmStopDelivered(stop.id, stop.canComplete)
+        if (!result.ok) {
+          setError(result.error)
+          return
+        }
+        const nextTimes = { ...times, [id]: result.deliveredAt }
+        const done = new Set(confirmed).add(id)
+        setTimes(nextTimes)
+        setConfirmed(done)
+        setOpenId(nextStop(stops, id, done, nextTimes))
+      } catch {
+        setError("Не удалось сохранить время доставки")
+      } finally {
+        setPendingId(null)
       }
-      const nextTimes = { ...times, [id]: result.deliveredAt }
-      const done = new Set(confirmed).add(id)
-      setTimes(nextTimes)
-      setConfirmed(done)
-      setOpenId(nextStop(stops, id, done, nextTimes))
     })
   }
 

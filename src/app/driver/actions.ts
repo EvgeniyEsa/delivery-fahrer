@@ -9,20 +9,24 @@ import { markOrderDelivered as saveDelivered } from "@/lib/orders"
 
 export async function confirmStopDelivered(stopId: string, shopifyOrder: boolean) {
   await requireDriverSession()
-  const saved = await recordDeliveryTime(stopId)
-  if (!saved.ok) return saved
+  try {
+    const saved = await recordDeliveryTime(stopId)
+    if (!saved.ok) return saved
 
-  if (shopifyOrder) {
-    const result = await saveDelivered(stopId)
-    if (!result.ok) return result
+    if (shopifyOrder) {
+      const result = await saveDelivered(stopId)
+      if (!result.ok) return result
+    }
+
+    revalidatePath("/driver")
+    revalidatePath("/dashboard")
+    revalidatePath("/orders")
+    revalidatePath("/routes")
+    refresh()
+    return saved
+  } catch {
+    return { ok: false as const, error: "Не удалось сохранить время доставки" }
   }
-
-  revalidatePath("/driver")
-  revalidatePath("/dashboard")
-  revalidatePath("/orders")
-  revalidatePath("/routes")
-  refresh()
-  return saved
 }
 
 export async function logoutDriver() {
