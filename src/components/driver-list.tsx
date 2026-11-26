@@ -349,7 +349,9 @@ function StopItems({
     <ul className="flex flex-col gap-2">
       {items.map((item, index) => (
         <li key={`${item.name}-${index}`} className="flex items-center gap-3">
-          <ItemPhoto name={item.name} src={item.image} />
+          {item.name === "Trinkgeld" ? null : (
+            <ItemPhoto name={item.name} src={item.image} />
+          )}
           <span className="min-w-0 flex-1 text-sm">{item.name}</span>
           <span className="shrink-0 text-sm tabular-nums text-muted-foreground">
             × {item.quantity}

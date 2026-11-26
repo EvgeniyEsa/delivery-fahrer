@@ -62,12 +62,13 @@ export async function listDriverStops(day: string): Promise<DriverStop[]> {
   ): DriverItem[] {
     return products.flatMap((product) => {
       const name = product.name.trim()
-      if (!name || product.quantity <= 0 || isFinanceLine(name)) return []
+      if (!name || product.quantity <= 0 || isDeliveryFee(name)) return []
+      const tip = isTip(name)
       return [
         {
-          name,
+          name: tip ? "Trinkgeld" : name,
           quantity: product.quantity,
-          image: photo({ name, article: product.article, vendor }),
+          image: tip ? "" : photo({ name, article: product.article, vendor }),
         },
       ]
     })
@@ -148,6 +149,10 @@ function driverAddress(address: string) {
     .join(", ")
 }
 
-function isFinanceLine(name: string) {
-  return /^(lieferung|delivery|tip|trinkgeld)$/i.test(name)
+function isDeliveryFee(name: string) {
+  return /^(lieferung|delivery)$/i.test(name)
+}
+
+function isTip(name: string) {
+  return /^(tip|trinkgeld)$/i.test(name)
 }
