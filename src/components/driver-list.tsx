@@ -168,7 +168,7 @@ export function DriverList({
                 </div>
                 {open ? (
                   <div className="mt-2 border-t pt-2">
-                    <p className="text-sm">{stop.address}</p>
+                    <p className="text-xl font-bold leading-snug">{stop.address}</p>
                     {deliveredAt ? (
                       <p className="mt-1 text-sm">Доставлено {formatDeliveredAt(deliveredAt)}</p>
                     ) : null}

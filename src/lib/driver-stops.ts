@@ -62,7 +62,7 @@ export async function listDriverStops(day: string): Promise<DriverStop[]> {
   ): DriverItem[] {
     return products.flatMap((product) => {
       const name = product.name.trim()
-      if (!name || product.quantity <= 0) return []
+      if (!name || product.quantity <= 0 || isFinanceLine(name)) return []
       return [
         {
           name,
@@ -82,7 +82,7 @@ export async function listDriverStops(day: string): Promise<DriverStop[]> {
         number: stop.number,
         customer: stop.customer,
         phone: stop.phone,
-        address: stop.address,
+        address: driverAddress(stop.address),
         latitude: stop.latitude,
         longitude: stop.longitude,
         summary: stop.summary,
@@ -104,7 +104,7 @@ export async function listDriverStops(day: string): Promise<DriverStop[]> {
         number: stop.number,
         customer: stop.customer,
         phone: stop.phone,
-        address: stop.address,
+        address: driverAddress(stop.address),
         latitude: subscriber?.latitude ?? null,
         longitude: subscriber?.longitude ?? null,
         summary: stop.summary,
@@ -123,7 +123,7 @@ export async function listDriverStops(day: string): Promise<DriverStop[]> {
     number: order.number,
     customer: order.customer,
     phone: order.phone,
-    address: order.address,
+    address: driverAddress(order.address),
     latitude: order.latitude ?? null,
     longitude: order.longitude ?? null,
     summary: "",
@@ -138,4 +138,16 @@ export async function listDriverStops(day: string): Promise<DriverStop[]> {
   const done = deliveries.filter((stop) => stop.status === "delivered")
 
   return [...pickups, ...open, ...subscriptions, ...done]
+}
+
+function driverAddress(address: string) {
+  return address
+    .split(",")
+    .map((part) => part.trim())
+    .filter((part) => part && !/^(germany|deutschland|германия)$/i.test(part))
+    .join(", ")
+}
+
+function isFinanceLine(name: string) {
+  return /^(lieferung|delivery|tip|trinkgeld)$/i.test(name)
 }
