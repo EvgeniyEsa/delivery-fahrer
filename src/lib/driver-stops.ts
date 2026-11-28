@@ -10,6 +10,7 @@ import { getShopifyOrderItems, type ShopifyOrderItem } from "@/lib/shopify"
 import { listSubscribers } from "@/lib/subscribers"
 import type { OrderStatus } from "@/lib/mock-orders"
 
+// One delivery day for the driver.
 export type DriverItem = {
   name: string
   quantity: number
