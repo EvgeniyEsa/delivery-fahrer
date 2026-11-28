@@ -5,6 +5,7 @@ import path from "node:path"
 import { createClient } from "@supabase/supabase-js"
 
 import { geocodeAddress } from "@/lib/geocode"
+import { readDataText } from "@/lib/stored-json"
 
 import { splitProductArticle, normalizeArticle } from "@/lib/product-article"
 import type {
@@ -80,7 +81,7 @@ function parseSubscribers(parsed: unknown): Subscriber[] {
 
 async function readLocalSubscribers(): Promise<Subscriber[]> {
   try {
-    return parseSubscribers(JSON.parse(await readFile(LOCAL_FILE, "utf8")))
+    return parseSubscribers(JSON.parse(await readDataText("subscribers.json")))
   } catch {
     return []
   }

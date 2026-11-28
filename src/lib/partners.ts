@@ -1,8 +1,9 @@
 import { randomUUID } from "node:crypto"
-import { mkdir, readFile, writeFile } from "node:fs/promises"
+import { mkdir, writeFile } from "node:fs/promises"
 import path from "node:path"
 
 import { geocodeAddress } from "@/lib/geocode"
+import { readDataText } from "@/lib/stored-json"
 import type {
   Partner,
   PartnerInput,
@@ -113,7 +114,7 @@ async function persistCoordinates(partners: Partner[]) {
 
 async function readPartners(): Promise<Partner[]> {
   try {
-    const raw = await readFile(LOCAL_FILE, "utf8")
+    const raw = await readDataText("partners.json")
     const parsed: unknown = JSON.parse(raw)
     if (!Array.isArray(parsed)) return []
     return parsed.flatMap((row, index) => {
