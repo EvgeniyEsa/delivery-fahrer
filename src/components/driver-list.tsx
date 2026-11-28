@@ -1,22 +1,32 @@
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react"
 
-import { confirmStopDelivered } from "@/app/driver/actions"
+import { BakeryNoteCamera } from "@/components/bakery-note-camera"
+import type { BakeryNote } from "@/lib/bakery-notes"
+import { CollectedGoods, CollectGoodsButton, PackedLine } from "@/components/collected-goods"
+import { ConfirmStopButton } from "@/components/confirm-stop-button"
+import { TourSync } from "@/components/tour-sync"
+import { StableDetails } from "@/components/stable-details"
+import { DriverSearch } from "@/components/driver-search"
 import { DriverOverview } from "@/components/driver-overview"
 import { DriverPhoto } from "@/components/driver-photo"
 import type { RouteMapPoint } from "@/components/route-map"
 import { buttonVariants } from "@/components/ui/button"
-import { formatDeliveredAt } from "@/lib/delivery-date"
+import { formatDriverTime } from "@/lib/delivery-date"
+import type { DriverHome } from "@/lib/driver-home"
 import type { DriverItem, DriverStop } from "@/lib/driver-stops"
-import type { DriverBakery } from "@/lib/product-photos"
+import { BAKERY_COLOR, type DriverBakery } from "@/lib/product-photos"
+import { productSearchKey } from "@/lib/product-search"
+import { drivingPath, type RouteStop } from "@/lib/routing"
 import { cn } from "cn"
 
 const BAKERY = "Wolferskaul 4, 52078 Aachen"
 
-export function DriverList({
+export async function DriverList({
   day,
   dayLabel,
   stops,
-  path,
+  notes,
+  home,
   previousHref,
   nextHref,
   error,
@@ -24,71 +34,62 @@ export function DriverList({
   day: string
   dayLabel: string
   stops: DriverStop[]
-  path: Array<[number, number]>
+  notes: BakeryNote[]
+  home: DriverHome
   previousHref: string | null
   nextHref: string | null
   error: string | null
 }) {
-  const remaining = stops.filter((stop) => !isDone(stop)).length
-  const points = routePoints(stops)
   const driveStops = stops.filter((stop) => !isDone(stop))
-  const driveHref = mapsRouteUrl(driveStops.length > 0 ? driveStops : stops)
+  const remaining = driveStops.length
+  const points = routePoints(driveStops.length > 0 ? driveStops : stops, home)
+  const path = await roadPath(points)
   const firstId = stops.find((stop) => !isDone(stop))?.id ?? null
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="grid grid-cols-2 gap-2">
-        <DaySwitch href={previousHref} direction="back">
-          Назад
-        </DaySwitch>
-        <DaySwitch href={nextHref} direction="forward">
-          Дальше
-        </DaySwitch>
-      </div>
-      <p className="text-lg text-muted-foreground">
-        {dayLabel}.{" "}
-        {stops.length === 0
-          ? "Остановок нет."
-          : `Осталось ${remaining} из ${stops.length}.`}
-      </p>
-      {points.length > 1 ? (
-        <div className="flex flex-col gap-2">
-          <DriverOverview points={points} path={path} />
-          {driveHref ? (
-            <a
-              className={cn(buttonVariants({ size: "lg" }), "h-12 w-full text-base")}
-              href={driveHref}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Как ехать
-            </a>
-          ) : null}
+      <div className="flex items-center gap-2">
+        <DaySwitch href={previousHref} direction="back" />
+        <div className="min-w-0 flex-1 text-center">
+          <p className="text-base font-semibold leading-tight">{dayLabel}</p>
+          <p className="text-sm text-muted-foreground">
+            {stops.length === 0 ? "Keine Stopps." : `Noch ${remaining} von ${stops.length}.`}
+          </p>
         </div>
-      ) : null}
+        <DaySwitch href={nextHref} direction="forward" />
+      </div>
+      <TourSync day={day} />
+      {path.length > 1 ? <DriverOverview points={points} path={path} /> : null}
       <BakeryLegend />
       {error ? (
         <p className="rounded-xl bg-destructive/10 px-4 py-3 text-base text-destructive">{error}</p>
       ) : null}
       {stops.length === 0 ? (
         <p className="rounded-2xl bg-card px-4 py-8 text-center text-lg ring-1 ring-foreground/10">
-          На эту дату остановок нет.
+          Für dieses Datum gibt es keine Stopps.
         </p>
       ) : (
+        <DriverSearch>
+        <CollectedGoods day={day} pending={pendingByBakery(stops)}>
         <ul className="flex flex-col gap-1">
           {stops.map((stop, index) => {
             const delivered = isDone(stop)
-            const cardBakery = singleBakery(stop.items)
+            const cardBakery = singleBakery(stop.items) || stop.bakery
             const mixed = cardBakery ? [] : bakeriesIn(stop.items)
             return (
               <li key={stop.id}>
-                <details
+                <StableDetails
                   name="stops"
                   open={!delivered && stop.id === firstId}
+                  data-stop-id={stop.id}
+                  data-pickup={isPickup(stop) ? stop.bakery : undefined}
+                  data-stop=""
+                  data-goods={searchGoods(stop)}
                   className={cn(
                     "group rounded-lg px-3 py-1.5 ring-1 ring-foreground/10",
                     cardBakery ? cn(BAKERY_COLOR[cardBakery], "text-neutral-950") : "bg-card",
-                    delivered && "opacity-60",
+                    delivered && "opacity-60 data-[hit=true]:opacity-100",
+                    "data-[hit=true]:ring-2 data-[hit=true]:ring-amber-600 data-[dim=true]:opacity-40",
                   )}
                 >
                   <summary className="flex cursor-pointer list-none items-center gap-3 [&::-webkit-details-marker]:hidden">
@@ -108,7 +109,11 @@ export function DriverList({
                     ) : null}
                     {delivered ? (
                       <span className="max-w-40 shrink-0 text-right text-xs text-muted-foreground">
-                        {stop.deliveredAt ? formatDeliveredAt(stop.deliveredAt) : "Доставлено"}
+                        {stop.deliveredAt
+                          ? formatDriverTime(stop.deliveredAt)
+                          : isPickup(stop)
+                            ? "Abgeholt"
+                            : "Geliefert"}
                       </span>
                     ) : null}
                     <ChevronDown
@@ -117,13 +122,58 @@ export function DriverList({
                     />
                   </summary>
                   <div className="mt-2 border-t pt-2">
-                    <p className="text-xl font-bold leading-snug">{stop.address}</p>
+                    <p className="text-xl font-bold leading-snug">
+                      {stop.address === "Адрес не указан" ? "Adresse fehlt" : stop.address}
+                    </p>
                     {stop.deliveredAt ? (
-                      <p className="mt-1 text-sm">Доставлено {formatDeliveredAt(stop.deliveredAt)}</p>
+                      <p className="mt-1 text-sm">
+                        {isPickup(stop) ? "Abgeholt" : "Geliefert"}{" "}
+                        {formatDriverTime(stop.deliveredAt)}
+                      </p>
                     ) : null}
-                    <StopItems items={stop.items} tintRows={!cardBakery} />
-                    {delivered ? null : (
+                    {isPickup(stop) && stop.bakery ? (
+                      <BakeryNoteCamera
+                        day={day}
+                        bakery={stop.bakery}
+                        notes={notes.filter((note) => note.bakery === stop.bakery)}
+                        invoice={
+                          stop.items.length > 0 ? (
+                            <StopItems items={stop.items} tintRows={false} invoice />
+                          ) : (
+                            <p className="mt-1 text-sm text-neutral-700">
+                              Für diese Bäckerei sind keine Waren markiert.
+                            </p>
+                          )
+                        }
+                        map={
+                          delivered ? null : mapDestination(stop) ? (
+                            <a
+                              className={cn(
+                                buttonVariants({ size: "lg", variant: "outline" }),
+                                "h-12 w-full text-base",
+                              )}
+                              href={googleMapsUrl(mapDestination(stop))}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Karte
+                            </a>
+                          ) : (
+                            <p className="text-xs text-muted-foreground">Keine Adresse, die Karte öffnet sich nicht.</p>
+                          )
+                        }
+                        pickup={
+                          delivered ? null : { stopId: stop.id, shopify: stop.canComplete }
+                        }
+                      />
+                    ) : (
+                      <StopItems items={stop.items} stopId={stop.id} tintRows={!cardBakery} />
+                    )}
+                    {delivered || (isPickup(stop) && stop.bakery) ? null : (
                       <div className="mt-3 flex flex-col gap-2">
+                        {stop.items.some((item) => item.name !== "Trinkgeld") ? (
+                          <CollectGoodsButton stopId={stop.id} bakeries={bakeriesIn(stop.items)} />
+                        ) : null}
                         {mapDestination(stop) ? (
                           <a
                             className={cn(
@@ -134,30 +184,27 @@ export function DriverList({
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            Карта
+                            Karte
                           </a>
                         ) : (
-                          <p className="text-xs text-muted-foreground">Нет адреса, карта не откроется.</p>
+                          <p className="text-xs text-muted-foreground">Keine Adresse, die Karte öffnet sich nicht.</p>
                         )}
-                        <form action={confirmStopDelivered}>
-                          <input type="hidden" name="stopId" value={stop.id} />
-                          <input type="hidden" name="shopify" value={stop.canComplete ? "1" : ""} />
-                          <input type="hidden" name="day" value={day} />
-                          <button
-                            type="submit"
-                            className={cn(buttonVariants({ size: "lg" }), "h-12 w-full text-base")}
-                          >
-                            Подтвердить
-                          </button>
-                        </form>
+                        <ConfirmStopButton
+                          stopId={stop.id}
+                          shopify={stop.canComplete}
+                          day={day}
+                          label="Bestätigen"
+                        />
                       </div>
                     )}
                   </div>
-                </details>
+                </StableDetails>
               </li>
             )
           })}
         </ul>
+        </CollectedGoods>
+        </DriverSearch>
       )}
     </div>
   )
@@ -176,7 +223,25 @@ export function formatEuro(amount: number) {
   return new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(amount)
 }
 
-function routePoints(stops: DriverStop[]): RouteMapPoint[] {
+async function roadPath(points: RouteMapPoint[]) {
+  if (points.length < 2) return []
+  return drivingPath(
+    points.flatMap((point) =>
+      point.kind === "depot"
+        ? []
+        : [
+            {
+              id: point.id,
+              address: point.detail,
+              latitude: point.latitude,
+              longitude: point.longitude,
+            } satisfies RouteStop,
+          ],
+    ),
+  )
+}
+
+function routePoints(stops: DriverStop[], home: DriverHome): RouteMapPoint[] {
   const places = stops.flatMap((stop, index) => {
     if (stop.latitude == null || stop.longitude == null) return []
     return [
@@ -198,18 +263,25 @@ function routePoints(stops: DriverStop[]): RouteMapPoint[] {
       latitude: 50.7554848,
       longitude: 6.1676347,
       kind: "depot",
-      label: "П",
+      label: "B",
       title: "Brötli",
       detail: BAKERY,
     },
     ...places,
+    ...(home.latitude != null && home.longitude != null
+      ? [
+          {
+            id: "home",
+            latitude: home.latitude,
+            longitude: home.longitude,
+            kind: "home" as const,
+            label: "H",
+            title: home.name || "Zuhause",
+            detail: home.address,
+          },
+        ]
+      : []),
   ]
-}
-
-function mapsRouteUrl(stops: DriverStop[]) {
-  const points = [BAKERY, ...stops.map(mapDestination).filter(Boolean)]
-  if (points.length < 2) return ""
-  return `https://www.google.com/maps/dir/${points.map((point) => encodeURIComponent(point)).join("/")}`
 }
 
 function mapDestination(stop: DriverStop) {
@@ -225,20 +297,35 @@ function googleMapsUrl(destination: string) {
   return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination)}&travelmode=driving`
 }
 
+function pendingByBakery(stops: DriverStop[]) {
+  const pending = { Heidbüchel: [] as string[], Moss: [] as string[], Kockartz: [] as string[] }
+  for (const stop of stops) {
+    if (isPickup(stop) || isDone(stop)) continue
+    for (const bakery of bakeriesIn(stop.items)) pending[bakery].push(stop.id)
+  }
+  return pending
+}
+
 function isDone(stop: DriverStop) {
   return Boolean(stop.deliveredAt) || (stop.canComplete && stop.status === "delivered")
 }
 
-const BAKERY_COLOR: Record<DriverBakery, string> = {
-  Heidbüchel: "bg-[#fff3c4]",
-  Moss: "bg-[#dff3d8]",
-  Kockartz: "bg-[#e8c9a4]",
+function searchGoods(stop: DriverStop) {
+  if (isPickup(stop)) return undefined
+  const keys = stop.items.flatMap((item) =>
+    item.name === "Trinkgeld" ? [] : [productSearchKey(`${item.name} ${item.article}`)],
+  )
+  return keys.join("|")
+}
+
+function isPickup(stop: DriverStop) {
+  return stop.id.startsWith("pick:")
 }
 
 const BAKERY_LABEL: Record<DriverBakery, string> = {
-  Heidbüchel: "Хайбюхель",
-  Moss: "Мосс",
-  Kockartz: "Кокарц",
+  Heidbüchel: "Heidbüchel",
+  Moss: "Moss",
+  Kockartz: "Kockartz",
 }
 
 function BakeryLegend() {
@@ -264,31 +351,81 @@ function bakeriesIn(items: DriverItem[]) {
   return [...new Set(items.flatMap((item) => (item.bakery ? [item.bakery] : [])))]
 }
 
-function StopItems({ items, tintRows }: { items: DriverItem[]; tintRows: boolean }) {
+function StopItems({
+  items,
+  tintRows,
+  invoice = false,
+  stopId,
+}: {
+  items: DriverItem[]
+  tintRows: boolean
+  invoice?: boolean
+  stopId?: string
+}) {
   if (items.length === 0) return null
 
   return (
-    <ul className="mt-2 flex flex-col gap-2">
-      {items.map((item, index) => (
-        <li
-          key={`${item.name}-${index}`}
-          className={cn(
-            "flex items-center gap-3",
-            tintRows && item.bakery && cn("rounded-md px-2 py-1 text-neutral-950", BAKERY_COLOR[item.bakery]),
-          )}
-        >
-          {item.name === "Trinkgeld" ? null : <DriverPhoto name={item.name} src={item.image} />}
-          <span className="min-w-0 flex-1 text-sm">{item.name}</span>
-          <span
-            className={cn(
-              "shrink-0 text-sm tabular-nums",
-              item.amount == null ? "text-muted-foreground" : "font-semibold",
+    <ul className="mt-3 flex flex-col gap-3">
+      {items.map((item, index) => {
+        const className = cn(
+          "group/line flex items-center gap-2",
+          "group-data-[hit=true]:data-[match=false]:opacity-40",
+          "group-data-[hit=true]:data-[match=true]:text-neutral-950",
+          tintRows && item.bakery && cn("rounded-md px-2 py-1 text-neutral-950", BAKERY_COLOR[item.bakery]),
+        )
+        const good =
+          item.name === "Trinkgeld" ? undefined : productSearchKey(`${item.name} ${item.article}`)
+        const row = (
+          <>
+            {item.name === "Trinkgeld" ? null : (
+              <DriverPhoto name={item.name} src={item.image} compact={invoice} />
             )}
+            {invoice ? (
+              <span className="shrink-0 whitespace-nowrap text-base font-semibold tabular-nums">
+                {item.article}
+              </span>
+            ) : null}
+            <span
+              lang="de"
+              className={cn(
+                "min-w-0 flex-1 break-words leading-snug",
+                invoice ? "text-lg font-medium" : "text-xl font-semibold",
+                "group-data-[hit=true]:group-data-[match=true]/line:text-neutral-950",
+              )}
+            >
+              {item.name}
+            </span>
+            <span
+              className={cn(
+                "shrink-0 pl-1 font-semibold tabular-nums",
+                invoice ? "text-lg" : "text-xl",
+                "group-data-[hit=true]:group-data-[match=true]/line:text-neutral-950",
+              )}
+            >
+              {item.amount == null ? `× ${item.quantity}` : formatEuro(item.amount)}
+            </span>
+          </>
+        )
+        if (!stopId) {
+          return (
+            <li key={`${item.name}-${index}`} data-good={good} className={className}>
+              {row}
+            </li>
+          )
+        }
+        return (
+          <PackedLine
+            key={`${item.name}-${index}`}
+            stopId={stopId}
+            bakery={item.bakery}
+            itemKey={`${item.bakery}|${item.article}|${item.name}|${index}`}
+            data-good={good}
+            className={className}
           >
-            {item.amount == null ? `× ${item.quantity}` : formatEuro(item.amount)}
-          </span>
-        </li>
-      ))}
+            {row}
+          </PackedLine>
+        )
+      })}
     </ul>
   )
 }
@@ -296,33 +433,25 @@ function StopItems({ items, tintRows }: { items: DriverItem[]; tintRows: boolean
 function DaySwitch({
   href,
   direction,
-  children,
 }: {
   href: string | null
   direction: "back" | "forward"
-  children: string
 }) {
-  const className = cn(buttonVariants({ variant: "outline", size: "lg" }), "h-12 w-full text-base")
+  const className = cn(buttonVariants({ variant: "outline", size: "icon" }), "size-10")
+  const label = direction === "back" ? "Zurück" : "Weiter"
   const icon = direction === "back" ? <ChevronLeft /> : <ChevronRight />
-  const content = (
-    <>
-      {direction === "back" ? icon : null}
-      {children}
-      {direction === "forward" ? icon : null}
-    </>
-  )
 
   if (!href) {
     return (
-      <span className={cn(className, "opacity-40")} aria-disabled="true">
-        {content}
+      <span className={cn(className, "opacity-40")} aria-disabled="true" aria-label={label}>
+        {icon}
       </span>
     )
   }
 
   return (
-    <a href={href} className={className}>
-      {content}
+    <a href={href} className={className} aria-label={label}>
+      {icon}
     </a>
   )
 }

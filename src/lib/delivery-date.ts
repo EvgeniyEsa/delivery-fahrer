@@ -129,6 +129,30 @@ export function formatDeliverySchedule(dates: string[]) {
   return `${parsed.length} дат · ${first.label} — ${last.label}`
 }
 
+export function formatDriverDay(isoDate: string) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(isoDate)
+  if (!match) return isoDate
+  const date = new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3])))
+  return new Intl.DateTimeFormat("de-DE", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    timeZone: "UTC",
+  }).format(date)
+}
+
+export function formatDriverTime(iso: string) {
+  const date = new Date(iso)
+  if (Number.isNaN(date.getTime())) return iso
+  return new Intl.DateTimeFormat("de-DE", {
+    timeZone: "Europe/Berlin",
+    day: "numeric",
+    month: "long",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(date)
+}
+
 export function formatDeliveredAt(iso: string) {
   const date = new Date(iso)
   if (Number.isNaN(date.getTime())) return iso

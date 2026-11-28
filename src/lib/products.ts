@@ -73,10 +73,14 @@ export async function updateProduct(
   input: ProductUpdate,
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   const name = input.name.trim()
-  const price = Number(input.price)
+  const price = readMoney(input.price)
+  const cost = readMoney(input.cost)
   const image = input.image.trim()
   if (!name) return { ok: false, error: "Укажите название" }
-  if (!Number.isFinite(price) || price < 0) return { ok: false, error: "Укажите цену" }
+  if (input.price != null && price == null) return { ok: false, error: "Укажите цену" }
+  if (price != null && price < 0) return { ok: false, error: "Укажите цену" }
+  if (input.cost != null && cost == null) return { ok: false, error: "Укажите закупочную цену" }
+  if (cost != null && cost < 0) return { ok: false, error: "Укажите закупочную цену" }
   if (image && !/^https?:\/\//i.test(image)) {
     return { ok: false, error: "Ссылка на фото должна начинаться с http" }
   }
@@ -88,7 +92,7 @@ export async function updateProduct(
     )
     const current = parsed[index]
     if (!current || typeof current !== "object") return { ok: false, error: "Продукт не найден" }
-    parsed[index] = {
+    const next = {
       ...current,
       name,
       sku: input.sku.trim(),
@@ -97,6 +101,9 @@ export async function updateProduct(
       type: input.type.trim(),
       image,
     }
+    if (cost == null) delete next.cost
+    else next.cost = cost
+    parsed[index] = next
     await writeRows(parsed)
     return { ok: true }
   } catch (error) {
@@ -113,20 +120,29 @@ function readProduct(item: unknown): CatalogProduct[] {
   if (!item || typeof item !== "object") return []
   const record = item as Partial<CatalogProduct>
   const name = typeof record.name === "string" ? record.name.trim() : ""
-  const price = Number(record.price)
-  if (!name || !Number.isFinite(price)) return []
+  const rawPrice = (record as { price?: unknown }).price
+  const price = readMoney(rawPrice)
+  if (!name || (rawPrice != null && rawPrice !== "" && price == null)) return []
   return [
     {
       id: typeof record.id === "string" && record.id ? record.id : name,
       name,
       sku: typeof record.sku === "string" ? record.sku.trim() : "",
       price,
+      cost: readMoney(record.cost),
       vendor: typeof record.vendor === "string" ? record.vendor.trim() : "",
       type: typeof record.type === "string" ? record.type.trim() : "",
       image: typeof record.image === "string" ? record.image.trim() : "",
       status: record.status === "draft" ? "draft" : "active",
     },
   ]
+}
+
+function readMoney(value: unknown) {
+  if (value == null || value === "") return null
+  const amount = typeof value === "number" ? value : Number(String(value).replace(",", "."))
+  if (!Number.isFinite(amount)) return null
+  return amount
 }
 
 function compareProducts(left: CatalogProduct, right: CatalogProduct) {

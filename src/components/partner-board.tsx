@@ -9,6 +9,8 @@ import {
   updatePartner,
 } from "@/app/(dashboard)/bakery/actions"
 import { Button } from "@/components/ui/button"
+import { bakeryFromName, BAKERY_COLOR } from "@/lib/product-photos"
+import { cn } from "cn"
 import {
   Card,
   CardContent,
@@ -66,7 +68,7 @@ export function PartnerBoard({ partners }: { partners: Partner[] }) {
           <CardTitle>Очередность заезда</CardTitle>
           <CardDescription>
             {shown.length > 0
-              ? "Заезд каждый день. Сейчас порядок ручной: первый в списке — первый заезд."
+              ? "Заезд каждый день. Порядок пекарен ручной. Клиентов между ними водитель получает по короткому пути."
               : "Пока никого нет."}
           </CardDescription>
         </CardHeader>
@@ -76,10 +78,15 @@ export function PartnerBoard({ partners }: { partners: Partner[] }) {
               Добавьте первого партнёра формой выше.
             </p>
           ) : (
-            shown.map((partner, index) => (
+            shown.map((partner, index) => {
+              const bakery = bakeryFromName(partner.name)
+              return (
               <div
                 key={partner.id}
-                className="flex items-start gap-3 rounded-lg border px-3 py-3"
+                className={cn(
+                  "flex items-start gap-3 rounded-lg border px-3 py-3",
+                  bakery && cn(BAKERY_COLOR[bakery], "text-neutral-950"),
+                )}
               >
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-foreground text-sm font-medium text-background">
                   {index + 1}
@@ -128,7 +135,8 @@ export function PartnerBoard({ partners }: { partners: Partner[] }) {
                   Изменить
                 </Button>
               </div>
-            ))
+              )
+            })
           )}
         </CardContent>
       </Card>

@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto"
 import { mkdir, writeFile } from "node:fs/promises"
 import path from "node:path"
 
-import { geocodeAddress } from "@/lib/geocode"
+import { coordinatesNearDepot, geocodeAddress } from "@/lib/geocode"
 import { readDataText } from "@/lib/stored-json"
 import type {
   Partner,
@@ -25,7 +25,13 @@ export async function listLocatedPartners(): Promise<Partner[]> {
   const partners = await listPartners()
   const located = await Promise.all(
     partners.map(async (partner) => {
-      if (partner.latitude !== null && partner.longitude !== null) return partner
+      if (
+        partner.latitude !== null &&
+        partner.longitude !== null &&
+        coordinatesNearDepot(partner.latitude, partner.longitude)
+      ) {
+        return partner
+      }
       if (!partner.address) return partner
       const point = await geocodeAddress(partner.address)
       return point ? { ...partner, ...point } : partner

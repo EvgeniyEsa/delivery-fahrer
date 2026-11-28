@@ -7,11 +7,18 @@ const OBJECT = "times.json"
 
 type Log = Record<string, string>
 
+const REMEMBER_MS = 20_000
+let remembered: { log: Log; at: number } | null = null
+
 export async function listDeliveryTimes() {
-  const local = await readLocal()
-  const remote = await readRemote()
+  if (remembered && Date.now() - remembered.at < REMEMBER_MS) {
+    return new Map(Object.entries(remembered.log))
+  }
+
+  const [remote, local] = await Promise.all([readRemote(), readLocal()])
   const merged = merge(remote, local)
-  if (remoteBehind(remote, merged)) await writeRemote(merged)
+  remembered = { log: merged, at: Date.now() }
+  if (remoteBehind(remote, merged)) void writeRemote(merged)
   return new Map(Object.entries(merged))
 }
 
@@ -19,20 +26,30 @@ export async function recordDeliveryTime(id: string) {
   const stopId = id.trim()
   if (!stopId) return { ok: false as const, error: "Не указана остановка" }
 
-  const records = merge(await readRemote(), await readLocal())
+  const localLog = await readLocal()
+  const remoteLog =
+    remembered && Date.now() - remembered.at < REMEMBER_MS ? remembered.log : await readRemote()
+  const records = merge(remoteLog, localLog)
   const existing = records[stopId]
   if (existing) return { ok: true as const, deliveredAt: existing }
 
   const deliveredAt = new Date().toISOString()
   records[stopId] = deliveredAt
-  const remote = await writeRemote(records)
   const localOk = await writeLocal(records)
-  if (remote !== true && !localOk) {
+  if (localOk) {
+    remembered = { log: records, at: Date.now() }
+    void writeRemote(records)
+    return { ok: true as const, deliveredAt }
+  }
+
+  const remote = await writeRemote(records)
+  if (remote !== true) {
     return {
       ok: false as const,
       error: `Не удалось сохранить время доставки${remote ? ` (${remote})` : ""}`,
     }
   }
+  remembered = { log: records, at: Date.now() }
   return { ok: true as const, deliveredAt }
 }
 

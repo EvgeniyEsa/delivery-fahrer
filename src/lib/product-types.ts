@@ -2,7 +2,8 @@ export type CatalogProduct = {
   id: string
   name: string
   sku: string
-  price: number
+  price: number | null
+  cost: number | null
   vendor: string
   type: string
   image: string
@@ -12,7 +13,8 @@ export type CatalogProduct = {
 export type ProductUpdate = {
   name: string
   sku: string
-  price: number
+  price: number | null
+  cost: number | null
   vendor: string
   type: string
   image: string

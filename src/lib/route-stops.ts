@@ -11,12 +11,13 @@ export function subscriptionStopId(subscriberId: string, deliveryDate: string) {
 }
 
 export function subscriptionStops(subscribers: Subscriber[]): PlannableOrder[] {
-  return subscribers.flatMap((subscriber) =>
-    subscriber.deliveryDates.flatMap((deliveryDate) => {
+  return subscribers.flatMap((subscriber) => {
+    if (subscriber.archivedAt) return []
+    return subscriber.deliveryDates.flatMap((deliveryDate) => {
       const stop = toSubscriptionStop(subscriber, deliveryDate)
       return stop ? [stop] : []
-    }),
-  )
+    })
+  })
 }
 
 export async function listSubscriptionStopsByIds(ids: string[]): Promise<PlannableOrder[]> {
@@ -33,7 +34,9 @@ export async function listSubscriptionStopsByIds(ids: string[]): Promise<Plannab
 
   return wanted.flatMap((stop) => {
     const subscriber = subscribers.get(stop.subscriberId)
-    if (!subscriber?.deliveryDates.includes(stop.deliveryDate)) return []
+    if (!subscriber || subscriber.archivedAt || !subscriber.deliveryDates.includes(stop.deliveryDate)) {
+      return []
+    }
     const planned = toSubscriptionStop(subscriber, stop.deliveryDate)
     return planned ? [planned] : []
   })

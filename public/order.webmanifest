@@ -1,0 +1,20 @@
+{
+  "name": "Brötli",
+  "short_name": "Brötli",
+  "description": "Brötchenbestellung",
+  "id": "/order/login",
+  "start_url": "/order/login",
+  "scope": "/order",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "lang": "de",
+  "icons": [
+    {
+      "src": "/brand/brotli-mark.png",
+      "sizes": "134x134",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

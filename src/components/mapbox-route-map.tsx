@@ -17,7 +17,7 @@ function popupContent(point: RouteMapPoint) {
 }
 
 function markerElement(point: RouteMapPoint) {
-  const size = point.kind === "depot" ? 34 : 28
+  const size = point.kind === "stop" ? 28 : 34
   const element = document.createElement("div")
   element.textContent = point.label
   element.style.cssText = [
@@ -27,7 +27,7 @@ function markerElement(point: RouteMapPoint) {
     "align-items:center",
     "justify-content:center",
     "border-radius:9999px",
-    `background:${point.kind === "depot" ? "#b45309" : "#171717"}`,
+    `background:${point.kind === "depot" ? "#b45309" : point.kind === "home" ? "#1d4ed8" : "#171717"}`,
     "color:#fff",
     "font:600 12px/1 sans-serif",
     "box-shadow:0 1px 4px rgb(0 0 0 / 35%)",

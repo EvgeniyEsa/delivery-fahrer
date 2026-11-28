@@ -23,13 +23,19 @@ const COMPANY = [
   "+49 241 95 87 4000",
 ]
 
-export function InvoiceDocument({ invoice }: { invoice: Invoice }) {
+export function InvoiceDocument({
+  invoice,
+  htmlId = "rechnung",
+}: {
+  invoice: Invoice
+  htmlId?: string | null
+}) {
   const totals = invoiceTotals(invoice.lines)
 
   return (
     <article
-      id="rechnung"
-      className="mx-auto w-full max-w-[52rem] bg-white px-5 py-8 text-zinc-900 shadow-sm ring-1 ring-zinc-200 sm:px-12 sm:py-10 print:max-w-none print:shadow-none print:ring-0"
+      id={htmlId ?? undefined}
+      className="mx-auto w-full max-w-[52rem] bg-white px-5 py-8 text-zinc-900 shadow-sm ring-1 ring-zinc-200 sm:px-12 sm:py-10 print:max-w-none print:break-after-page print:shadow-none print:ring-0"
     >
       <header className="flex items-start justify-between gap-6">
         <img src="/brand/brotli.png" alt="Brötli" className="h-14 w-auto" />

@@ -4,6 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
   CalendarOff,
+  KeyRound,
   LayoutDashboard,
   Navigation,
   Package,
@@ -35,6 +36,7 @@ const navigation = [
   { title: "Водитель", href: "/driver", icon: Navigation },
   { title: "Исключения", href: "/exceptions", icon: CalendarOff },
   { title: "Абонементы", href: "/subscriptions", icon: Repeat },
+  { title: "Пароли B2B", href: "/b2b-access", icon: KeyRound },
   { title: "Счета", href: "/invoices", icon: Receipt },
   { title: "Продукты", href: "/products", icon: Wheat },
   { title: "Пекарня", href: "/bakery", icon: Store },

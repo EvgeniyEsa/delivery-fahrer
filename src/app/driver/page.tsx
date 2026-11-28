@@ -2,22 +2,23 @@ import type { Metadata } from "next"
 import { connection } from "next/server"
 import { Suspense } from "react"
 
-import { logoutDriver } from "@/app/driver/actions"
+import { listBakeryNotes } from "@/lib/bakery-notes"
+import { readDriverHome } from "@/lib/driver-home"
+import { DriverHeader } from "@/components/driver-header"
 import { DriverList, formatEuro, tipTotal } from "@/components/driver-list"
 import { Skeleton } from "@/components/ui/skeleton"
 import {
   addDays,
   clampDriverDay,
   driverDayBounds,
-  formatDeliveryDay,
+  formatDriverDay,
   todayInBerlin,
 } from "@/lib/delivery-date"
 import { requireDriverSession } from "@/lib/driver-auth"
 import { listDriverStops } from "@/lib/driver-stops"
-import { drivingPath } from "@/lib/routing"
 
 export const metadata: Metadata = {
-  title: "Водитель",
+  title: "Fahrer",
 }
 
 export default function DriverPage({
@@ -49,53 +50,42 @@ async function DriverToday({
   const { min, max } = driverDayBounds(today)
 
   try {
-    const stops = await listDriverStops(day)
-    const located = stops.flatMap((stop) => {
-      if (stop.latitude == null || stop.longitude == null) return []
-      return [
-        {
-          id: stop.id,
-          address: stop.address,
-          latitude: stop.latitude,
-          longitude: stop.longitude,
-        },
-      ]
-    })
-    const path = await drivingPath(located)
+    const [stops, notes, home] = await Promise.all([
+      listDriverStops(day),
+      listBakeryNotes(day),
+      readDriverHome(),
+    ])
     return (
       <>
-        <header className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1">
-          <p className="text-sm font-medium text-muted-foreground">Delivery Manager</p>
-          <form action={logoutDriver} className="justify-self-end">
-            <button type="submit" className="text-sm text-muted-foreground">
-              Выйти
-            </button>
-          </form>
-          <h1 className="text-3xl font-semibold tracking-tight">Водитель</h1>
-          <div className="justify-self-end text-right">
-            <p className="text-sm font-medium leading-tight">
-              {day === today ? "Trinkgeld heute" : "Trinkgeld"}
-            </p>
-            <p className="text-base font-semibold tabular-nums leading-tight">
-              {formatEuro(tipTotal(stops))}
-            </p>
-          </div>
-        </header>
+        <DriverHeader
+          day={day}
+          home={home}
+          tipLabel={day === today ? "Trinkgeld heute" : "Trinkgeld"}
+          tipAmount={formatEuro(tipTotal(stops))}
+          settingsOpen={reportedError === "home"}
+        />
         <DriverList
           key={day}
           day={day}
-          dayLabel={formatDeliveryDay(day)}
+          dayLabel={formatDriverDay(day)}
           stops={stops}
-          path={path}
+          notes={notes}
+          home={home}
           previousHref={day > min ? `/driver?day=${addDays(day, -1)}` : null}
           nextHref={day < max ? `/driver?day=${addDays(day, 1)}` : null}
-          error={reportedError ? "Не удалось сохранить время доставки" : null}
+          error={
+            reportedError === "save"
+              ? "Lieferzeit konnte nicht gespeichert werden"
+              : reportedError === "home"
+                ? "Adresse nicht gefunden. Straße und Ort angeben."
+                : null
+          }
         />
       </>
     )
   } catch (caught) {
     const message =
-      caught instanceof Error ? caught.message : "Не удалось загрузить заказы"
+      caught instanceof Error ? caught.message : "Aufträge konnten nicht geladen werden"
     return (
       <p className="rounded-xl bg-destructive/10 px-4 py-3 text-base text-destructive">
         {message}

@@ -74,6 +74,7 @@ function parseSubscribers(parsed: unknown): Subscriber[] {
         latitude: typeof record.latitude === "number" ? record.latitude : null,
         longitude: typeof record.longitude === "number" ? record.longitude : null,
         createdAt: item.createdAt ? String(item.createdAt) : null,
+        archivedAt: readArchivedAt(record.archivedAt),
       },
     ]
   })
@@ -148,6 +149,7 @@ export async function listSubscribers(options?: {
     latitude: null,
     longitude: null,
     createdAt: row.created_at ?? null,
+    archivedAt: null,
   }))
 }
 
@@ -225,6 +227,7 @@ export async function createSubscriber(
       latitude: null,
       longitude: null,
       createdAt: new Date().toISOString(),
+      archivedAt: null,
     })
     await writeLocalSubscribers(rows)
     return { ok: true }
@@ -298,6 +301,25 @@ export async function deleteSubscriber(id: string): Promise<SaveSubscriberResult
   return { ok: true }
 }
 
+export async function setSubscriberArchived(
+  id: string,
+  archived: boolean,
+): Promise<SaveSubscriberResult> {
+  if (!id) return { ok: false, error: "Клиент не найден" }
+
+  const rows = await readLocalSubscribers()
+  const index = rows.findIndex((row) => row.id === id)
+  const current = rows[index]
+  if (!current) return { ok: false, error: "Клиент не найден" }
+
+  rows[index] = {
+    ...current,
+    archivedAt: archived ? (current.archivedAt ?? new Date().toISOString()) : null,
+  }
+  await writeLocalSubscribers(rows)
+  return { ok: true }
+}
+
 function prepareSubscriber(input: SubscriberInput) {
   const name = input.name.trim()
   const address = input.address.trim()
@@ -330,6 +352,10 @@ function normalizeEmail(value: string) {
   if (!email) return ""
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return null
   return email
+}
+
+function readArchivedAt(value: unknown) {
+  return typeof value === "string" && value.trim() ? value : null
 }
 
 function readDeliveryPrice(value: unknown) {

@@ -20,6 +20,7 @@ export type Subscriber = {
   latitude: number | null
   longitude: number | null
   createdAt: string | null
+  archivedAt: string | null
 }
 
 export type SubscriberInput = {

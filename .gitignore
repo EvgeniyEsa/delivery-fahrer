@@ -39,6 +39,14 @@ yarn-error.log*
 /data/invoices.json
 /data/invoices/
 /data/delivery-log.json
+/data/bakery-notes/
+/data/driver.json
+/data/evening-orders.json
+/data/b2b-portals.json
+/data/b2b-passwords.json
+/data/office-auth.json
+/data/bakery-closures.json
+/data/public-origin.txt
 
 # vercel
 .vercel

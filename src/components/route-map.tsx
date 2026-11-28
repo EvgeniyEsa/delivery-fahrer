@@ -16,15 +16,16 @@ export type RouteMapPoint = {
   id: string
   latitude: number
   longitude: number
-  kind: "depot" | "stop"
+  kind: "depot" | "stop" | "home"
   label: string
   title: string
   detail: string
 }
 
 function markerIcon(point: RouteMapPoint) {
-  const size = point.kind === "depot" ? 34 : 28
-  const background = point.kind === "depot" ? "#b45309" : "#171717"
+  const size = point.kind === "stop" ? 28 : 34
+  const background =
+    point.kind === "depot" ? "#b45309" : point.kind === "home" ? "#1d4ed8" : "#171717"
 
   return L.divIcon({
     className: "route-marker",
@@ -78,12 +79,14 @@ export function RouteMap({
   }
 
   return (
-    <div className={`isolate overflow-hidden rounded-lg border ${className ?? "h-[32rem]"}`}>
+    <div className={`isolate overflow-hidden rounded-lg border touch-none ${className ?? "h-[32rem]"}`}>
       <style>{".route-marker{background:transparent;border:none}"}</style>
       <MapContainer
         center={[center.latitude, center.longitude]}
         zoom={12}
         className="h-full w-full"
+        dragging
+        touchZoom
         scrollWheelZoom
         tapHold={false}
       >

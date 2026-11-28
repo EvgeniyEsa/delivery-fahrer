@@ -2,7 +2,11 @@
 
 import { useRef, useState, useTransition } from "react"
 
-import { deleteSubscriber } from "@/app/(dashboard)/subscriptions/actions"
+import {
+  archiveSubscriber,
+  deleteSubscriber,
+  restoreSubscriber,
+} from "@/app/(dashboard)/subscriptions/actions"
 import { SubscriberForm } from "@/components/subscriber-form"
 import { Button } from "@/components/ui/button"
 import {
@@ -98,20 +102,24 @@ export function SubscriberBoard({ subscribers }: { subscribers: Subscriber[] }) 
   const [pendingId, setPendingId] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [, startTransition] = useTransition()
-  const editing = subscribers.find((subscriber) => subscriber.id === editingId) ?? null
-  const clients = clientNumbers(subscribers)
+  const active = subscribers.filter((subscriber) => !subscriber.archivedAt)
+  const archived = subscribers.filter((subscriber) => subscriber.archivedAt)
+  const editing = active.find((subscriber) => subscriber.id === editingId) ?? null
+  const clients = clientNumbers(active)
 
   function startEdit(id: string) {
     setEditingId(id)
     formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
   }
 
-  function remove(subscriber: Subscriber) {
-    if (!window.confirm(`Удалить ${subscriber.name}?`)) return
+  function run(
+    subscriber: Subscriber,
+    action: () => Promise<{ ok: true } | { ok: false; error: string }>,
+  ) {
     setError(null)
     setPendingId(subscriber.id)
     startTransition(async () => {
-      const result = await deleteSubscriber(subscriber.id)
+      const result = await action()
       setPendingId(null)
       if (!result.ok) {
         setError(result.error)
@@ -119,6 +127,28 @@ export function SubscriberBoard({ subscribers }: { subscribers: Subscriber[] }) 
       }
       if (editingId === subscriber.id) setEditingId(null)
     })
+  }
+
+  function remove(subscriber: Subscriber) {
+    if (!window.confirm(`Удалить ${subscriber.name}? Карточка исчезнет, вернуть её будет нельзя.`)) {
+      return
+    }
+    run(subscriber, () => deleteSubscriber(subscriber.id))
+  }
+
+  function archive(subscriber: Subscriber) {
+    if (
+      !window.confirm(
+        `Убрать ${subscriber.name} в архив? С маршрута пропадёт, корзина и даты останутся.`,
+      )
+    ) {
+      return
+    }
+    run(subscriber, () => archiveSubscriber(subscriber.id))
+  }
+
+  function restore(subscriber: Subscriber) {
+    run(subscriber, () => restoreSubscriber(subscriber.id))
   }
 
   return (
@@ -160,17 +190,19 @@ export function SubscriberBoard({ subscribers }: { subscribers: Subscriber[] }) 
               </TableRow>
             </TableHeader>
             <TableBody>
-              {subscribers.length === 0 ? (
+              {active.length === 0 ? (
                 <TableRow>
                   <TableCell
                     colSpan={12}
                     className="h-24 text-center text-muted-foreground"
                   >
-                    Добавьте первого клиента формой выше.
+                    {archived.length > 0
+                      ? "В списке никого нет. Архив ниже."
+                      : "Добавьте первого клиента формой выше."}
                   </TableCell>
                 </TableRow>
               ) : (
-                subscribers.map((subscriber) => (
+                active.map((subscriber) => (
                   <TableRow
                     key={subscriber.id}
                     data-state={subscriber.id === editingId ? "selected" : undefined}
@@ -219,12 +251,21 @@ export function SubscriberBoard({ subscribers }: { subscribers: Subscriber[] }) 
                         </Button>
                         <Button
                           type="button"
+                          variant="outline"
+                          size="sm"
+                          disabled={pendingId === subscriber.id}
+                          onClick={() => archive(subscriber)}
+                        >
+                          {pendingId === subscriber.id ? "…" : "В архив"}
+                        </Button>
+                        <Button
+                          type="button"
                           variant="destructive"
                           size="sm"
                           disabled={pendingId === subscriber.id}
                           onClick={() => remove(subscriber)}
                         >
-                          {pendingId === subscriber.id ? "Удаляю…" : "Удалить"}
+                          {pendingId === subscriber.id ? "…" : "Удалить"}
                         </Button>
                       </div>
                     </TableCell>
@@ -235,6 +276,67 @@ export function SubscriberBoard({ subscribers }: { subscribers: Subscriber[] }) 
           </Table>
         </CardContent>
       </Card>
+      {archived.length > 0 ? (
+        <Card>
+          <CardHeader>
+            <CardTitle>Архив</CardTitle>
+            <CardDescription>
+              {subscriptionCount(archived.length)}. На маршрут и в новые счета не попадают.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="px-0">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="pl-4">Имя</TableHead>
+                  <TableHead>Адрес</TableHead>
+                  <TableHead>Товары</TableHead>
+                  <TableHead>Артикул</TableHead>
+                  <TableHead>Пекарня</TableHead>
+                  <TableHead>Даты</TableHead>
+                  <TableHead className="pr-4" />
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {archived.map((subscriber) => (
+                  <TableRow key={subscriber.id}>
+                    <TableCell className="pl-4 font-medium">{subscriber.name}</TableCell>
+                    <TableCell className="max-w-64 whitespace-normal">
+                      {subscriber.address || "—"}
+                    </TableCell>
+                    <ProductCells products={subscriber.products} />
+                    <TableCell className="max-w-44 whitespace-normal text-xs">
+                      {formatDeliverySchedule(subscriber.deliveryDates)}
+                    </TableCell>
+                    <TableCell className="pr-4">
+                      <div className="flex gap-2">
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="sm"
+                          disabled={pendingId === subscriber.id}
+                          onClick={() => restore(subscriber)}
+                        >
+                          {pendingId === subscriber.id ? "…" : "Вернуть"}
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="destructive"
+                          size="sm"
+                          disabled={pendingId === subscriber.id}
+                          onClick={() => remove(subscriber)}
+                        >
+                          {pendingId === subscriber.id ? "…" : "Удалить"}
+                        </Button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+      ) : null}
     </div>
   )
 }

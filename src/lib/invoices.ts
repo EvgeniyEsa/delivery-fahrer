@@ -2,7 +2,9 @@ import { randomUUID } from "node:crypto"
 import { mkdir, readdir, readFile, unlink, writeFile } from "node:fs/promises"
 import path from "node:path"
 
-import { subscriberClosedOn } from "@/lib/bakery-closures"
+import { listB2bPortals } from "@/lib/b2b-portals"
+import { closedBakeriesOn, subscriberClosedOn } from "@/lib/bakery-closures"
+import { eveningOrderKey, listEveningOrders } from "@/lib/evening-orders"
 import {
   addDays,
   firstInvoiceSerial,
@@ -16,7 +18,7 @@ import {
   type InvoiceLine,
 } from "@/lib/invoice-math"
 import { bakeryHint } from "@/lib/product-photos"
-import { bakeryForArticle, describeProduct, normalizeArticle } from "@/lib/product-article"
+import { bakeryCodeForArticle, bakeryForArticle, describeProduct, normalizeArticle } from "@/lib/product-article"
 import { formatPrice, type CatalogProduct } from "@/lib/product-types"
 import { deliverInvoice } from "@/lib/invoice-mail"
 import { listProducts } from "@/lib/products"
@@ -51,6 +53,7 @@ export function invoiceClients(subscribers: Subscriber[]) {
   const clients: Array<{ key: string; number: number; name: string }> = []
   const seen = new Set<string>()
   for (const subscriber of subscribers) {
+    if (subscriber.archivedAt) continue
     const key = clientKey(subscriber.name)
     if (seen.has(key)) continue
     seen.add(key)
@@ -172,10 +175,19 @@ export async function buildInvoiceDraft(input: {
     return { ok: false, error: message }
   }
 
-  const cards = subscribers.filter((subscriber) => clientKey(subscriber.name) === input.clientKey)
-  if (cards.length === 0) return { ok: false, error: "Клиент не найден." }
+  const named = subscribers.filter((subscriber) => clientKey(subscriber.name) === input.clientKey)
+  if (named.length === 0) return { ok: false, error: "Клиент не найден." }
+  const cards = named.filter((subscriber) => !subscriber.archivedAt)
+  if (cards.length === 0) {
+    return { ok: false, error: "Клиент в архиве. Верните карточку, чтобы выставить счёт." }
+  }
 
   const index = priceIndex(catalog)
+  const [portals, eveningOrders] = await Promise.all([listB2bPortals(), listEveningOrders()])
+  const portalBakery = new Map(portals.map((portal) => [portal.subscriberId, portal.bakery]))
+  const hotelIds = new Set(
+    portals.filter((portal) => portal.bakery === "Kockartz").map((portal) => portal.subscriberId),
+  )
   const deliveryDays = new Set<string>()
   const buckets = new Map<
     string,
@@ -183,27 +195,55 @@ export async function buildInvoiceDraft(input: {
   >()
   const active: Subscriber[] = []
 
+  function addProduct(product: SubscriberProduct, times: number, hint: string) {
+    if (product.quantity <= 0 || times <= 0) return
+    const described = describeProduct(product)
+    const name = described.name || product.name.trim()
+    const key = `product:${normalizeName(name)}`
+    const vendor = described.bakery || hint
+    const quotes = quotesFor(index, product, vendor)
+    const bucket = buckets.get(key) ?? { key, name, quantity: 0, quotes: [], missing: false }
+    bucket.quantity += product.quantity * times
+    if (quotes.length === 0) bucket.missing = true
+    else bucket.quotes.push(...quotes)
+    buckets.set(key, bucket)
+  }
+
   for (const card of cards) {
+    const hint = bakeryHint(card.comment)
+    if (hotelIds.has(card.id)) {
+      let ordered = false
+      for (let date = input.from; date <= input.to; date = addDays(date, 1)) {
+        const lines = eveningOrders.get(eveningOrderKey(card.id, date)) ?? []
+        if (lines.length === 0 || lieferscheinClosed(lines, date)) continue
+        ordered = true
+        deliveryDays.add(date)
+        for (const line of lines) addProduct(line, 1, "Kockartz")
+      }
+      if (ordered) active.push(card)
+      continue
+    }
+
     const dates = card.deliveryDates.filter(
       (date) => date >= input.from && date <= input.to && !subscriberClosedOn(card, date),
     )
-    if (dates.length === 0) continue
-    active.push(card)
-    for (const date of dates) deliveryDays.add(date)
-    const hint = bakeryHint(card.comment)
-    for (const product of card.products) {
-      if (product.quantity <= 0) continue
-      const described = describeProduct(product)
-      const name = described.name || product.name.trim()
-      const key = `product:${normalizeName(name)}`
-      const vendor = described.bakery || hint
-      const quotes = quotesFor(index, product, vendor)
-      const bucket = buckets.get(key) ?? { key, name, quantity: 0, quotes: [], missing: false }
-      bucket.quantity += product.quantity * dates.length
-      if (quotes.length === 0) bucket.missing = true
-      else bucket.quotes.push(...quotes)
-      buckets.set(key, bucket)
+    if (dates.length > 0) {
+      active.push(card)
+      for (const date of dates) deliveryDays.add(date)
+      for (const product of card.products) addProduct(product, dates.length, hint)
     }
+    if (portalBakery.get(card.id) !== "Moss") continue
+    const standing = new Set(dates)
+    let extra = false
+    for (let date = input.from; date <= input.to; date = addDays(date, 1)) {
+      if (standing.has(date)) continue
+      const lines = eveningOrders.get(eveningOrderKey(card.id, date)) ?? []
+      if (lines.length === 0 || lieferscheinClosed(lines, date)) continue
+      extra = true
+      deliveryDays.add(date)
+      for (const line of lines) addProduct(line, 1, "Moss")
+    }
+    if (extra && !active.includes(card)) active.push(card)
   }
 
   if (deliveryDays.size === 0) {
@@ -317,6 +357,19 @@ export async function removeInvoice(id: string) {
   return { ok: true as const }
 }
 
+function lieferscheinClosed(
+  lines: Array<{ article: string }>,
+  date: string,
+) {
+  const closed = closedBakeriesOn(date)
+  if (closed.size === 0) return false
+  const codes = lines.flatMap((line) => {
+    const code = bakeryCodeForArticle(line.article)
+    return code ? [code] : []
+  })
+  return codes.length > 0 && codes.every((code) => closed.has(code))
+}
+
 function clientKey(name: string) {
   return name.trim().toLocaleLowerCase("ru")
 }
@@ -362,7 +415,11 @@ function quotesFor(
   }
   const active = matches.filter((item) => item.status === "active")
   const list = active.length > 0 ? active : matches
-  return uniqueQuotes(list.map((item) => ({ vendor: item.vendor, price: item.price })))
+  return uniqueQuotes(
+    list.flatMap((item) =>
+      item.price == null ? [] : [{ vendor: item.vendor, price: item.price }],
+    ),
+  )
 }
 
 function uniqueQuotes(quotes: Quote[]) {

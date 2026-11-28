@@ -253,9 +253,17 @@ export type ShopifyOrderItem = {
   amount: number | null
 }
 
+const ITEM_CACHE_MS = 60_000
+let itemCache: { key: string; at: number; items: Map<string, ShopifyOrderItem[]> } | null = null
+
 export async function getShopifyOrderItems(shopifyOrderIds: string[]) {
-  const items = new Map<string, ShopifyOrderItem[]>()
   const ids = [...new Set(shopifyOrderIds.filter(Boolean))]
+  const key = ids.slice().sort().join(",")
+  if (itemCache && itemCache.key === key && Date.now() - itemCache.at < ITEM_CACHE_MS) {
+    return itemCache.items
+  }
+
+  const items = new Map<string, ShopifyOrderItem[]>()
 
   for (let index = 0; index < ids.length; index += 20) {
     const chunk = ids.slice(index, index + 20)
@@ -329,6 +337,7 @@ export async function getShopifyOrderItems(shopifyOrderIds: string[]) {
     }
   }
 
+  itemCache = { key, at: Date.now(), items }
   return items
 }
 

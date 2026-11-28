@@ -2,12 +2,13 @@ import type { MetadataRoute } from "next"
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Водитель Brötli",
-    short_name: "Водитель",
-    description: "Доставки на сегодня",
-    start_url: "/driver",
+    name: "Delivery Manager",
+    short_name: "Delivery",
+    description: "Панель управления доставками",
+    id: "/office/login",
+    start_url: "/office/login",
     scope: "/",
-    display: "standalone",
+    display: "browser",
     background_color: "#ffffff",
     theme_color: "#ffffff",
     lang: "ru",

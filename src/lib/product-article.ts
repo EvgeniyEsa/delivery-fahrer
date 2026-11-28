@@ -17,6 +17,10 @@ const BAKERIES: Record<BakeryCode, string> = {
 
 const ARTICLE = /^(.*?)(?:\s+|^)([A-Za-zА-Яа-я])(\d+)$/
 
+export function isEggName(name: string) {
+  return /\beier\b/i.test(name)
+}
+
 export function normalizeArticle(value: string) {
   const match = value.trim().match(/^([A-Za-zА-Яа-я])\s*(\d+)$/)
   if (!match?.[1] || !match[2]) return value.trim()

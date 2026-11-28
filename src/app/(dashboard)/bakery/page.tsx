@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
 
+import { BakeryNoteArchive } from "@/components/bakery-note-archive"
 import { PartnerBoard } from "@/components/partner-board"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -21,6 +22,9 @@ export default function BakeryPage() {
       </div>
       <Suspense fallback={<BoardFallback />}>
         <PartnerWorkspace />
+      </Suspense>
+      <Suspense fallback={null}>
+        <BakeryNoteArchive />
       </Suspense>
     </div>
   )

@@ -13,7 +13,7 @@ export function DriverLoginForm() {
   return (
     <form action={action} className="flex flex-col gap-4">
       <label className="flex flex-col gap-1.5 text-sm">
-        Имя
+        Name
         <Input
           name="login"
           autoComplete="username"
@@ -23,7 +23,7 @@ export function DriverLoginForm() {
         />
       </label>
       <label className="flex flex-col gap-1.5 text-sm">
-        Пароль
+        Passwort
         <Input
           name="password"
           type="password"
@@ -38,7 +38,7 @@ export function DriverLoginForm() {
         className={cn(buttonVariants({ size: "lg" }), "h-12 w-full text-base")}
         disabled={pending}
       >
-        {pending ? "…" : "Войти"}
+        {pending ? "…" : "Anmelden"}
       </button>
     </form>
   )

@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 
-export function DriverPhoto({ src, name }: { src: string; name: string }) {
+import { cn } from "cn"
+
+export function DriverPhoto({ src, name, compact = false }: { src: string; name: string; compact?: boolean }) {
   const [failed, setFailed] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -17,7 +19,12 @@ export function DriverPhoto({ src, name }: { src: string; name: string }) {
   }, [open])
 
   if (!src || failed) {
-    return <span className="block size-20 shrink-0 rounded-lg bg-black/5" aria-hidden />
+    return (
+      <span
+        className={cn("block shrink-0 rounded-lg bg-black/5", compact ? "size-14" : "size-20")}
+        aria-hidden
+      />
+    )
   }
 
   return (
@@ -25,13 +32,16 @@ export function DriverPhoto({ src, name }: { src: string; name: string }) {
       <button
         type="button"
         className="shrink-0 rounded-lg"
-        aria-label={`Открыть фото: ${name}`}
-        onClick={() => setOpen(true)}
+        aria-label={`Foto öffnen: ${name}`}
+        onClick={(event) => {
+          event.stopPropagation()
+          setOpen(true)
+        }}
       >
         <img
           src={src}
           alt=""
-          className="size-20 rounded-lg object-cover"
+          className={cn("rounded-lg object-cover", compact ? "size-14" : "size-20")}
           onError={() => setFailed(true)}
         />
       </button>

@@ -1,0 +1,20 @@
+{
+  "name": "Админка",
+  "short_name": "Админка",
+  "description": "Вход в панель управления",
+  "id": "/office/login",
+  "start_url": "/office/login",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "/brand/brotli-mark.png",
+      "sizes": "134x134",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

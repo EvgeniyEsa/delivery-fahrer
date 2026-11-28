@@ -12,6 +12,8 @@ const NAME_ALIASES: Record<string, string> = {
   bergsteiger: "bergsteiger broetchen",
   "broetchenset 10er": "broetchen set 10er",
   "broetchenset 6er": "broetchen set 6er",
+  laugenecken: "laugenecke",
+  "kaeseroetchen gebacken": "kaesebroetchen gebacken",
   "suesse broetchen": "suesses broetchen",
   "halbes oberlaender geschnitten": "oberlaender 1000g",
 }
@@ -19,6 +21,17 @@ const NAME_ALIASES: Record<string, string> = {
 const BAKERIES = ["Heidbüchel", "Moss", "Kockartz"] as const
 
 export type DriverBakery = (typeof BAKERIES)[number]
+
+export const BAKERY_COLOR: Record<DriverBakery, string> = {
+  Heidbüchel: "bg-[#fff3c4]",
+  Moss: "bg-[#dff3d8]",
+  Kockartz: "bg-[#e8c9a4]",
+}
+
+export function bakeryFromName(name: string): DriverBakery | "" {
+  const hint = bakeryHint(name)
+  return isDriverBakery(hint) ? hint : ""
+}
 
 export function bakeryHint(comment: string) {
   const heidbuechel = /heidb|хальб|хайб/i.test(comment)
@@ -95,6 +108,50 @@ function isDriverBakery(value: string): value is DriverBakery {
   return BAKERIES.includes(value as DriverBakery)
 }
 
+export function catalogNameLookup(catalog: CatalogProduct[]) {
+  const bySku = new Map<string, CatalogProduct[]>()
+
+  for (const product of catalog) {
+    const sku = normalizeArticle(product.sku.trim()).toUpperCase()
+    if (!sku) continue
+    const group = bySku.get(sku) ?? []
+    group.push(product)
+    bySku.set(sku, group)
+  }
+
+  return function lookup(article: string, bakery: string) {
+    const sku = normalizeArticle(article).toUpperCase()
+    const matches = (bySku.get(sku) ?? []).filter((product) => product.vendor === bakery)
+    return matches.length === 1 ? matches[0].name : ""
+  }
+}
+
+export function productSkuLookup(catalog: CatalogProduct[]) {
+  const byName = new Map<string, CatalogProduct[]>()
+
+  for (const product of catalog) {
+    const sku = product.sku.trim()
+    const name = normalizeName(product.name)
+    if (!sku || !name) continue
+    const named = byName.get(name) ?? []
+    named.push(product)
+    byName.set(name, named)
+  }
+
+  return function lookup(input: { name: string; article?: string; bakery?: string }) {
+    const article = input.article?.trim()
+    if (article) return normalizeArticle(article)
+
+    const normalized = normalizeName(input.name)
+    const key = NAME_ALIASES[normalized] ?? normalized
+    const matches = (byName.get(key) ?? []).filter(
+      (product) => !input.bakery || product.vendor === input.bakery,
+    )
+    const skus = [...new Set(matches.map((product) => normalizeArticle(product.sku.trim())))]
+    return skus.length === 1 ? skus[0] : ""
+  }
+}
+
 export function productPhotoLookup(catalog: CatalogProduct[]) {
   const bySku = new Map<string, CatalogProduct[]>()
   const byName = new Map<string, CatalogProduct[]>()
@@ -118,8 +175,14 @@ export function productPhotoLookup(catalog: CatalogProduct[]) {
     if (article) {
       const sku = normalizeArticle(article).toUpperCase()
       const matches = bySku.get(sku)
-      const chosen = matches ? choose(matches, "") : undefined
-      if (chosen?.image) return chosen.image
+      if (matches?.length) {
+        const wanted = normalizeName(input.name)
+        const named = wanted
+          ? matches.filter((product) => normalizeName(product.name) === wanted)
+          : []
+        const chosen = choose(named.length > 0 ? named : matches, input.vendor ?? "")
+        if (chosen?.image) return chosen.image
+      }
     }
 
     const normalized = normalizeName(input.name)

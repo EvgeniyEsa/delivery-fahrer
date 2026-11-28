@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import { ReleaseSiteWorker } from "@/components/release-site-worker";
+
 const geistSans = Geist({
   variable: "--font-sans",
   subsets: ["latin", "cyrillic"],

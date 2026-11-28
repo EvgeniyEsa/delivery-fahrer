@@ -147,10 +147,6 @@ export async function measureRoadRoute(stops: RouteStop[]): Promise<PlannedRoute
 
   const loop = [depotStop(), ...stops, depotStop()]
 
-  if (loop.length > 25) {
-    return measureOrderedRoute(stops)
-  }
-
   try {
     const planned = await planRoute(loop)
     return {
@@ -164,28 +160,119 @@ export async function measureRoadRoute(stops: RouteStop[]): Promise<PlannedRoute
   }
 }
 
-function twoOpt(stops: RouteStop[], lockedCount = 0) {
-  if (stops.length - lockedCount < 2) return stops
-  if (lockedCount === 0 && stops.length < 4) return stops
+export type AnchoredStop = RouteStop & {
+  afterAnchorIds?: string[]
+}
 
-  const route = [...stops]
+export function arrangeAroundAnchors(
+  anchors: RouteStop[],
+  visitors: AnchoredStop[],
+  end: RouteStop | null = null,
+): RouteStop[] {
+  if (anchors.length === 0) {
+    return optimizeOpenGap(depotStop(), orderStopsFrom(depot, visitors), end)
+  }
+
+  const route: AnchoredStop[] = [...anchors]
+  const pending = [...visitors]
+
+  while (pending.length > 0) {
+    let bestCustomer = 0
+    let bestAt = route.length
+    let bestCost = Number.POSITIVE_INFINITY
+
+    pending.forEach((customer, customerIndex) => {
+      const earliest = earliestSlot(route, customer.afterAnchorIds)
+      for (let slot = earliest; slot <= route.length; slot += 1) {
+        const from = slot === 0 ? depotStop() : route[slot - 1]
+        const to = route[slot]
+        if (!from) continue
+        const cost = to
+          ? haversineMeters(from, customer) +
+            haversineMeters(customer, to) -
+            haversineMeters(from, to)
+          : end
+            ? haversineMeters(from, customer) +
+              haversineMeters(customer, end) -
+              haversineMeters(from, end)
+            : haversineMeters(from, customer)
+        if (cost < bestCost) {
+          bestCost = cost
+          bestCustomer = customerIndex
+          bestAt = slot
+        }
+      }
+    })
+
+    const [next] = pending.splice(bestCustomer, 1)
+    if (!next) break
+    route.splice(bestAt, 0, next)
+  }
+
+  return optimizeGaps(route, new Set(anchors.map((anchor) => anchor.id)), end)
+}
+
+function earliestSlot(route: RouteStop[], afterAnchorIds: string[] | undefined) {
+  let slot = route.length > 0 ? 1 : 0
+  for (const id of afterAnchorIds ?? []) {
+    const index = route.findIndex((stop) => stop.id === id)
+    if (index >= 0) slot = Math.max(slot, index + 1)
+  }
+  return slot
+}
+
+function optimizeGaps(route: RouteStop[], anchorIds: Set<string>, end: RouteStop | null) {
+  const ordered: RouteStop[] = []
+  let gap: RouteStop[] = []
+  let before: RouteStop = depotStop()
+
+  const flush = (after: RouteStop | null) => {
+    ordered.push(...optimizeOpenGap(before, gap, after))
+    gap = []
+  }
+
+  for (const stop of route) {
+    if (!anchorIds.has(stop.id)) {
+      gap.push(stop)
+      continue
+    }
+    flush(stop)
+    ordered.push(stop)
+    before = stop
+  }
+
+  flush(end)
+  return ordered
+}
+
+function optimizeOpenGap(
+  before: RouteStop,
+  gap: RouteStop[],
+  after: RouteStop | null,
+) {
+  if (gap.length < 2) return gap
+
+  const route = [...gap]
   let improved = true
 
   while (improved) {
     improved = false
 
-    for (let start = lockedCount; start < route.length - 1 && !improved; start += 1) {
+    for (let start = 0; start < route.length - 1 && !improved; start += 1) {
       for (let end = start + 1; end < route.length; end += 1) {
-        const before = start === 0 ? depotStop() : route[start - 1]
-        const after = end === route.length - 1 ? depotStop() : route[end + 1]
+        const left = start === 0 ? before : route[start - 1]
+        const right = end === route.length - 1 ? after : route[end + 1]
         const first = route[start]
         const last = route[end]
-        if (!before || !after || !first || !last) continue
+        if (!left || !first || !last) continue
+        if (!right && end !== route.length - 1) continue
 
-        const current =
-          haversineMeters(before, first) + haversineMeters(last, after)
-        const swapped =
-          haversineMeters(before, last) + haversineMeters(first, after)
+        const current = right
+          ? haversineMeters(left, first) + haversineMeters(last, right)
+          : haversineMeters(left, first)
+        const swapped = right
+          ? haversineMeters(left, last) + haversineMeters(first, right)
+          : haversineMeters(left, last)
         if (swapped + 50 >= current) continue
 
         const reversed = route.slice(start, end + 1).reverse()
@@ -200,24 +287,19 @@ function twoOpt(stops: RouteStop[], lockedCount = 0) {
 }
 
 export async function buildDeliveryPlan(
-  stops: RouteStop[],
+  stops: AnchoredStop[],
   fixedOrder: string[] = [],
+  end: RouteStop | null = null,
 ): Promise<PlannedRoute> {
   const byId = new Map(stops.map((stop) => [stop.id, stop]))
-  const prefix = fixedOrder.flatMap((id) => {
+  const anchors = fixedOrder.flatMap((id) => {
     const stop = byId.get(id)
     return stop ? [stop] : []
   })
-  const prefixIds = new Set(prefix.map((stop) => stop.id))
-  const rest = stops.filter((stop) => !prefixIds.has(stop.id))
-  const origin = prefix.at(-1) ?? {
-    latitude: depot.latitude,
-    longitude: depot.longitude,
-  }
+  const anchorIds = new Set(anchors.map((stop) => stop.id))
+  const visitors = stops.filter((stop) => !anchorIds.has(stop.id))
 
-  return measureRoadRoute(
-    twoOpt([...prefix, ...orderStopsFrom(origin, rest)], prefix.length),
-  )
+  return measureRoadRoute(arrangeAroundAnchors(anchors, visitors, end))
 }
 
 export async function drivingPath(
@@ -235,18 +317,28 @@ export async function drivingPath(
     if (line.length > 1) {
       return line.map(([longitude, latitude]) => [latitude, longitude])
     }
-  } catch {
+  } catch (error) {
+    console.error(
+      "[route] road geometry unavailable",
+      error instanceof Error ? error.message : error,
+    )
     return straight
   }
 
   return straight
 }
 
+const DIRECTIONS_COORDINATE_LIMIT = 25
+
 export async function planRoute(stops: RouteStop[]): Promise<PlannedRoute> {
   const token = process.env.MAPBOX_ACCESS_TOKEN
 
   if (!token) {
     throw new Error("MAPBOX_ACCESS_TOKEN must be set")
+  }
+
+  if (stops.length > DIRECTIONS_COORDINATE_LIMIT) {
+    return planLongRoute(stops)
   }
 
   if (stops.length < 2) {
@@ -290,5 +382,34 @@ export async function planRoute(stops: RouteStop[]): Promise<PlannedRoute> {
     durationSeconds: route.duration,
     geometry: route.geometry,
     roadRoute: true,
+  }
+}
+
+async function planLongRoute(stops: RouteStop[]): Promise<PlannedRoute> {
+  const step = DIRECTIONS_COORDINATE_LIMIT - 1
+  const chunks: RouteStop[][] = []
+  for (let start = 0; start < stops.length - 1; start += step) {
+    const chunk = stops.slice(start, start + DIRECTIONS_COORDINATE_LIMIT)
+    if (chunk.length >= 2) chunks.push(chunk)
+  }
+
+  const parts = await Promise.all(chunks.map((chunk) => planRoute(chunk)))
+  const coordinates: Array<[number, number]> = []
+  let distanceMeters = 0
+  let durationSeconds = 0
+
+  for (const part of parts) {
+    distanceMeters += part.distanceMeters
+    durationSeconds += part.durationSeconds
+    const line = part.geometry?.coordinates ?? []
+    coordinates.push(...(coordinates.length > 0 ? line.slice(1) : line))
+  }
+
+  return {
+    stops,
+    distanceMeters,
+    durationSeconds,
+    geometry: coordinates.length > 1 ? { type: "LineString", coordinates } : null,
+    roadRoute: coordinates.length > 1 && parts.every((part) => part.roadRoute),
   }
 }

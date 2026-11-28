@@ -1,0 +1,20 @@
+{
+  "name": "Водитель Brötli",
+  "short_name": "Водитель",
+  "description": "Доставки на сегодня",
+  "id": "/driver",
+  "start_url": "/driver",
+  "scope": "/driver",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "/brand/brotli-mark.png",
+      "sizes": "134x134",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

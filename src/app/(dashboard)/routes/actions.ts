@@ -1,14 +1,22 @@
 "use server"
 
+import { eveningOrderKey, listEveningOrders } from "@/lib/evening-orders"
+import { readDriverHome } from "@/lib/driver-home"
 import { listOrdersByIds, type PlannableOrder } from "@/lib/orders"
 import { listPickupStopsByIds } from "@/lib/partner-stops"
+import { isEggName } from "@/lib/product-article"
+import { bakeryFromName, bakeryHint, driverBakeryLookup, type DriverBakery } from "@/lib/product-photos"
+import { listProducts } from "@/lib/products"
 import { listSubscriptionStopsByIds } from "@/lib/route-stops"
 import {
   buildDeliveryPlan,
   depot,
   measureRoadRoute,
-  type RouteStop,
+  type AnchoredStop,
 } from "@/lib/routing"
+import { getShopifyOrderItems, type ShopifyOrderItem } from "@/lib/shopify"
+import { listSubscribers } from "@/lib/subscribers"
+import { requireOfficeSession } from "@/lib/office-session"
 
 export type DeliveryStop = {
   id: string
@@ -40,6 +48,7 @@ const MAX_STOPS = 50
 export async function planDeliveries(
   orderIds: string[],
 ): Promise<DeliveryPlanResult> {
+  await requireOfficeSession()
   if (!Array.isArray(orderIds) || orderIds.length === 0) {
     return { ok: false, error: "Выберите хотя бы одну доставку" }
   }
@@ -87,10 +96,11 @@ export async function planDeliveries(
     }
   }
 
+  const afterAnchor = await anchorsBeforeDelivery(orders)
   const ready = orders.flatMap((order) => {
     if (order.latitude === null || order.longitude === null) return []
 
-    const stop: RouteStop & DeliveryStop = {
+    const stop: AnchoredStop & DeliveryStop = {
       id: order.id,
       number: order.number,
       customer: order.customer,
@@ -98,6 +108,7 @@ export async function planDeliveries(
       address: order.address,
       latitude: order.latitude,
       longitude: order.longitude,
+      afterAnchorIds: afterAnchor.get(order.id) ?? [],
     }
 
     return [stop]
@@ -111,7 +122,19 @@ export async function planDeliveries(
     .filter((order) => order.source === "pickup")
     .sort((left, right) => left.sequence - right.sequence)
     .map((order) => order.id)
-  const plan = await buildDeliveryPlan(ready, pickupOrder)
+  const home = await readDriverHome()
+  const plan = await buildDeliveryPlan(
+    ready,
+    pickupOrder,
+    home.latitude != null && home.longitude != null
+      ? {
+          id: "home",
+          address: home.address,
+          latitude: home.latitude,
+          longitude: home.longitude,
+        }
+      : null,
+  )
   const stopsById = new Map(ready.map((stop) => [stop.id, stop]))
 
   return {
@@ -143,6 +166,7 @@ export async function remeasureDeliveries(
     }
   | { ok: false; error: string }
 > {
+  await requireOfficeSession()
   if (!Array.isArray(stops) || stops.length === 0) {
     return { ok: false, error: "В маршруте нет остановок" }
   }
@@ -187,4 +211,83 @@ export async function remeasureDeliveries(
     geometry: plan.geometry?.coordinates ?? [],
     roadRoute: plan.roadRoute,
   }
+}
+
+async function anchorsBeforeDelivery(orders: PlannableOrder[]) {
+  const anchorByBakery = new Map<DriverBakery, string>()
+  for (const order of orders) {
+    if (order.source !== "pickup") continue
+    const bakery = bakeryFromName(order.customer)
+    if (bakery) anchorByBakery.set(bakery, order.id)
+  }
+
+  const deliveries = orders.filter((order) => order.source !== "pickup")
+  const [catalog, subscribers, eveningOrders] = await Promise.all([
+    listProducts(),
+    listSubscribers(),
+    listEveningOrders(),
+  ])
+  const bakeryOf = driverBakeryLookup(catalog)
+  const subscriberById = new Map(subscribers.map((subscriber) => [subscriber.id, subscriber]))
+  let shopifyItems = new Map<string, ShopifyOrderItem[]>()
+  try {
+    shopifyItems = await getShopifyOrderItems(
+      deliveries.flatMap((order) => (order.shopifyOrderId ? [order.shopifyOrderId] : [])),
+    )
+  } catch (error) {
+    console.error("[route bakeries]", error instanceof Error ? error.message : error)
+  }
+
+  const result = new Map<string, string[]>()
+  for (const order of deliveries) {
+    const lines = linesFor(order, subscriberById, eveningOrders, shopifyItems)
+    const needed = new Set<DriverBakery>()
+    const goods = lines.filter((line) => !isEggName(line.name))
+    let unknown = goods.length === 0 && lines.length === 0
+    for (const line of goods) {
+      const bakery = bakeryOf(line, line.hint)
+      if (bakery) needed.add(bakery)
+      else unknown = true
+    }
+    const bakeries = unknown ? [...anchorByBakery.keys()] : [...needed]
+    result.set(
+      order.id,
+      bakeries.flatMap((bakery) => {
+        const anchorId = anchorByBakery.get(bakery)
+        return anchorId ? [anchorId] : []
+      }),
+    )
+  }
+  return result
+}
+
+function linesFor(
+  order: PlannableOrder,
+  subscriberById: Map<string, Awaited<ReturnType<typeof listSubscribers>>[number]>,
+  eveningOrders: Awaited<ReturnType<typeof listEveningOrders>>,
+  shopifyItems: Map<string, ShopifyOrderItem[]>,
+) {
+  const subscription = /^sub:([^:]+):(\d{4}-\d{2}-\d{2})$/.exec(order.id)
+  if (subscription?.[1] && subscription[2]) {
+    const subscriber = subscriberById.get(subscription[1])
+    if (!subscriber) return []
+    const evening = eveningOrders.get(eveningOrderKey(subscriber.id, subscription[2]))
+    const products = evening && evening.length > 0 ? evening : subscriber.products
+    const hint = evening && evening.length > 0 ? "Kockartz" : bakeryHint(subscriber.comment)
+    return products.flatMap((product) => {
+      const name = product.name.trim()
+      if (!name || product.quantity <= 0 || isFeeOrTip(name)) return []
+      return [{ name, article: product.article, hint }]
+    })
+  }
+
+  return (shopifyItems.get(order.shopifyOrderId) ?? []).flatMap((line) => {
+    const name = line.name.trim()
+    if (!name || isFeeOrTip(name)) return []
+    return [{ name, article: line.sku, hint: "" }]
+  })
+}
+
+function isFeeOrTip(name: string) {
+  return /^(lieferung|delivery|tip|trinkgeld)$/i.test(name.trim())
 }

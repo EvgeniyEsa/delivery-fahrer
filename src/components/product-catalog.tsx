@@ -30,6 +30,13 @@ import {
   type ProductUpdate,
 } from "@/lib/product-types"
 
+function moneyOrNull(value: string) {
+  const trimmed = value.trim()
+  if (!trimmed) return null
+  const amount = Number(trimmed.replace(",", "."))
+  return Number.isFinite(amount) ? amount : Number.NaN
+}
+
 function productCount(count: number) {
   const mod10 = count % 10
   const mod100 = count % 100
@@ -114,7 +121,8 @@ function ProductEditor({
 }) {
   const [name, setName] = useState(product.name)
   const [sku, setSku] = useState(product.sku)
-  const [price, setPrice] = useState(String(product.price))
+  const [price, setPrice] = useState(product.price == null ? "" : String(product.price))
+  const [cost, setCost] = useState(product.cost == null ? "" : String(product.cost))
   const [vendor, setVendor] = useState(product.vendor)
   const [image, setImage] = useState(product.image)
   const choices = vendors.includes(vendor) ? vendors : [vendor, ...vendors]
@@ -122,11 +130,11 @@ function ProductEditor({
 
   function submit(event: FormEvent) {
     event.preventDefault()
-    const value = Number(price.replace(",", "."))
     onSave({
       name,
       sku,
-      price: value,
+      price: moneyOrNull(price),
+      cost: moneyOrNull(cost),
       type: product.type,
       vendor,
       image,
@@ -135,7 +143,7 @@ function ProductEditor({
 
   return (
     <TableRow className="bg-background hover:bg-background">
-      <TableCell colSpan={5} className="p-4">
+      <TableCell colSpan={6} className="p-4">
         <form onSubmit={submit} className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <div className="flex flex-col gap-1 text-sm">
             <Label>Название</Label>
@@ -148,6 +156,10 @@ function ProductEditor({
           <div className="flex flex-col gap-1 text-sm">
             <Label>Цена</Label>
             <Input value={price} onChange={(event) => setPrice(event.target.value)} inputMode="decimal" />
+          </div>
+          <div className="flex flex-col gap-1 text-sm">
+            <Label>Закупка</Label>
+            <Input value={cost} onChange={(event) => setCost(event.target.value)} inputMode="decimal" />
           </div>
           <div className="flex flex-col gap-1 text-sm">
             <Label>Пекарня</Label>
@@ -224,7 +236,7 @@ function SectionRows({
   return (
     <>
       <TableRow className="border-t-2 border-foreground/20 bg-muted/60 hover:bg-muted/60">
-        <TableCell colSpan={5} className="py-2 pl-4 text-sm font-semibold">
+        <TableCell colSpan={6} className="py-2 pl-4 text-sm font-semibold">
           {title}
         </TableCell>
       </TableRow>
@@ -259,7 +271,10 @@ function SectionRows({
               ) : null}
             </TableCell>
             <TableCell className="whitespace-nowrap tabular-nums">
-              {formatPrice(product.price)}
+              {product.price == null ? "—" : formatPrice(product.price)}
+            </TableCell>
+            <TableCell className="whitespace-nowrap tabular-nums">
+              {product.cost == null ? "—" : formatPrice(product.cost)}
             </TableCell>
             <TableCell className="pr-2">
               <Button
@@ -417,6 +432,7 @@ export function ProductCatalog({ products }: { products: CatalogProduct[] }) {
             <col className="w-14" />
             <col />
             <col className="w-24" />
+            <col className="w-24" />
             <col className="w-28" />
           </colgroup>
           <TableHeader>
@@ -425,13 +441,14 @@ export function ProductCatalog({ products }: { products: CatalogProduct[] }) {
               <TableHead className="px-1">Фото</TableHead>
               <TableHead>Название</TableHead>
               <TableHead>Цена</TableHead>
+              <TableHead>Закупка</TableHead>
               <TableHead className="pr-2" />
             </TableRow>
           </TableHeader>
           <TableBody>
             {sections.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={5} className="h-24 text-center text-muted-foreground">
+                <TableCell colSpan={6} className="h-24 text-center text-muted-foreground">
                   Ничего не нашлось.
                 </TableCell>
               </TableRow>
