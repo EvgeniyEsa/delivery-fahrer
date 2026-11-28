@@ -138,7 +138,7 @@ export async function listDriverStops(day: string): Promise<DriverStop[]> {
     deliveredAt: deliveredAt.get(order.id) ?? null,
     canComplete: true,
     items: itemsFor(
-      (shopifyItems.get(order.shopifyOrderId) ?? []).map((line) => ({
+      (shopifyItems.get(order.shopifyOrderId) ?? []).map((line: ShopifyOrderItem) => ({
         name: line.name,
         quantity: line.quantity,
         article: line.sku,
