@@ -6,7 +6,7 @@ import { bakeryHint, driverBakeryLookup, productPhotoLookup } from "@/lib/produc
 import type { DriverBakery } from "@/lib/product-photos"
 import { listProducts } from "@/lib/products"
 import { subscriptionStops } from "@/lib/route-stops"
-import { getShopifyOrderItems } from "@/lib/shopify"
+import { getShopifyOrderItems, type ShopifyOrderItem } from "@/lib/shopify"
 import { listSubscribers } from "@/lib/subscribers"
 import type { OrderStatus } from "@/lib/mock-orders"
 
@@ -51,7 +51,7 @@ export async function listDriverStops(day: string): Promise<DriverStop[]> {
   const partnerById = new Map(partners.map((partner) => [partner.id, partner]))
 
   const todayOrders = orders.filter((order) => order.deliveryDate === day)
-  let shopifyItems = new Map<string, { name: string; quantity: number; sku: string }[]>()
+  let shopifyItems = new Map<string, ShopifyOrderItem[]>()
   try {
     shopifyItems = await getShopifyOrderItems(
       todayOrders.flatMap((order) => (order.shopifyOrderId ? [order.shopifyOrderId] : [])),
